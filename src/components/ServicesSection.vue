@@ -34,6 +34,12 @@ export default {};
   gap: 20px;
 }
 
+@media (max-width: 700px) {
+  .service-list {
+    flex-direction: column;
+  }
+}
+
 .service {
   background-color: var(--light-green);
   padding: 20px;

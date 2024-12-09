@@ -7,9 +7,19 @@
   --light-green: #a4ce5e;
 }
 
+@font-face {
+  font-family: 'Chiesty';
+  src: url('@/assets/fonts/Chiesty/Chiesty.ttf');
+}
+
+@font-face {
+  font-family: 'Josefine Sans';
+  src: url('@/assets/fonts/JosefineSans/JosefineSans-VariableFont_wght.ttf');
+}
+
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Josefine Sans';
   background-color: var(--background);
   color: var(--primary);
 }
@@ -18,6 +28,10 @@ h1,
 h2,
 h3 {
   margin: 0;
+}
+
+h1 {
+  font-family: 'Chiesty';
 }
 
 button {

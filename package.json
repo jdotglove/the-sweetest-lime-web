@@ -16,9 +16,6 @@
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },
-  "resolutions": {
-    "typescript": "^5.6.3"
-  },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",

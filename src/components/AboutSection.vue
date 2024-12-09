@@ -1,5 +1,5 @@
 <template>
-  <section id="about" class="m-20 bg-light-green text-primary relative">
+  <section id="about" class="mx-auto bg-light-green text-primary relative overflow-hidden">
     <div class="absolute top-0 left-0 w-20 h-20 bg-accent rounded-full -translate-x-10 -translate-y-10"></div>
     <div class="absolute bottom-0 right-0 w-32 h-32 bg-accent rounded-full translate-x-10 translate-y-10"></div>
 
