@@ -1,14 +1,12 @@
 <template>
-  <nav class="navbar bg-primary text-secondary shadow-md">
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
     <div class="container mx-auto flex justify-between items-center px-6 py-4">
-      <!-- Logo -->
-      <div class="logo text-2xl font-bold">
-        <a href="#">The Sweetest Lime</a>
-      </div>
+      <h1 class="logo text-4xl font-bold flex items-center gap-2">
+        The Sweetest <span href="#" class="text-accent transition-colors">Lime</span>
+      </h1>
 
-      <!-- Hamburger Menu for Mobile -->
       <div class="md:hidden">
-        <button @click="toggleMenu" class="text-secondary focus:outline-none">
+        <button @click="toggleMenu" class="text-secondary focus:outline-none hover:text-accent transition-colors">
           <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -20,21 +18,44 @@
         </button>
       </div>
 
-      <!-- Navigation Links -->
-      <ul class="nav-links hidden md:flex gap-6 font-medium"
-        :class="{ 'block absolute bg-primary top-16 left-0 w-full px-6 py-4': isMenuOpen }">
-        <li><a href="#services" class="hover:text-light-green">Services</a></li>
-        <li><a href="#about" class="hover:text-light-green">About</a></li>
-        <li><a href="#contact" class="hover:text-light-green">Contact</a></li>
+      <ul class="nav-links hidden md:flex gap-8 font-medium"
+        :class="{ 'block absolute bg-primary/95 backdrop-blur-md top-16 left-0 w-full px-6 py-4 shadow-lg': isMenuOpen }">
+        <li v-for="(link, index) in links" :key="index">
+          <a :href="link.href"
+            :class="`${link.current ? 'text-accent' : 'hover:text-accent'} transition-colors relative group`">
+            {{ link.name }}
+            <span
+              :class="`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${link.current ? 'w-full' : 'w-0 group-hover:w-full'}`"></span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 
-<script>
+<script lang="ts">
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+
 export default {
+  setup(): {
+    currentPath: string
+  } {
+    const route = useRoute();
+    const currentPath = ref<string>(route.path);
+    return { currentPath: currentPath.value };
+  },
   data() {
+    const currentPath = this.currentPath as unknown as string;
+
     return {
+      links: [
+        { name: 'Home', href: '/', current: currentPath === '/' },
+        { name: 'Hair Services', href: '/hair-services', current: currentPath === '/hair-services' },
+        { name: 'Nails', href: '/nails', current: currentPath === '/nails' },
+        { name: 'Body Work', href: '/body-work', current: currentPath === '/body-work' },
+        { name: 'About Us', href: '/about-us', current: currentPath === '/about-us' },
+      ],
       isMenuOpen: false,
     };
   },
