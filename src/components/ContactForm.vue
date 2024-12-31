@@ -1,6 +1,5 @@
 <template>
   <section id="contact" class="contact">
-
     <div>
       <h2 class="text-4xl font-bold mb-8 text-center border-b-4 border-accent inline-block px-6">Contact Us</h2>
     </div>
@@ -16,7 +15,6 @@
 
       <button type="submit">Submit</button>
     </form>
-
   </section>
 </template>
 
