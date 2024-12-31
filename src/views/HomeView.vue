@@ -1,24 +1,65 @@
 <template>
-  <div class="min-h-screen bg-background">
+  <div class="min-h-screen bg-background relative overflow-hidden">
     <Navbar />
-    <!-- Hero Section with Fullscreen Design -->
-    <section class="relative min-h-screen flex items-center">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70">
-        <div class="absolute inset-0 opacity-10">
-          <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full translate-x-1/2 translate-y-1/2"></div>
+    <!-- Decorative Leaves SVG Components -->
+    <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
+
+      <!-- Scattered Small Leaves -->
+      <svg class="absolute top-1/4 right-1/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+        fill="currentColor">
+        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+      </svg>
+      <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+        fill="currentColor">
+        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+      </svg>
+
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-[80dvh] flex items-center">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+        <!-- Hero Leaf Pattern Overlay -->
+        <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
+
+          <!-- Scattered Small Leaves -->
+          <svg class="absolute top-1/4 right-3/5 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute top-1/3 right-2/3 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-2/3 left-2/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute top-2/4 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
         </div>
       </div>
 
+      <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20">
         <div class="max-w-3xl">
-          <h2 class="text-6xl font-bold text-secondary mb-6">
+          <h1 class="text-6xl font-bold text-secondary mb-6">
             Experience Luxury at
             <span class="text-accent block mt-2">The Sweetest Lime</span>
-          </h2>
+          </h1>
           <p class="text-xl text-secondary/90 mb-8 max-w-2xl">
-            Your destination for premium beauty and wellness services. Where expertise meets luxury,
-            and every visit transforms you into the best version of yourself.
+            Your destination for premium beauty and wellness services. Where nature meets luxury,
+            and every visit leaves you refreshed and renewed.
           </p>
           <div class="flex gap-4 flex-wrap">
             <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
@@ -26,32 +67,73 @@
             </button>
             <button
               class="border-2 border-secondary text-secondary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
-              Explore Services
+              View Services
             </button>
           </div>
         </div>
       </div>
     </section>
+    <div class=" inset-0 pointer-events-none overflow-hidden opacity-10">
 
-    <!-- Featured Services Section -->
-    <section class="py-20 px-6">
+      <!-- Scattered Small Leaves -->
+      <svg class="absolute top-1/4 right-1/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+        fill="currentColor">
+        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+      </svg>
+      <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+        fill="currentColor">
+        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+      </svg>
+    </div>
+    <!-- Services Section with Leaf Accents -->
+    <section class="py-20 px-6 relative">
+      <div class="absolute top-0 right-0 w-64 h-64 opacity-10">
+        <svg viewBox="0 0 100 100" class="text-accent">
+          <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+        </svg>
+      </div>
+
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-primary text-center mb-16">
           Our Services
-          <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
+          <div class="relative">
+            <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
+            <svg class="absolute -right-4 -top-2 w-8 h-8 text-accent transform rotate-45" viewBox="0 0 100 100">
+              <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+            </svg>
+          </div>
         </h2>
 
+        <!-- Service Cards -->
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="service in mainServices" :key="service.id"
             class="group relative bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-            <div class="aspect-w-16 aspect-h-9 bg-primary/10"></div>
-            <div class="p-8">
+            <div class="absolute top-0 right-0 w-20 h-20 opacity-10 transform rotate-45">
+              <svg viewBox="0 0 100 100" class="text-accent">
+                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+              </svg>
+            </div>
+            <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
+
+              <!-- Scattered Small Leaves -->
+              <svg class="absolute top-1/4 right-1/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+                fill="currentColor">
+                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+              </svg>
+              <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+                fill="currentColor">
+                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+              </svg>
+            </div>
+            <div class="p-8 relative">
               <h3 class="text-2xl font-bold text-primary mb-4">{{ service.name }}</h3>
               <p class="text-primary/70 mb-6">{{ service.description }}</p>
               <ul class="space-y-2 mb-6">
                 <li v-for="(feature, idx) in service.features" :key="idx"
                   class="flex items-center gap-2 text-primary/80">
-                  <span class="text-accent">✓</span>
+                  <svg class="w-4 h-4 text-accent" viewBox="0 0 100 100">
+                    <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+                  </svg>
                   {{ feature }}
                 </li>
               </ul>
@@ -65,7 +147,18 @@
         </div>
       </div>
     </section>
+    <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
+      <!-- Scattered Small Leaves -->
+      <svg class="absolute top-2/5 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+        fill="currentColor">
+        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+      </svg>
+      <svg class="absolute top-3/5 right-3/6 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+        fill="currentColor">
+        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+      </svg>
+    </div>
     <!-- Special Offers Section -->
     <section class="py-20 px-6 bg-primary text-secondary">
       <div class="container mx-auto">
@@ -166,6 +259,7 @@
         <p class="text-xl mb-8">
           Experience the luxury and expertise at The Sweetest Lime. Book your appointment today.
         </p>
+
         <div class="flex gap-4 justify-center">
           <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
@@ -184,7 +278,6 @@
 <script lang="ts">
 import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
-import { ref } from 'vue'
 
 export default {
   components: {
@@ -300,5 +393,6 @@ export default {
     }
   }
 }
-
 </script>
+
+<style scoped></style>

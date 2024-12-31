@@ -2,11 +2,36 @@
   <div class="min-h-screen bg-background">
     <Navbar />
     <!-- Hero Section -->
-    <section class="relative h-[40vh] overflow-hidden">
-      <div class="absolute inset-0 bg-primary/90">
-        <div class="absolute inset-0 opacity-10">
-          <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full translate-x-1/2 translate-y-1/2"></div>
+    <section class="relative h-[70vh] overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+        <!-- Hero Leaf Pattern Overlay -->
+        <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
+
+          <!-- Scattered Small Leaves -->
+          <svg class="absolute top-1/4 right-3/5 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute top-1/3 right-2/3 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-2/3 left-2/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute top-2/4 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">

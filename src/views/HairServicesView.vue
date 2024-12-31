@@ -1,45 +1,93 @@
 <template>
   <div class="min-h-screen bg-background">
     <Navbar />
+
     <!-- Hero Section -->
-    <section class="relative h-[40vh] overflow-hidden">
-      <div class="absolute inset-0 bg-primary/90">
-        <!-- Decorative elements -->
-        <div class="absolute inset-0 opacity-10">
-          <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-          <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full translate-x-1/2 translate-y-1/2"></div>
+    <section class="relative h-[70vh] overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+        <!-- Hero Leaf Pattern Overlay -->
+        <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
+
+          <!-- Scattered Small Leaves -->
+          <svg class="absolute top-1/4 right-3/5 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute top-1/3 right-2/3 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-2/3 left-2/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute top-2/4 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
+          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
+            fill="currentColor">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
+          </svg>
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
         <div class="text-secondary max-w-2xl">
           <h2 class="text-5xl font-bold mb-4">Hair Services</h2>
-          <p class="text-xl">Transform your look with our expert styling services</p>
+          <p class="text-xl">Transform your style with our expert hair care services</p>
         </div>
       </div>
     </section>
 
-    <!-- Quick Navigation -->
+    <!-- Quick Navigation with Leaf Accents -->
     <nav class="sticky top-0 z-40 bg-secondary/95 backdrop-blur-md shadow-md">
-      <div class="container mx-auto px-6">
-        <ul class="flex overflow-x-auto gap-8 py-4 text-primary font-medium">
+      <div class="container mx-auto px-6 relative">
+        <div class="absolute right-0 top-0 w-32 h-full opacity-5">
+          <svg viewBox="0 0 100 100" class="h-full text-accent">
+            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+          </svg>
+        </div>
+        <ul class="flex overflow-x-auto gap-8 py-4 text-primary font-medium relative">
           <li v-for="section in ['Cutting', 'Coloring', 'Styling', 'Treatments']" :key="section">
-            <a :href="`#${section.toLowerCase()}`" class="hover:text-accent transition-colors whitespace-nowrap">
+            <a :href="`#${section.toLowerCase()}`"
+              class="hover:text-accent transition-colors whitespace-nowrap relative group">
               {{ section }}
+              <span
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <!-- Featured Services -->
+    <!-- Featured Services with Organic Design -->
     <section class="py-16 px-6">
       <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-primary mb-12 text-center">Popular Services</h2>
+        <h2 class="text-3xl font-bold text-primary mb-12 text-center relative">
+          Popular Services
+          <div class="relative">
+            <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
+            <svg class="absolute -right-4 -top-2 w-8 h-8 text-accent transform rotate-45" viewBox="0 0 100 100">
+              <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+            </svg>
+          </div>
+        </h2>
+
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="service in featuredServices" :key="service.id"
-            class="bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <div class="aspect-w-16 aspect-h-9 bg-primary/10"></div>
-            <div class="p-6">
+            class="bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 relative group">
+            <div
+              class="absolute top-0 right-0 w-20 h-20 opacity-10 transform rotate-45 group-hover:rotate-90 transition-transform">
+              <svg viewBox="0 0 100 100" class="text-accent">
+                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+              </svg>
+            </div>
+
+            <div class="p-6 relative">
               <h3 class="text-xl font-bold text-primary mb-2">{{ service.name }}</h3>
               <p class="text-primary/70 mb-4">{{ service.description }}</p>
               <div class="flex justify-between items-center">
@@ -167,9 +215,16 @@
       </div>
     </div>
 
-    <!-- Booking CTA -->
-    <section class="py-16 px-6 bg-primary text-secondary">
-      <div class="container mx-auto text-center">
+    <!-- Booking CTA with Organic Background -->
+    <section class="py-16 px-6 bg-primary text-secondary relative overflow-hidden">
+      <div class="absolute inset-0 opacity-5">
+        <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 1000 1000" fill="none" stroke="currentColor">
+          <path d="M0,0 C200,100 300,200 400,100 C500,0 600,100 700,200 C800,300 900,200 1000,100" class="text-accent"
+            stroke-width="2" />
+        </svg>
+      </div>
+
+      <div class="container mx-auto text-center relative">
         <h2 class="text-3xl font-bold mb-6">Ready for Your Transformation?</h2>
         <p class="text-lg mb-8 max-w-2xl mx-auto">
           Book your appointment today and let our expert stylists help you achieve your dream look.
