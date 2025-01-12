@@ -49,7 +49,7 @@ useSeo({
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-primary max-w-2xl bg-white/65 p-10 rounded-xl">
+        <div class="text-primary max-w-2xl bg-white p-10 rounded-xl">
           <h2 class="text-5xl font-bold mb-4">Nail Services</h2>
           <p class="text-xl text-accent">Luxury nail care and artistic designs for every occasion</p>
         </div>

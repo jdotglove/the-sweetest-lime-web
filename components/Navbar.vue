@@ -2,8 +2,8 @@
   <nav class="sticky hidden md:flex top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
     <div class="w-[100%] self-stretch flex justify-between items-center px-6 py-4">
       <div class="flex text-2xl items-center">
-        <img src="../assets/sweetest-lime-logo.png" class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh]"
-          alt="sweetest lime logo" />
+        <img src="../assets/sweetest-lime-logo.png"
+          class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh] xl:w-[3.5dvw]" alt="sweetest lime logo" />
         <div>The Sweetest <span class="text-light-green">Lime</span></div>
       </div>
 
@@ -11,10 +11,10 @@
         :class="{ 'block absolute bg-primary/95 backdrop-blur-md top-16 left-0 w-full px-6 py-4 shadow-lg': isMenuOpen }">
         <li v-for="(link, index) in links" :key="index">
           <a :href="link.href"
-            :class="`${link.current ? 'text-secondary' : 'hover:text-secondary'} transition-colors relative group`">
+            :class="`${currentPath === link.href ? 'text-secondary' : 'hover:text-secondary'} transition-colors relative group`">
             {{ link.name }}
             <span
-              :class="`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${link.current ? 'w-full' : 'w-0 group-hover:w-full'}`"></span>
+              :class="`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`"></span>
           </a>
         </li>
       </ul>
@@ -103,11 +103,11 @@ export default {
   data() {
     return {
       links: [
-        { name: 'Home', href: '/', current: this.currentPath === '/' },
-        { name: 'Hair Services', href: '/hair-services', current: this.currentPath === '/hair-services' },
-        { name: 'Nail Care', href: '/nail-care', current: this.currentPath === '/nail-care' },
-        { name: 'Body Work', href: '/body-work', current: this.currentPath === '/body-work' },
-        { name: 'About Us', href: '/about-us', current: this.currentPath === '/about-us' },
+        { name: 'Home', href: '/' },
+        { name: 'Hair Services', href: '/hair-services' },
+        { name: 'Nail Care', href: '/nail-care' },
+        { name: 'Body Work', href: '/body-work' },
+        { name: 'About Us', href: '/about-us' },
       ],
       navHeight: '0%'
     };
