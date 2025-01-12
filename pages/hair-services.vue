@@ -50,7 +50,7 @@ useSeo({
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-primary bg-white/65 max-w-2xl p-10 rounded-xl">
+        <div class="text-primary bg-white max-w-2xl p-10 rounded-xl">
           <h2 class="text-5xl font-bold mb-4">Hair Services</h2>
           <p class="text-xl text-accent">Transform your style with our expert hair care services</p>
         </div>
