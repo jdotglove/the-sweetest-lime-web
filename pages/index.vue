@@ -67,7 +67,7 @@ useSeo({
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20">
         <div class="max-w-3xl">
-          <div class="my-4 grid justify-center bg-white/65 w-[50dvw] h-[40dvh] rounded-3xl">
+          <div class="my-4 grid justify-center bg-white w-[50dvw] h-[40dvh] rounded-3xl">
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>

@@ -1,9 +1,10 @@
 <template>
   <nav class="sticky hidden md:flex top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
     <div class="w-[100%] self-stretch flex justify-between items-center px-6 py-4">
-      <div>
+      <div class="flex text-2xl items-center">
         <img src="../assets/sweetest-lime-logo.png" class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh]"
           alt="sweetest lime logo" />
+        <div>The Sweetest <span class="text-light-green">Lime</span></div>
       </div>
 
       <ul class="nav-links hidden md:flex gap-8 font-medium"
