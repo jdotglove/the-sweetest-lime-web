@@ -1,9 +1,23 @@
+<script setup lang="ts">
+import { useSeo } from '../composables/useSeo';
+
+const route = useRoute()
+
+// Basic usage for a service page
+useSeo({
+  title: 'Nail Services',
+  description: 'Luxurious nail care services including manicures, pedicures, gel extensions, and custom nail art in Winston Salem. Professional nail technicians dedicated to quality and creativity.',
+  path: route.path,
+  keywords: ['nail salon', 'manicure', 'pedicure', 'gel nails', 'nail extensions', 'nail art', 'nail design', 'gel polish', 'acrylic nails']
+})
+</script>
+
 <template>
+  <Navbar />
   <div class="min-h-screen bg-background">
-    <Navbar />
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
         <!-- Hero Leaf Pattern Overlay -->
         <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
@@ -35,9 +49,9 @@
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-secondary max-w-2xl">
+        <div class="text-primary max-w-2xl bg-white/65 p-10 rounded-xl">
           <h2 class="text-5xl font-bold mb-4">Nail Services</h2>
-          <p class="text-xl">Luxury nail care and artistic designs for every occasion</p>
+          <p class="text-xl text-accent">Luxury nail care and artistic designs for every occasion</p>
         </div>
       </div>
     </section>
@@ -55,117 +69,18 @@
       </div>
     </nav>
 
-    <!-- Design Showcase -->
-    <section class="py-16 px-6">
-      <div class="container mx-auto">
-        <h3 class="text-3xl font-bold text-primary mb-8 text-center">Trending Designs</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div v-for="i in 8" :key="i"
-            class="aspect-square bg-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer">
-            <div class="w-full h-full bg-primary/10"></div>
-          </div>
-        </div>
-        <div class="text-center mt-8">
-          <button class="text-accent hover:text-dark-green transition-colors">
-            View More Designs →
-          </button>
-        </div>
-      </div>
-    </section>
-
     <!-- Service Categories -->
-    <div class="bg-light-green/10 py-16 px-6">
+    <div class="bg-dark-green/20 py-16 px-6">
       <div class="container mx-auto">
         <!-- Manicures -->
         <section id="manicures" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <h3 class="text-3xl font-bold text-primary">Manicure Services</h3>
+            <h3 class="text-3xl font-bold text-primary">Services</h3>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in manicureServices" :key="service.id"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <h4 class="text-xl font-bold text-primary">{{ service.name }}</h4>
-                  <p class="text-primary/70">{{ service.description }}</p>
-                </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
-              </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Pedicures -->
-        <section id="pedicures" class="mb-16">
-          <div class="flex items-center gap-4 mb-8">
-            <h3 class="text-3xl font-bold text-primary">Pedicure Services</h3>
-            <div class="flex-grow h-px bg-accent/20"></div>
-          </div>
-
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in pedicureServices" :key="service.id"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <h4 class="text-xl font-bold text-primary">{{ service.name }}</h4>
-                  <p class="text-primary/70">{{ service.description }}</p>
-                </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
-              </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Extensions -->
-        <section id="extensions" class="mb-16">
-          <div class="flex items-center gap-4 mb-8">
-            <h3 class="text-3xl font-bold text-primary">Nail Extensions</h3>
-            <div class="flex-grow h-px bg-accent/20"></div>
-          </div>
-
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in extensionServices" :key="service.id"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <h4 class="text-xl font-bold text-primary">{{ service.name }}</h4>
-                  <p class="text-primary/70">{{ service.description }}</p>
-                </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
-              </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Nail Art -->
-        <section id="art">
-          <div class="flex items-center gap-4 mb-8">
-            <h3 class="text-3xl font-bold text-primary">Nail Art & Designs</h3>
-            <div class="flex-grow h-px bg-accent/20"></div>
-          </div>
-
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in artServices" :key="service.id"
+            <div v-for="service in nailServices" :key="service.id"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -189,7 +104,8 @@
     <!-- Add-Ons Section -->
     <section class="py-16 px-6">
       <div class="container mx-auto">
-        <h3 class="text-3xl font-bold text-primary text-center mb-12">Service Add-Ons</h3>
+        <h3 class="text-3xl font-bold text-primary text-center">Service Add-Ons</h3>
+        <div class="w-24 h-1 bg-accent mx-auto mt-4 mb-8"></div>
         <div class="grid md:grid-cols-3 gap-6">
           <div v-for="addon in addOns" :key="addon.id" class="bg-secondary rounded-lg p-6 text-center">
             <h4 class="text-xl font-bold text-primary mb-2">{{ addon.name }}</h4>
@@ -201,13 +117,13 @@
     </section>
 
     <!-- Care Tips -->
-    <section class="bg-primary text-secondary py-16 px-6">
+    <section class="bg-dark-green/20 text-primary py-16 px-6">
       <div class="container mx-auto">
         <h3 class="text-3xl font-bold mb-12 text-center">Nail Care Tips</h3>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div v-for="(tip, index) in careTips" :key="index" class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+          <div v-for="(tip, index) in careTips" :key="index" class="bg-white rounded-lg p-6 backdrop-blur-sm">
             <h4 class="text-xl font-bold mb-3">{{ tip.title }}</h4>
-            <p class="text-secondary/80">{{ tip.content }}</p>
+            <p class="text-primary/80">{{ tip.content }}</p>
           </div>
         </div>
       </div>
@@ -236,13 +152,13 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 
 export default {
   data() {
     return {
-      manicureServices: [
+      nailServices: [
         {
           id: 1,
           name: 'Classic Manicure',
@@ -263,57 +179,51 @@ export default {
           description: 'Premium treatment with extended massage',
           price: '$55',
           details: ['60 minutes', 'Paraffin treatment', 'Premium products']
-        }
-      ],
-      pedicureServices: [
+        },
         {
-          id: 1,
+          id: 4,
           name: 'Classic Pedicure',
           description: 'Essential foot care with regular polish',
           price: '$45',
           details: ['45 minutes', 'Foot massage', 'Regular polish']
         },
         {
-          id: 2,
+          id: 5,
           name: 'Gel Pedicure',
           description: 'Long-lasting gel polish with foot care',
           price: '$55',
           details: ['60 minutes', 'LED cured', 'Extended massage']
         },
         {
-          id: 3,
+          id: 6,
           name: 'Luxury Spa Pedicure',
           description: 'Premium foot treatment with extras',
           price: '$75',
           details: ['75 minutes', 'Hot stone massage', 'Paraffin treatment']
-        }
-      ],
-      extensionServices: [
+        },
         {
-          id: 1,
+          id: 7,
           name: 'Acrylic Full Set',
           description: 'Full set of acrylic extensions',
           price: '$65+',
           details: ['90 minutes', 'Customizable length', 'Natural look']
         },
         {
-          id: 2,
+          id: 8,
           name: 'Gel-X Extensions',
           description: 'Natural-looking gel extensions',
           price: '$75+',
           details: ['75 minutes', 'Lightweight', 'Less damage']
-        }
-      ],
-      artServices: [
+        },
         {
-          id: 1,
+          id: 9,
           name: 'Basic Art',
           description: 'Simple designs on 1-2 nails',
           price: '$5+ per nail',
           details: ['Geometric', 'French tips', 'Simple patterns']
         },
         {
-          id: 2,
+          id: 10,
           name: 'Advanced Art',
           description: 'Complex designs and patterns',
           price: '$10+ per nail',

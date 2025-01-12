@@ -1,9 +1,23 @@
+<script setup lang="ts">
+import { useSeo } from '../composables/useSeo';
+
+const route = useRoute()
+
+// Basic usage for a service page
+useSeo({
+  title: 'Body Work Services',
+  description: 'Experience relaxation and healing with our professional massage and bodywork services in Winston Salem. Offering Swedish massage, deep tissue, and therapeutic bodywork treatments.',
+  path: route.path,
+  keywords: ['massage therapy', 'body work', 'swedish massage', 'deep tissue massage', 'relaxation massage', 'therapeutic massage']
+})
+</script>
+
 <template>
+  <Navbar />
   <div class="min-h-screen bg-background">
-    <Navbar />
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
         <!-- Hero Leaf Pattern Overlay -->
         <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
@@ -35,9 +49,9 @@
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-secondary max-w-2xl">
+        <div class="text-primary rounded-xl max-w-2xl bg-white/65 p-10">
           <h2 class="text-5xl font-bold mb-4">Body Work & Spa</h2>
-          <p class="text-xl">Rejuvenate your body and calm your mind with our therapeutic treatments</p>
+          <p class="text-xl text-accent">Rejuvenate your body and calm your mind with our therapeutic treatments</p>
         </div>
       </div>
     </section>
@@ -84,7 +98,7 @@
     </section>
 
     <!-- Service Categories -->
-    <div class="bg-light-green/10 py-16 px-6">
+    <div class="bg-dark-green/20 py-16 px-6">
       <div class="container mx-auto">
         <!-- Massage Services -->
         <section id="massage" class="mb-16">
@@ -165,20 +179,20 @@
     </div>
 
     <!-- Benefits Section -->
-    <section class="py-16 px-6 bg-primary text-secondary">
+    <section class="py-16 px-6 text-primary">
       <div class="container mx-auto">
         <h2 class="text-3xl font-bold mb-12 text-center">Benefits of Regular Body Work</h2>
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="(benefit, index) in benefits" :key="index" class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
             <h3 class="text-xl font-bold mb-3">{{ benefit.title }}</h3>
-            <p class="text-secondary/80">{{ benefit.description }}</p>
+            <p class="text-primary/80">{{ benefit.description }}</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-16 px-6">
+    <section class="py-16 px-6 bg-dark-green/20">
       <div class="container mx-auto max-w-3xl">
         <h2 class="text-3xl font-bold text-primary text-center mb-12">Frequently Asked Questions</h2>
         <div class="space-y-4">
@@ -219,8 +233,8 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components: {
@@ -272,27 +286,19 @@ export default {
         {
           id: 1,
           name: 'Swedish Massage',
-          description: 'Gentle, relaxing massage with light to medium pressure',
-          price: '$85+',
-          duration: '60 min',
+          description: 'A massage therapy technique focused on relaxation and improving circulation. Typically performed on the whole body, but can also be focused on specific areas such as the back, shoulders, or neck.',
+          price: '$60/$145/$180',
+          duration: '30mins/90mins/2hrs',
           details: ['Stress relief', 'Improved circulation', 'Relaxation']
         },
         {
           id: 2,
-          name: 'Deep Tissue',
-          description: 'Focused pressure targeting muscle knots and tension',
-          price: '$95+',
-          duration: '60 min',
+          name: 'Deep Tissue Massage',
+          description: 'A massage technique using slow, deep strokes and pressure to target chronic muscle tension and pain. It\'s often used to treat injuries and chronic pain, improve range of motion, increase blood flow, and reduce inflammation.',
+          price: '$150+',
+          duration: '90mins',
           details: ['Pain relief', 'Muscle recovery', 'Tension release']
         },
-        {
-          id: 3,
-          name: 'Hot Stone',
-          description: 'Heated stones combined with massage techniques',
-          price: '$110',
-          duration: '75 min',
-          details: ['Deep relaxation', 'Heat therapy', 'Muscle relief']
-        }
       ],
       bodyTreatments: [
         {

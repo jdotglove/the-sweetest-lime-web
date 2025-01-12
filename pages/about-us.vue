@@ -1,9 +1,23 @@
+<script setup lang="ts">
+import { useSeo } from '../composables/useSeo';
+
+const route = useRoute()
+
+// Basic usage for a service page
+useSeo({
+  title: 'About Us',
+  description: 'Meet the skilled team behind The Sweetest Lime in Winston Salem. Our experienced beauty professionals are dedicated to providing exceptional hair, nail, and body work services in a welcoming environment.',
+  path: route.path,
+  keywords: ['beauty salon team', 'professional stylists', 'nail technicians', 'massage therapists', 'beauty experts', 'salon staff', 'about us', 'salon history']
+})
+</script>
+
 <template>
+  <Navbar />
   <div class="min-h-screen bg-background">
-    <Navbar />
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
         <!-- Hero Leaf Pattern Overlay -->
         <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
@@ -35,9 +49,9 @@
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-secondary max-w-2xl">
+        <div class="text-primary rounded-xl max-w-2xl bg-white/65 p-10">
           <h2 class="text-5xl font-bold mb-4">About The Sweetest Lime</h2>
-          <p class="text-xl">Where beauty meets expertise and luxury meets comfort</p>
+          <p class="text-xl text-accent">Where beauty meets expertise and luxury meets comfort</p>
         </div>
       </div>
     </section>
@@ -86,7 +100,7 @@
     </section>
 
     <!-- Values Section -->
-    <section class="bg-light-green/20 py-20 px-6">
+    <section class="bg-dark-green/20 py-20 px-6">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-primary text-center mb-16">Our Core Values</h2>
         <div class="grid md:grid-cols-3 gap-8">
@@ -174,8 +188,8 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   data() {

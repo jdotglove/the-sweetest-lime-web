@@ -1,6 +1,6 @@
 <template>
   <!-- Services Section with Cards -->
-  <section class="py-20 px-6">
+  <section class="py-20 px-6 fixed top-0">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold mb-16 text-center">
         Our Premium Services
@@ -47,7 +47,7 @@ export default {
         {
           title: 'Nail Care',
           description: 'Luxurious manicures and pedicures using premium products and techniques.',
-          href: '/nails'
+          href: '/nail-services'
         },
         {
           title: 'Body Work',
