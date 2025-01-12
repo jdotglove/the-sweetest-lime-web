@@ -3,7 +3,7 @@
     <div class="w-[100%] self-stretch flex justify-between items-center px-6 py-4">
       <div class="flex text-2xl items-center">
         <img src="../assets/sweetest-lime-logo.png"
-          class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh] xl:w-3.5" alt="sweetest lime logo" />
+          class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh] xl:w-[3.5dvw]" alt="sweetest lime logo" />
         <div>The Sweetest <span class="text-light-green">Lime</span></div>
       </div>
 
