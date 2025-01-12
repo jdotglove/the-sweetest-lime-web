@@ -1,6 +1,20 @@
+<script setup lang="ts">
+import { useSeo } from '../composables/useSeo';
+
+const route = useRoute()
+
+// Basic usage for a service page
+useSeo({
+  title: 'Home Page',
+  description: 'Experience luxury beauty services at The Sweetest Lime in Winston Salem. Professional hair styling, nail care, massages, and body work in a serene environment. Your destination for complete beauty and wellness.',
+  path: route.path,
+  keywords: ['beauty salon', 'hair salon', 'nail salon', 'massage', 'body work', 'beauty services', 'hair styling', 'nail care']
+})
+</script>
+
 <template>
-  <div class="min-h-screen bg-background relative overflow-hidden">
-    <Navbar />
+  <Navbar />
+  <div class="min-h-screen bg-background overflow-hidden">
     <!-- Decorative Leaves SVG Components -->
     <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
@@ -17,8 +31,8 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative h-[80dvh] flex items-center">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+    <section class="relative h-[70dvh] flex items-center">
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
         <!-- Hero Leaf Pattern Overlay -->
         <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
@@ -53,20 +67,21 @@
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20">
         <div class="max-w-3xl">
-          <h1 class="text-6xl font-bold text-secondary mb-6">
-            Experience Luxury at
-            <span class="text-accent block mt-2">The Sweetest Lime</span>
-          </h1>
-          <p class="text-xl text-secondary/90 mb-8 max-w-2xl">
+          <div class="my-4 grid justify-center bg-white/65 w-[50dvw] h-[40dvh] rounded-3xl">
+            <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
+              alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
+          </div>
+          <p class="text-xl text-primary/90 mb-8 max-w-2xl">
             Your destination for premium beauty and wellness services. Where nature meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
           <div class="flex gap-4 flex-wrap">
-            <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
+            <button
+              class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
               Book Appointment
             </button>
             <button
-              class="border-2 border-secondary text-secondary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
+              class="border-2 bg-secondary border-secondary text-primary px-8 py-4 rounded-full hover:bg-secondary/70 transition-all duration-300">
               View Services
             </button>
           </div>
@@ -160,7 +175,7 @@
       </svg>
     </div>
     <!-- Special Offers Section -->
-    <section class="py-20 px-6 bg-primary text-secondary">
+    <section class="py-20 px-6 bg-dark-green/20 text-primary">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16">
           Special Offers
@@ -168,10 +183,10 @@
         </h2>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="offer in specialOffers" :key="offer.id" class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+          <div v-for="offer in specialOffers" :key="offer.id" class="bg-[#F8F0D3] backdrop-blur-sm rounded-xl p-8">
             <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
             <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
-            <p class="mb-6 text-secondary/80">{{ offer.description }}</p>
+            <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
             <button class="w-full bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
               Book Now
             </button>
@@ -226,7 +241,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-20 px-6 bg-light-green/10">
+    <section class="py-20 px-6 bg-dark-green/20">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-primary text-center mb-16">
           Client Testimonials
@@ -235,7 +250,7 @@
 
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="testimonial in testimonials" :key="testimonial.id"
-            class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-[35dvh]">
             <div class="flex gap-4 items-center mb-6">
               <div class="w-16 h-16 bg-accent/20 rounded-full"></div>
               <div>
@@ -243,9 +258,9 @@
                 <p class="text-primary/60">{{ testimonial.service }}</p>
               </div>
             </div>
-            <p class="text-primary/80 mb-4">{{ testimonial.content }}</p>
+            <p class="text-primary/80 mb-4 h-[15dvh] overflow-clip">{{ testimonial.content }}</p>
             <div class="flex gap-1 text-accent">
-              <span v-for="star in 5" :key="star">★</span>
+              <span v-for="star in testimonial.stars" :key="star">★</span>
             </div>
           </div>
         </div>
@@ -253,8 +268,8 @@
     </section>
 
     <!-- Book Now CTA -->
-    <section class="py-20 px-6 bg-primary">
-      <div class="container mx-auto max-w-4xl text-center text-secondary">
+    <section class="py-20 px-6">
+      <div class="container mx-auto max-w-4xl text-center text-primary">
         <h2 class="text-4xl font-bold mb-6">Ready for Your Transformation?</h2>
         <p class="text-xl mb-8">
           Experience the luxury and expertise at The Sweetest Lime. Book your appointment today.
@@ -265,7 +280,7 @@
             Book Online
           </button>
           <button
-            class="border-2 border-secondary text-secondary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
+            class="border-2 border-secondary text-primary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
             Contact Us
           </button>
         </div>
@@ -276,8 +291,8 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components: {
@@ -305,11 +320,8 @@ export default {
           description: 'Luxury nail services from basic care to artistic designs.',
           features: [
             'Manicures & Pedicures',
-            'Gel & Acrylic Options',
-            'Custom Nail Art',
-            'Premium Products'
           ],
-          link: '/nails'
+          link: '/nail-care'
         },
         {
           id: 3,
@@ -373,21 +385,31 @@ export default {
       testimonials: [
         {
           id: 1,
-          name: 'Sarah Johnson',
-          service: 'Hair Styling',
-          content: 'Absolutely love how my hair turned out! The stylist really listened to what I wanted and delivered beyond my expectations.'
+          name: 'Ellen Forbes',
+          service: 'Hair Services',
+          content: 'I enjoyed my experience. I am appreciative the education provided about my hair and how to truly care for my locs. Before my service; I considered cutting my locs. I purchased many of her products because I want to continue my loc journey after seeing how beautiful my locs really are.',
+          stars: 5,
+          link: 'https://g.co/kgs/JWFFeHP',
         },
         {
           id: 2,
-          name: 'Michael Chen',
-          service: 'Massage Therapy',
-          content: 'The massage was incredible. Perfect pressure and very attentive to problem areas. I left feeling completely refreshed.'
+          name: 'Táshana W',
+          service: 'Hair Services',
+          content: `
+            Makayah is very knowledgeable and professional cosmetologist. Booking her time is easy through Square. She does not overbook her time and moves efficiently. She is an excellent colorist and master stylist. She uses and sells Ashtae products,  along with her own oil blends, curl & loc refresher sprays, bonnets, and caps. Your hair will be well cared for with her or at home. She provides complementary care kits for starter loc appointments so you will leave with everything you need to get started.
+            She is the only person who I will allow to do my color or loc retwist while I am in Winston Salem. I love her Stimulation Oil blend. The peppermint and rosemary oils are great for my dry scalp.
+            I recommend her for any and all genders, hair types or hair care services. I especially recommend her to those interested in services for their loose natural hair or locs/dreadlocks.
+          `,
+          stars: 5,
+          link: 'https://g.co/kgs/8ZiRpPY',
         },
         {
           id: 3,
-          name: 'Emily Rodriguez',
-          service: 'Nail Services',
-          content: 'Best nail salon in town! The attention to detail and artistic designs are amazing. Always leave feeling pampered.'
+          name: 'Tracy Powers',
+          service: 'Hair Services',
+          content: 'I love my hair!! Makayah is amazingly blessed and talented. She always no what I want even when I don\'t know what I want 🥰',
+          stars: 5,
+          link: 'https://g.co/kgs/oeWvU8R',
         }
       ]
     }

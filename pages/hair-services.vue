@@ -1,10 +1,24 @@
-<template>
-  <div class="min-h-screen bg-background">
-    <Navbar />
+<script setup lang="ts">
+import { useSeo } from '../composables/useSeo';
 
+const route = useRoute()
+
+// Basic usage for a service page
+useSeo({
+  title: 'Hair Services',
+  description: 'Expert hair styling, braid, cutting, treatment, and coloring services in Winston Salem. Book your appointment today.',
+  image: '/images/hair-services-share.jpg',
+  path: route.path,
+  keywords: ['hair salon', 'hair styling', 'hair coloring', 'haircut', 'loc', 'dreadlocs', 'braids', 'treatment']
+})
+</script>
+
+<template>
+  <Navbar />
+  <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/90">
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
         <!-- Hero Leaf Pattern Overlay -->
         <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
@@ -36,9 +50,9 @@
         </div>
       </div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-secondary max-w-2xl">
+        <div class="text-primary bg-white/65 max-w-2xl p-10 rounded-xl">
           <h2 class="text-5xl font-bold mb-4">Hair Services</h2>
-          <p class="text-xl">Transform your style with our expert hair care services</p>
+          <p class="text-xl text-accent">Transform your style with our expert hair care services</p>
         </div>
       </div>
     </section>
@@ -52,7 +66,7 @@
           </svg>
         </div>
         <ul class="flex overflow-x-auto gap-8 py-4 text-primary font-medium relative">
-          <li v-for="section in ['Cutting', 'Coloring', 'Styling', 'Treatments']" :key="section">
+          <li v-for="section in ['Locs', 'Braids', 'Styling', 'Treatments']" :key="section">
             <a :href="`#${section.toLowerCase()}`"
               class="hover:text-accent transition-colors whitespace-nowrap relative group">
               {{ section }}
@@ -103,17 +117,17 @@
     </section>
 
     <!-- Service Categories -->
-    <div class="bg-light-green/10 py-16 px-6">
+    <div class="bg-dark-green/20 py-16 px-6">
       <div class="container mx-auto">
-        <!-- Cutting Services -->
-        <section id="cutting" class="mb-16">
+        <!-- Locs Services -->
+        <section id="locs" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-primary">Cutting Services</h2>
+            <h2 class="text-3xl font-bold text-primary">Locs Services</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in cuttingServices" :key="service.id"
+            <div v-for="service in locsServices" :key="service.id"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -132,15 +146,15 @@
           </div>
         </section>
 
-        <!-- Coloring Services -->
-        <section id="coloring" class="mb-16">
+        <!-- Braids Services -->
+        <section id="braids" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-primary">Coloring Services</h2>
+            <h2 class="text-3xl font-bold text-primary">Braids Services</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in coloringServices" :key="service.id"
+            <div v-for="service in braidsServices" :key="service.id"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -216,7 +230,7 @@
     </div>
 
     <!-- Booking CTA with Organic Background -->
-    <section class="py-16 px-6 bg-primary text-secondary relative overflow-hidden">
+    <section class="py-16 px-6 text-primary relative overflow-hidden">
       <div class="absolute inset-0 opacity-5">
         <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 1000 1000" fill="none" stroke="currentColor">
           <path d="M0,0 C200,100 300,200 400,100 C500,0 600,100 700,200 C800,300 900,200 1000,100" class="text-accent"
@@ -242,7 +256,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-16 px-6">
+    <section class="py-16 px-6 bg-dark-green/20">
       <div class="container mx-auto max-w-3xl">
         <h2 class="text-3xl font-bold text-primary text-center mb-12">Frequently Asked Questions</h2>
         <div class="space-y-4">
@@ -266,9 +280,9 @@
 </template>
 
 <script lang="ts">
-import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-import { ref } from 'vue'
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
+
 
 export default {
   components: {
@@ -297,72 +311,184 @@ export default {
           price: '$175+'
         }
       ],
-      cuttingServices: [
+      locsServices: [
         {
           id: 1,
-          name: 'Women\'s Haircut',
-          description: 'Includes consultation, shampoo, cut, and style',
-          price: '$65+',
-          details: ['45-60 minutes', 'Styling included', 'Product recommendations']
+          name: 'Stater Loc Maintenance (locs less than 12 months old)',
+          description: 'Shampoo, reparting (if necessary) and retwist of starter locs',
+          price: '$100+',
+          details: ['2hrs+']
         },
         {
           id: 2,
-          name: 'Men\'s Haircut',
-          description: 'Precision cutting with attention to detail',
-          price: '$45+',
-          details: ['30-45 minutes', 'Styling included']
+          name: 'Starter Locs (with Starter Locs Care Kit)',
+          description: 'Includes shampoo, protein treatment, and appropriate starter twists (comb or two-strand twists) as determined by hair type. Price may vary depending on the thickness and density of hair.',
+          price: '$190+',
+          details: ['2hrs 30mins+']
         },
+        {
+          id: 3,
+          name: 'Starter Micro-Loc Maintenance (micro-locs less than 12 months old)',
+          description: 'Shampoo, reparting (if necessary), and retwisting of starter micro-locs',
+          price: '$160+',
+          details: ['2hrs 30mins+']
+        },
+        {
+          id: 4,
+          name: 'Starter Micro-Locs (with Starter Loc Kit)',
+          description: 'Includes shampoo, protein treatment, and appropriate starter twists (comb or two-strand twists) as determined by hair type. Price may vary depending on the thickness and density of hair.',
+          price: '$215+',
+          details: ['3hrs 30mins+']
+        },
+        {
+          id: 5,
+          name: 'Microloc Maintenance',
+          description: '',
+          price: '$155+',
+          details: ['2hrs 30mins+']
+        },
+        {
+          id: 6,
+          name: 'Loc Reattachment/Repair',
+          description: 'Reattachment of YOUR OWN broken or previously cut locs. For mass reattachments (more than 15 locs) schedule a free consultation.',
+          price: '$10+',
+          details: ['15mins']
+        },
+        {
+          id: 7,
+          name: 'Loc Perimeter Retwist with Basic Style',
+          description: 'Cleansing & oiling scalp, and retwisting perimeter locs with a basic style (bun, ponytail, fishtail, etc.)',
+          price: '$60+',
+          details: ['30mins+']
+        }
         // Add more services
       ],
-      coloringServices: [
+      braidsServices: [
         {
           id: 1,
-          name: 'Full Color',
-          description: 'Single process color from root to tip',
-          price: '$120+',
-          details: ['2-3 hours', 'Consultation required', 'Includes toner']
+          name: 'Freestyle Braids',
+          description: 'Natural Hair',
+          price: '$180+',
+          details: ['30mins']
         },
         {
           id: 2,
-          name: 'Balayage',
-          description: 'Hand-painted highlights for a natural look',
-          price: '$175+',
-          details: ['3-4 hours', 'Consultation required', 'Includes toner']
+          name: 'Stitch Braids',
+          description: 'Natural Hair/Feed In',
+          price: '$100',
+          details: ['30mins']
         },
+        {
+          id: 3,
+          name: 'Knotless Braids',
+          description: 'Hair Included',
+          price: '$210+',
+          details: ['4hrs 30mins+']
+        },
+        {
+          id: 4,
+          name: 'Box Braids',
+          description: 'Hair Included',
+          price: '$250+',
+          details: ['4hrs 30mins+']
+        },
+        {
+          id: 5,
+          name: 'Fulani Braids - Waist Length',
+          description: '',
+          price: '$265',
+          details: ['6hrs']
+        },
+        {
+          id: 6,
+          name: 'Two Braids w/ Design',
+          description: '',
+          price: '$85',
+          details: ['30mins']
+        },
+        {
+          id: 7,
+          name: 'Two Braids (no hair added)',
+          description: '',
+          price: '$65',
+          details: ['30mins']
+        },
+        {
+          id: 8,
+          name: 'Two Braids',
+          description: '',
+          price: '$75',
+          details: ['30mins']
+        }
         // Add more services
       ],
       stylingServices: [
         {
           id: 1,
-          name: 'Blowout',
-          description: 'Professional blow dry and style',
-          price: '$45+',
-          details: ['45 minutes', 'Includes wash']
+          name: 'Loc Styling - Basic',
+          description: 'Basic styles include bun, ponytail, up to two fishtails or two cornrows',
+          price: '$25+',
+          details: ['30mins',]
         },
         {
           id: 2,
-          name: 'Special Event Style',
-          description: 'Formal styling for any special occasion',
-          price: '$85+',
-          details: ['60 minutes', 'Consultation required']
+          name: 'Loc Styling - Standard',
+          description: 'Intermediate styles include two or more ponytails or buns and three or more fishtails or cornrows. ',
+          price: '$35+',
+          details: ['45mins']
         },
+        {
+          id: 3,
+          name: 'Loc Styling - Intricate',
+          description: 'Complex styles include: individual plaits, two-strand twists, petals, pipecleaner styles, flexi- or rod-sets or styles including any of the above; and creative hair designs for special occasions.',
+          price: '$45+',
+          details: ['1hr']
+        }
         // Add more services
       ],
       treatmentServices: [
         {
           id: 1,
-          name: 'Deep Conditioning',
-          description: 'Intensive moisture treatment for damaged hair',
-          price: '$35+',
-          details: ['30 minutes', 'Heat therapy']
+          name: 'Keratin Treatment',
+          description: 'Injects porous areas or hair strand with keratin, an essential hair protein to smooth and shine hair. Allows you to alternate between naturally curly and straight hair. Results can last up to six months.',
+          price: '$210+',
+          details: ['2hrs 30mins']
         },
         {
           id: 2,
-          name: 'Keratin Treatment',
-          description: 'Long-lasting smoothing and frizz control',
-          price: '$250+',
-          details: ['2-3 hours', 'Consultation required', 'Aftercare included']
+          name: 'Relaxer with Trim',
+          description: 'A chemical treatment that straightens curly hair by breaking down the bonds in the hair shaft and lasts from 6 - 12 weeks depending on hair texture and growth Consultation REQUIRED for a corrective relaxer.',
+          price: '$125+',
+          details: ['1hr+']
         },
+        {
+          id: 3,
+          name: 'Permanent Wave with Trim',
+          description: 'Hair is set in loose to tight curls or waves, then treated with a chemical solution allowing curls to last for several months',
+          price: '$95+',
+          details: ['1hr 40mins+']
+        },
+        {
+          id: 4,
+          name: 'Texturizer',
+          description: 'A mild version of a chemical hair relaxer to loosen the natural curl pattern without completely straightening it.',
+          price: '$85+',
+          details: ['45mins+']
+        },
+        {
+          id: 5,
+          name: 'Detoxifying Treatment',
+          description: 'Helps absorb excess oil and product build-up, and pulls out toxins (including environmental, medicinal, chemo and radiation) to purify and restore proper balance to hair.',
+          price: '$60+',
+          details: ['45mins']
+        },
+        {
+          id: 6,
+          name: 'Scalp Exfoliation',
+          description: 'Soothing and stress-relieving treatment used to invigorate the scalp and create healthier, shinier hair from root to tip. Application of our signature stimulating sugar scrub is also beneficial and recommended every six weeks for dry or oily scalp, dandruff, seborrhea dermatitis and psoriasis.',
+          price: '$75+',
+          details: ['1hr']
+        }
         // Add more services
       ],
       faqs: [
