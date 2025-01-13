@@ -1,6 +1,14 @@
-// tailwind.config.js
+import type { Config } from "tailwindcss";
+
 export default {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'], // Ensure these paths match your project
+  content: [
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './app.vue',
+    './error.vue'
+  ],
   theme: {
     extend: {
       colors: {
@@ -14,4 +22,4 @@ export default {
     },
   },
   plugins: [],
-};
+} satisfies Config

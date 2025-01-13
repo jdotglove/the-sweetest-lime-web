@@ -7,7 +7,6 @@ const route = useRoute()
 useSeo({
   title: 'Hair Services',
   description: 'Expert hair styling, braid, cutting, treatment, and coloring services in Winston Salem. Book your appointment today.',
-  image: '/images/hair-services-share.jpg',
   path: route.path,
   keywords: ['hair salon', 'hair styling', 'hair coloring', 'haircut', 'loc', 'dreadlocs', 'braids', 'treatment']
 })
@@ -127,7 +126,7 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in locsServices" :key="service.id"
+            <a v-for="service in locsServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -142,7 +141,7 @@ useSeo({
                   {{ detail }}
                 </span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
@@ -154,7 +153,7 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in braidsServices" :key="service.id"
+            <a v-for="service in braidsServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -169,7 +168,7 @@ useSeo({
                   {{ detail }}
                 </span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
@@ -181,7 +180,7 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in stylingServices" :key="service.id"
+            <a v-for="service in stylingServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -196,7 +195,7 @@ useSeo({
                   {{ detail }}
                 </span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
@@ -208,7 +207,7 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in treatmentServices" :key="service.id"
+            <a v-for="service in treatmentServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -223,7 +222,7 @@ useSeo({
                   {{ detail }}
                 </span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
       </div>
@@ -317,50 +316,89 @@ export default {
           name: 'Stater Loc Maintenance (locs less than 12 months old)',
           description: 'Shampoo, reparting (if necessary) and retwist of starter locs',
           price: '$100+',
-          details: ['2hrs+']
+          details: ['2hrs+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/AS6KU5GIQVRNVTQWB5IGWDIE',
         },
         {
           id: 2,
           name: 'Starter Locs (with Starter Locs Care Kit)',
           description: 'Includes shampoo, protein treatment, and appropriate starter twists (comb or two-strand twists) as determined by hair type. Price may vary depending on the thickness and density of hair.',
           price: '$190+',
-          details: ['2hrs 30mins+']
+          details: ['2hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/FCVT5IEG2DGSBKDQB373BRFV',
         },
         {
           id: 3,
           name: 'Starter Micro-Loc Maintenance (micro-locs less than 12 months old)',
           description: 'Shampoo, reparting (if necessary), and retwisting of starter micro-locs',
           price: '$160+',
-          details: ['2hrs 30mins+']
+          details: ['2hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/G6AKKG25RSFH36H75NIV7D44',
         },
         {
           id: 4,
           name: 'Starter Micro-Locs (with Starter Loc Kit)',
           description: 'Includes shampoo, protein treatment, and appropriate starter twists (comb or two-strand twists) as determined by hair type. Price may vary depending on the thickness and density of hair.',
           price: '$215+',
-          details: ['3hrs 30mins+']
+          details: ['3hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/OVPSDJOIJCZCXYTFBGEEMD4A',
         },
         {
           id: 5,
-          name: 'Microloc Maintenance',
+          name: 'Loc Maintenance',
           description: '',
-          price: '$155+',
-          details: ['2hrs 30mins+']
+          price: '$115+',
+          details: ['1hr 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/7C3MPLC3FRTGDFQLJK2SNK5P',
         },
         {
           id: 6,
-          name: 'Loc Reattachment/Repair',
-          description: 'Reattachment of YOUR OWN broken or previously cut locs. For mass reattachments (more than 15 locs) schedule a free consultation.',
-          price: '$10+',
-          details: ['15mins']
+          name: 'Microloc Maintenance',
+          description: '',
+          price: '$155+',
+          details: ['2hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/XPEFNMUHDI2CKTZV6QBKXHMM',
         },
         {
           id: 7,
+          name: 'Loc Reattachment/Repair',
+          description: 'Reattachment of YOUR OWN broken or previously cut locs. For mass reattachments (more than 15 locs) schedule a free consultation.',
+          price: '$10+',
+          details: ['15mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/WS6TUA5AGWVFJZYKZOFVV5UY',
+        },
+        {
+          id: 8,
           name: 'Loc Perimeter Retwist with Basic Style',
           description: 'Cleansing & oiling scalp, and retwisting perimeter locs with a basic style (bun, ponytail, fishtail, etc.)',
           price: '$60+',
-          details: ['30mins+']
-        }
+          details: ['30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/Z55IJG67LWDGQWW2PQANUTH6',
+        },
+        {
+          id: 9,
+          name: 'Loc Styling - Basic',
+          description: 'Basic styles include bun, ponytail, up to two fishtails or two cornrows',
+          price: '$25+',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/45S6DUDG5MNEDTAA7TZ3GHZT',
+        },
+        {
+          id: 10,
+          name: 'Loc Styling - Standard',
+          description: 'Intermediate styles include two or more ponytails or buns and three or more fishtails or cornrows. ',
+          price: '$35+',
+          details: ['45mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/FJCWRNARIEAQMABRJU2EY4YK',
+        },
+        {
+          id: 11,
+          name: 'Loc Styling - Intricate',
+          description: 'Complex styles include: individual plaits, two-strand twists, petals, pipecleaner styles, flexi- or rod-sets or styles including any of the above; and creative hair designs for special occasions.',
+          price: '$45+',
+          details: ['1hr'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/MVYMY7J5VW6X3ZFPMWOJTY7L',
+        },
         // Add more services
       ],
       braidsServices: [
@@ -369,80 +407,139 @@ export default {
           name: 'Freestyle Braids',
           description: 'Natural Hair',
           price: '$180+',
-          details: ['30mins']
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/22BVE5LNC2T5PUFZYNLJ4ONI',
         },
         {
           id: 2,
           name: 'Stitch Braids',
           description: 'Natural Hair/Feed In',
           price: '$100',
-          details: ['30mins']
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/ZJQOW2IAHWFCSQNLZKBLCOPL',
         },
         {
           id: 3,
           name: 'Knotless Braids',
           description: 'Hair Included',
           price: '$210+',
-          details: ['4hrs 30mins+']
+          details: ['4hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/HW4VLTWNVXIW5FSXP3Y4L62P',
         },
         {
           id: 4,
           name: 'Box Braids',
           description: 'Hair Included',
           price: '$250+',
-          details: ['4hrs 30mins+']
+          details: ['4hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/U54MDAJKR7JX57VQBL6UTK3M',
         },
         {
           id: 5,
           name: 'Fulani Braids - Waist Length',
           description: '',
           price: '$265',
-          details: ['6hrs']
+          details: ['6hrs'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/YGFDJX4B7HIGMCKX25ZFIMYU',
         },
         {
           id: 6,
-          name: 'Two Braids w/ Design',
-          description: '',
-          price: '$85',
-          details: ['30mins']
-        },
-        {
-          id: 7,
-          name: 'Two Braids (no hair added)',
-          description: '',
-          price: '$65',
-          details: ['30mins']
-        },
-        {
-          id: 8,
           name: 'Two Braids',
           description: '',
           price: '$75',
-          details: ['30mins']
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/3L72JJHPERB7PCYQVP3KWOIR',
+        },
+        {
+          id: 7,
+          name: 'Two Braids w/ Design',
+          description: '',
+          price: '$85',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RS4DRR66ULKJSMKF34VE5FE2',
+        },
+        {
+          id: 8,
+          name: 'Two Braids (no hair added)',
+          description: '',
+          price: '$65',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/6NBWOAXHYBUBSVBXJBKU7245',
+        },
+        {
+          id: 9,
+          name: 'Twist Out',
+          description: 'Natural hairstyle using Bantu knots, two-strand twists, flat twists, braids or cornrows to create large curls, tight ringlets, waves or crinkles.',
+          price: '$75+',
+          details: ['1hr 30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/LPWZPGG5NNBHREY4IAFK6IYE',
+        },
+        {
+          id: 10,
+          name: 'Braid Style (No hair added)',
+          description: '"Straight-backs" to intricate designs, includes shampoo and blow dry.',
+          price: '$50+',
+          details: ['2hrs'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/HAXR7DVIBY4GCUOL362PGDMM',
+        },
+        {
+          id: 11,
+          name: 'Twist/Plaits',
+          description: 'Comb-twists/coils, individual two-strand twists or plaits',
+          price: '$95+',
+          details: ['2hrs+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/WNWHU3BP3EZFI5XFFS4RCGUT',
+        },
+        {
+          id: 12,
+          name: 'Cornrows',
+          description: 'Natural Hair',
+          price: '$90',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/MO76L2GDRUUCBFXHVA546LKY',
         }
         // Add more services
       ],
       stylingServices: [
         {
           id: 1,
-          name: 'Loc Styling - Basic',
-          description: 'Basic styles include bun, ponytail, up to two fishtails or two cornrows',
-          price: '$25+',
-          details: ['30mins',]
+          name: 'Crochet - Salon supplies hair',
+          description: '',
+          price: '$185+',
+          details: ['2hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/552OG7Z66YS3ZL3ZI54GBILW',
         },
         {
           id: 2,
-          name: 'Loc Styling - Standard',
-          description: 'Intermediate styles include two or more ponytails or buns and three or more fishtails or cornrows. ',
-          price: '$35+',
-          details: ['45mins']
+          name: 'Crochet - Client supplies hair',
+          description: '',
+          price: '$150+',
+          details: ['2hrs 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/OKSRPSYSJ6RL6IQMREB37YO4',
         },
         {
           id: 3,
-          name: 'Loc Styling - Intricate',
-          description: 'Complex styles include: individual plaits, two-strand twists, petals, pipecleaner styles, flexi- or rod-sets or styles including any of the above; and creative hair designs for special occasions.',
-          price: '$45+',
-          details: ['1hr']
+          name: 'Curl Only',
+          description: 'Client arrives with hair shampooed & blow dried or wrapped.',
+          price: '$35+',
+          details: ['30min+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/QFZ3RDZH5ZBXN35SJFJEOL2Y',
+        },
+        {
+          id: 4,
+          name: 'Roller/Rod Set',
+          description: '',
+          price: '$50+',
+          details: ['1hr 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/HS35PGRZG3CWROQ2KLSN3FDH',
+        },
+        {
+          id: 5,
+          name: 'Add-on Hair Prep',
+          description: 'Taking out braids or extensions and/or removal of crochet or weave in preparation and in conjunction with additional hair services.',
+          price: '$50+',
+          details: ['1hr'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/Z4JGT4YW2WS65BO53VD5QI77',
         }
         // Add more services
       ],
@@ -452,42 +549,112 @@ export default {
           name: 'Keratin Treatment',
           description: 'Injects porous areas or hair strand with keratin, an essential hair protein to smooth and shine hair. Allows you to alternate between naturally curly and straight hair. Results can last up to six months.',
           price: '$210+',
-          details: ['2hrs 30mins']
+          details: ['2hrs 30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/DVBSUADTIODXG6HA6IYKKRW5',
         },
         {
           id: 2,
           name: 'Relaxer with Trim',
           description: 'A chemical treatment that straightens curly hair by breaking down the bonds in the hair shaft and lasts from 6 - 12 weeks depending on hair texture and growth Consultation REQUIRED for a corrective relaxer.',
           price: '$125+',
-          details: ['1hr+']
+          details: ['1hr+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/4DXC4KHD5PDOTY6FIDDV6SXD',
         },
         {
           id: 3,
           name: 'Permanent Wave with Trim',
           description: 'Hair is set in loose to tight curls or waves, then treated with a chemical solution allowing curls to last for several months',
           price: '$95+',
-          details: ['1hr 40mins+']
+          details: ['1hr 40mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/H7ITFJIZ6YNX46ZSEW2LKOTN',
         },
         {
           id: 4,
           name: 'Texturizer',
           description: 'A mild version of a chemical hair relaxer to loosen the natural curl pattern without completely straightening it.',
           price: '$85+',
-          details: ['45mins+']
+          details: ['45mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/F4R3N4QIHISGNYUYOFZW25MR',
         },
         {
           id: 5,
           name: 'Detoxifying Treatment',
           description: 'Helps absorb excess oil and product build-up, and pulls out toxins (including environmental, medicinal, chemo and radiation) to purify and restore proper balance to hair.',
           price: '$60+',
-          details: ['45mins']
+          details: ['45mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/D4AMJ5SYKVVCY36MKXWBS4SM',
         },
         {
           id: 6,
           name: 'Scalp Exfoliation',
           description: 'Soothing and stress-relieving treatment used to invigorate the scalp and create healthier, shinier hair from root to tip. Application of our signature stimulating sugar scrub is also beneficial and recommended every six weeks for dry or oily scalp, dandruff, seborrhea dermatitis and psoriasis.',
           price: '$75+',
-          details: ['1hr']
+          details: ['1hr'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/AQWK3S2KVDJL4XDAVOOM2PGE',
+        },
+        {
+          id: 7,
+          name: 'Scalp Treatment with Partial Loc Retwist',
+          description: 'Application of mild scalp antiseptic, and oil scalp massage with a partial loc retwist (perimeter, half head or less), and basic style. Great for saving curls, waves or crinkles from previous style. (Stylist reserves the right to determine if scalp treatment is feasible.)',
+          price: '$70+',
+          details: ['45mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/TTA5IRGU5S5TAPO4F2EPGICU',
+        },
+        {
+          id: 8,
+          name: 'Scalp Treatment with Full Loc Retwist',
+          description: 'Application of mild stimulating scalp antiseptic, oil, and scalp massage with a full head loc retwist (more than half head), and basic style. Great for saving curls, waves or crinkles from previous style. (Stylist reserves the right to determine if scalp treatment is feasible.)',
+          price: '$75+',
+          details: ['1hr 30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/2BDBP3FUG7NWB5HD5ON65HAI',
+        },
+        {
+          id: 9,
+          name: 'Add-on Protein Treatment',
+          description: 'Strengthens hair, helps prevent breakage, repairs damage, and restores elasticity. Offered in conjunction with additional hair services only.',
+          price: '$35',
+          details: ['20mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/JEKJXFWGXPUWJ6XZIPL3BDZN',
+        },
+        {
+          id: 10,
+          name: 'Add-on Deep Conditioning Treatment',
+          description: 'Restores shine and luster, moisturizes scalp to reduce itching and flaking. Penetrates hair shaft to impart moisture, improve texture, help reduce breakage and split ends. Especially recommended for color- or chemically-treated hair. Offered in conjunction with additional hair services only.',
+          price: '$30',
+          details: ['20mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/XUIYAUAMORI7HYAY5WC7EHYT',
+        },
+        {
+          id: 11,
+          name: 'Add-on Hot Oil Treatment',
+          description: 'Moisturizes and strengthens hair and scalp tp eliminate dry scalp, dandruff, breakage and frizz. Helps stimulate blood flow to scalp to produce more healthy growing hair. Offered in conjunction with additional hair services only.',
+          price: '$30',
+          details: ['25mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/U6YJBD6X25XUVFBOQZDLPOUL',
+        },
+        {
+          id: 12,
+          name: 'Add-on Anti-Itch Treatment',
+          description: 'Detoxifying scalp treatment, followed by anti-itch dandruff shampoo, scalp solution application and stimulating oil scalp massage',
+          price: '$21',
+          details: ['15mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/FW65VU6NWQULE6QNTCUSVKHA'
+        },
+        {
+          id: 13,
+          name: 'Add-on Deep Protein Cocktail',
+          description: '',
+          price: '$60',
+          details: ['35mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/HWFUEBDD6YU3ZIFKUJFDCSA4',
+        },
+        {
+          id: 14,
+          name: 'Color Services',
+          desription: 'We use top-quality products to provide your perfect color while maintaining the integrity and health of your hair, Prices may vary depending on desired color and hair length.',
+          price: '$85+',
+          details: ['45mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/EAFXZOUXLJWLSNPOFSXUVWUD',
         }
         // Add more services
       ],

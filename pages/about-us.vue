@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
+import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg';
 
 const route = useRoute()
 
@@ -129,7 +130,13 @@ useSeo({
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="(member, index) in teamMembers" :key="index" class="group">
             <div class="relative overflow-hidden rounded-xl mb-4">
-              <div class="aspect-w-3 aspect-h-4 bg-secondary"></div>
+              <img
+                v-if="!!member.imageSrc"
+                :src="member.imageSrc"
+                class="w-[30dvw] h-[45dvh]" />
+                <div
+                v-else
+                class="w-[30dvw] h-[45dvh] bg-secondary"></div>
               <div class="absolute inset-0 bg-accent/80 text-white p-6 flex flex-col justify-end
                 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h4 class="text-xl font-bold">{{ member.name }}</h4>
@@ -143,28 +150,6 @@ useSeo({
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="bg-secondary py-20 px-6">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-primary text-center mb-16">Client Testimonials</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="(testimonial, index) in testimonials" :key="index" class="bg-white p-6 rounded-xl shadow-lg">
-            <div class="flex gap-4 items-center mb-4">
-              <div class="w-12 h-12 bg-accent/20 rounded-full"></div>
-              <div>
-                <h4 class="font-bold text-primary">{{ testimonial.name }}</h4>
-                <p class="text-sm text-primary/60">{{ testimonial.date }}</p>
-              </div>
-            </div>
-            <p class="text-primary/80">{{ testimonial.content }}</p>
-            <div class="flex gap-1 mt-4">
-              <span v-for="star in 5" :key="star" class="text-accent">★</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Contact CTA -->
     <section class="py-20 px-6">
       <div class="container mx-auto max-w-4xl text-center">
@@ -173,13 +158,15 @@ useSeo({
           Join our community of satisfied clients and let us help you achieve your beauty goals.
         </p>
         <div class="flex gap-4 justify-center">
-          <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
+          <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+            target="_blank"
+            class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Appointment
-          </button>
-          <button
+          </a>
+          <a href="mailto:makayah1@gmail.com"
             class="border-2 border-accent text-accent px-8 py-4 rounded-full hover:bg-accent hover:text-white transition-all duration-300">
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -213,39 +200,25 @@ export default {
       ],
       teamMembers: [
         {
-          name: 'Sarah Johnson',
-          role: 'Master Stylist & Founder',
-          bio: '15+ years of experience in luxury salons across the country.'
+          name: 'Makayah Mitchell',
+          role: 'Owner, Master Loctician, Stylist & MUA',
+          bio: '17+ years of industry experience.',
+          imageSrc: makayahProfilePic
         },
         {
           name: 'Michael Chen',
           role: 'Color Specialist',
-          bio: 'Award-winning colorist with expertise in innovative techniques.'
+          bio: 'Award-winning colorist with expertise in innovative techniques.',
+          imageSrc: '',
         },
         {
           name: 'Emily Rodriguez',
           role: 'Nail Art Expert',
-          bio: 'Specialized in intricate designs and luxury nail treatments.'
+          bio: 'Specialized in intricate designs and luxury nail treatments.',
+          imageSrc: '',
         }
         // Add more team members as needed
       ],
-      testimonials: [
-        {
-          name: 'Jessica Williams',
-          date: 'December 2023',
-          content: 'The attention to detail and personalized service at The Sweetest Lime is unmatched. I always leave feeling confident and beautiful.'
-        },
-        {
-          name: 'David Thompson',
-          date: 'November 2023',
-          content: 'Professional, welcoming, and incredibly skilled. The team here really knows how to make you feel your best.'
-        },
-        {
-          name: 'Michelle Lee',
-          date: 'October 2023',
-          content: 'I&apos;ve been coming here for years and the quality of service has always been exceptional.Truly the best salon in town.'
-        }
-      ]
     };
   },
   components: {
