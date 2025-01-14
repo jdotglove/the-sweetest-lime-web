@@ -137,13 +137,15 @@ useSeo({
           Book your appointment today and let our expert nail technicians create your perfect look.
         </p>
         <div class="flex gap-4 justify-center">
-          <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
+          <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+            target="_blank"
+            class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
-          </button>
-          <button
+          </a>
+          <a href="mailto:makayah1@gmail.com"
             class="border-2 border-accent text-accent px-8 py-4 rounded-full hover:bg-accent hover:text-white transition-all duration-300">
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </section>

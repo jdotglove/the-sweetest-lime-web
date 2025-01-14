@@ -60,7 +60,7 @@ useSeo({
     <nav class="sticky top-0 z-40 bg-secondary/95 backdrop-blur-md shadow-md">
       <div class="container mx-auto px-6">
         <ul class="flex overflow-x-auto gap-8 py-4 text-primary font-medium">
-          <li v-for="section in ['Massage', 'Body Treatments', 'Packages', 'Add-ons']" :key="section">
+          <li v-for="section in ['Massage', 'Add-ons']" :key="section">
             <a :href="`#${section.toLowerCase().replace(' ', '-')}`"
               class="hover:text-accent transition-colors whitespace-nowrap">
               {{ section }}
@@ -69,33 +69,6 @@ useSeo({
         </ul>
       </div>
     </nav>
-
-    <!-- Featured Packages -->
-    <section class="py-16 px-6">
-      <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-primary mb-12 text-center">Popular Packages</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div v-for="featuredPackage in featuredPackages" :key="featuredPackage.id"
-            class="bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-primary mb-2">{{ featuredPackage.name }}</h3>
-              <p class="text-primary/70 mb-4">{{ featuredPackage.description }}</p>
-              <ul class="space-y-2 mb-6">
-                <li v-for="(item, index) in featuredPackage.includes" :key="index"
-                  class="flex items-center gap-2 text-primary/80">
-                  <span class="text-accent">✓</span>
-                  {{ item }}
-                </li>
-              </ul>
-              <div class="flex justify-between items-center">
-                <span class="text-accent font-bold text-xl">{{ featuredPackage.price }}</span>
-                <span class="text-primary/60">{{ featuredPackage.duration }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Service Categories -->
     <div class="bg-dark-green/20 py-16 px-6">
@@ -124,36 +97,6 @@ useSeo({
                 <span v-for="(detail, idx) in service.details" :key="idx"
                   class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
                   {{ detail }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Body Treatments -->
-        <section id="body-treatments" class="mb-16">
-          <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-primary">Body Treatments</h2>
-            <div class="flex-grow h-px bg-accent/20"></div>
-          </div>
-
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="treatment in bodyTreatments" :key="treatment.id"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-primary">{{ treatment.name }}</h3>
-                  <p class="text-primary/70">{{ treatment.description }}</p>
-                </div>
-                <div class="text-right">
-                  <div class="text-accent font-bold">{{ treatment.price }}</div>
-                  <div class="text-sm text-primary/60">{{ treatment.duration }}</div>
-                </div>
-              </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(benefit, idx) in treatment.benefits" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ benefit }}
                 </span>
               </div>
             </div>
@@ -218,13 +161,15 @@ useSeo({
           Book your spa experience today and let our expert therapists help you unwind.
         </p>
         <div class="flex gap-4 justify-center">
-          <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
+          <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+            target="_blank"
+            class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
-          </button>
-          <button
+          </a>
+          <a href="mailto:makayah1@gmail.com"
             class="border-2 border-accent text-accent px-8 py-4 rounded-full hover:bg-accent hover:text-white transition-all duration-300">
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -300,41 +245,36 @@ export default {
           details: ['Pain relief', 'Muscle recovery', 'Tension release']
         },
       ],
-      bodyTreatments: [
-        {
-          id: 1,
-          name: 'Body Scrub',
-          description: 'Full body exfoliation treatment',
-          price: '$75',
-          duration: '45 min',
-          benefits: ['Exfoliation', 'Skin renewal', 'Hydration']
-        },
-        {
-          id: 2,
-          name: 'Aromatherapy Wrap',
-          description: 'Nourishing body wrap with essential oils',
-          price: '$95',
-          duration: '60 min',
-          benefits: ['Detoxification', 'Moisturizing', 'Relaxation']
-        }
-      ], addOns: [
+      addOns: [
         {
           id: 1,
           name: 'Aromatherapy',
-          description: 'Essential oil therapy',
-          price: '$15'
+          description: '5-minute add-on',
+          price: '$10',
         },
         {
           id: 2,
           name: 'Hot Stones',
-          description: 'Added to any massage',
-          price: '$20'
+          description: '30-minute add-on',
+          price: '$25',
         },
         {
           id: 3,
           name: 'Scalp Massage',
           description: '15-minute add-on',
-          price: '$25'
+          price: '$20',
+        },
+        {
+          id: 4,
+          name: 'Collagen Eye Treatment',
+          description: '10-minute add-on',
+          price: '$15',
+        },
+        {
+          id: 5,
+          name: 'Peppermint Foot & Hand Scrub',
+          description: '20-minute add-on',
+          price: '$30',
         }
       ],
       benefits: [

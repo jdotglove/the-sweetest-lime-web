@@ -250,17 +250,18 @@ useSeo({
 
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="testimonial in testimonials" :key="testimonial.id"
-            class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-[35dvh]">
-            <div class="flex gap-4 items-center mb-6">
-              <div class="w-16 h-16 bg-accent/20 rounded-full"></div>
-              <div>
-                <h4 class="font-bold text-primary">{{ testimonial.name }}</h4>
-                <p class="text-primary/60">{{ testimonial.service }}</p>
+            class="bg-white grid rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-[35dvh]">
+            <section>
+              <div class="flex gap-4 items-center mb-6">
+                <div>
+                  <h4 class="font-bold text-primary">{{ testimonial.name }}</h4>
+                  <p class="text-primary/60">{{ testimonial.service }}</p>
+                </div>
               </div>
-            </div>
-            <p class="text-primary/80 mb-4 h-[15dvh] overflow-clip">{{ testimonial.content }}</p>
+              <p class="text-primary/80 mb-4 h-[15dvh]">{{ trimTestimonial(testimonial.content) }}</p>
+            </section>
             <div class="flex gap-1 text-accent">
-              <span v-for="star in testimonial.stars" :key="star">★</span>
+              <span class="self-end" v-for="star in testimonial.stars" :key="star">★</span>
             </div>
           </div>
         </div>
@@ -276,13 +277,15 @@ useSeo({
         </p>
 
         <div class="flex gap-4 justify-center">
-          <button class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
+          <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+            target="_blank"
+            class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
-          </button>
-          <button
+          </a>
+          <a href="mailto:makayah1@gmail.com"
             class="border-2 border-secondary text-primary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -412,6 +415,14 @@ export default {
           link: 'https://g.co/kgs/oeWvU8R',
         }
       ]
+    }
+  },
+  methods: {
+    trimTestimonial(testimonialContent: string) {
+      if (testimonialContent.length > 300) {
+        return `${testimonialContent.slice(0, 300)}...`
+      }
+      return testimonialContent;
     }
   }
 }
