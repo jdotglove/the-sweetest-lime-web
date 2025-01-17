@@ -100,14 +100,15 @@ useSeo({
               </svg>
             </div>
 
-            <div class="p-6 relative">
+            <div class="p-6 relative h-full flex flex-col justify-between">
               <h3 class="text-xl font-bold text-primary mb-2">{{ service.name }}</h3>
               <p class="text-primary/70 mb-4">{{ service.description }}</p>
-              <div class="flex justify-between items-center">
+              <div class="flex justify-between items-center justify-self-end">
                 <span class="text-accent font-bold">{{ service.price }}</span>
-                <button class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                <a :href="service.link" target="_blank"
+                  class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
                   Book Now
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -126,8 +127,8 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <a v-for="service in locsServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+            <article v-for="service in locsServices" :key="service.id" :href="service.link" target="_blank"
+              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
               <div class="flex justify-between items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
@@ -135,13 +136,21 @@ useSeo({
                 </div>
                 <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </a>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+            </article>
           </div>
         </section>
 
@@ -153,8 +162,8 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <a v-for="service in braidsServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+            <article v-for="service in braidsServices" :key="service.id" :href="service.link" target="_blank"
+              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
               <div class="flex justify-between items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
@@ -162,13 +171,21 @@ useSeo({
                 </div>
                 <span class="text-accent font-bold whitespace-nowrap">from {{ service.price }}</span>
               </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </a>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+            </article>
           </div>
         </section>
 
@@ -180,8 +197,8 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <a v-for="service in stylingServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+            <article v-for="service in stylingServices" :key="service.id" :href="service.link" target="_blank"
+              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
               <div class="flex justify-between items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
@@ -189,26 +206,34 @@ useSeo({
                 </div>
                 <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </a>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+            </article>
           </div>
         </section>
 
         <!-- Treatments -->
-        <section id="treatments">
+        <section id="treatments" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
             <h2 class="text-3xl font-bold text-primary">Hair Treatments</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <a v-for="service in treatmentServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+            <article v-for="service in treatmentServices" :key="service.id" :href="service.link" target="_blank"
+              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
               <div class="flex justify-between items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
@@ -216,13 +241,56 @@ useSeo({
                 </div>
                 <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+            </article>
+          </div>
+        </section>
+
+        <!-- Esthetics -->
+        <section id="esthetics">
+          <div class="flex items-center gap-4 mb-8">
+            <h2 class="text-3xl font-bold text-primary">Hair Esthetics</h2>
+            <div class="flex-grow h-px bg-accent/20"></div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8">
+            <article v-for="service in estheticsServices" :key="service.id" :href="service.link" target="_blank"
+              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
+                  <p class="text-primary/70">{{ service.description }}</p>
+                </div>
+                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
-            </a>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+            </article>
           </div>
         </section>
       </div>
@@ -293,22 +361,25 @@ export default {
       featuredServices: [
         {
           id: 1,
-          name: 'Signature Haircut',
-          description: 'Expert cutting and styling tailored to your face shape and lifestyle',
-          price: '$65+'
+          name: 'Loc Perimeter Retwist with Basic Style',
+          description: 'Cleansing & oiling scalp, and retwisting perimeter locs with a basic style (bun, ponytail, fishtail, etc.)',
+          price: '$60+',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/Z55IJG67LWDGQWW2PQANUTH6',
         },
         {
           id: 2,
-          name: 'Full Color',
-          description: 'Complete color transformation with premium products',
-          price: '$120+'
+          name: 'Color Services',
+          desription: 'We use top-quality products to provide your perfect color while maintaining the integrity and health of your hair, Prices may vary depending on desired color and hair length.',
+          price: '$85+',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/EAFXZOUXLJWLSNPOFSXUVWUD',
         },
         {
           id: 3,
-          name: 'Balayage',
-          description: 'Hand-painted highlights for a natural, sun-kissed look',
-          price: '$175+'
-        }
+          name: 'Freestyle Braids',
+          description: 'Natural Hair',
+          price: '$180+',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/22BVE5LNC2T5PUFZYNLJ4ONI',
+        },
       ],
       locsServices: [
         {
@@ -399,6 +470,14 @@ export default {
           details: ['1hr'],
           link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/MVYMY7J5VW6X3ZFPMWOJTY7L',
         },
+        {
+          id: 12,
+          name: 'Hair Jewelry/Adornments - Client supplied',
+          description: 'Attachment of client supplied hair jewelry/adornments',
+          price: '$2+',
+          details: ['10mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/KSFAEG3DYNOAN7KEVRMRRWRI',
+        }
         // Add more services
       ],
       braidsServices: [
@@ -497,8 +576,30 @@ export default {
           price: '$90',
           details: ['30mins'],
           link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/MO76L2GDRUUCBFXHVA546LKY',
+        },
+        {
+          id: 13,
+          name: 'Add on Boho',
+          price: '$55',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/B76GOPZYQGLG5ZDLUN3NZHV4',
+        },
+        {
+          id: 14,
+          name: 'Hair Jewelry/Adornments - Client supplied',
+          description: 'Attachment of client supplied hair jewelry/adornments',
+          price: '$2+',
+          details: ['10mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/KSFAEG3DYNOAN7KEVRMRRWRI',
+        },
+        {
+          id: 15,
+          name: 'Add-on Beads/Hair Adornments',
+          description: 'Adding beads to braids or hair adornments to locs. Bring your own or choose from salon selection. Offered in conjunction with additional hair services only.',
+          price: 'price varies',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/FABM74JL24ZRK5BMXOC6LS3B',
         }
-        // Add more services
       ],
       stylingServices: [
         {
@@ -535,13 +636,100 @@ export default {
         },
         {
           id: 5,
+          name: 'Haircut',
+          description: '',
+          price: '$35',
+          details: ['45mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/NNU3QFJRUQ6A7LCFSGD4CA5J',
+        },
+        {
+          id: 6,
+          name: 'Haircut & Face',
+          description: '',
+          price: '$40+',
+          details: ['50mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/5VG63ODORMOZYKXF24VMVOAO',
+        },
+        {
+          id: 7,
+          name: 'Trim',
+          description: '',
+          price: '$25',
+          details: ['20mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/WAUZ3SOT2ILGCKRILFUYTFEV',
+        },
+        {
+          id: 8,
+          name: 'Shape-Up',
+          description: 'Clean-up of hairline (full perimeter of hair).',
+          price: '$20+',
+          details: ['15mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/SQPAEG7Q7BNMV6SEODNRFSEL',
+        },
+        {
+          id: 9,
+          name: 'Shape-Up & Shampoo',
+          description: '',
+          price: '$30+',
+          details: ['30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/OGYZ22YDSWSPSSRIABI6L3Q5',
+        },
+        {
+          id: 10,
+          name: 'Shape-Up & Face',
+          description: 'Clean-up of hairline (full perimeter of hair), and face (beard, mustache & neck).',
+          price: '$20+',
+          details: ['30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/IQET73NCJ2ERARTICB223ACR',
+        },
+        {
+          id: 11,
+          name: 'Shape-Up - Face Only',
+          description: 'Clean-up face (beard, mustache & neck)',
+          price: '$10+',
+          details: ['15mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/VAA6XQWRKKMUC3TADVQMU6HR',
+        },
+        {
+          id: 12,
+          name: 'Silk Wrap (Blow out) With Trim',
+          description: 'A silkening serum is used to create a bone-straight style with extra volume and minimal heat.',
+          price: '$75',
+          details: ['45mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/OJKYQSCGMB3YIKU6KC6O6DZQ',
+        },
+        {
+          id: 13,
+          name: 'Blow Dry Only',
+          description: 'Blow-dry hair with add-on service',
+          price: '$25+',
+          details: ['25mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/X67N6KKU2JCUK6U7FWTRUOQM',
+        },
+        {
+          id: 14,
+          name: 'Shampoo and Blow-Dry',
+          description: '',
+          price: '$45',
+          details: ['40mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RR7ZCSKWKUEFHSLJFD6GWZLB',
+        },
+        {
+          id: 15,
           name: 'Add-on Hair Prep',
           description: 'Taking out braids or extensions and/or removal of crochet or weave in preparation and in conjunction with additional hair services.',
           price: '$50+',
           details: ['1hr'],
           link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/Z4JGT4YW2WS65BO53VD5QI77',
+        },
+        {
+          id: 16,
+          name: 'Special Events',
+          description: 'Wedding, prom, anniversary, photo shoot or class reunion... if you want to look extra special we provide convenient on-site hair and/or make-up services or you can reserve the salon for parties of three or more.',
+          price: 'Please call for estimates or schedule a free consultation.',
+          details: ['15mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/G42VA5MQTGKXY7EXP47ZB5RA'
         }
-        // Add more services
       ],
       treatmentServices: [
         {
@@ -657,6 +845,56 @@ export default {
           link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/EAFXZOUXLJWLSNPOFSXUVWUD',
         }
         // Add more services
+      ],
+      estheticsServices: [
+        {
+          id: 1,
+          name: 'Beard Maintenance',
+          description: 'Trimming and blade edging with beard cleansing and hot towel deep conditioning service',
+          price: '$20',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/5WYS4XFVOWRZ3KV2QE24P3HX',
+        },
+        {
+          id: 2,
+          name: 'Lash Application',
+          description: 'Application of false lashes',
+          price: '$20+',
+          details: ['30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/GKZFTDZM56XXPA3D4PO3XETB',
+        },
+        {
+          id: 3,
+          name: 'Facial Waxing',
+          description: 'Removal of hair from the follicle using wax.',
+          price: '$10+',
+          details: ['10mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/FVIJHYZVTOKR2DJQL56KOBFI',
+        },
+        {
+          id: 4,
+          name: 'Make-Up',
+          description: 'Make-up application for photoshoots, special occasions, or simply a night on the town',
+          price: '$35',
+          details: ['15mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/7APGSVTB325DCD6FB6KYDTWA',
+        },
+        {
+          id: 5,
+          name: 'Brow Shaping',
+          description: 'Shaping of brows including gel or pencil fill-in',
+          price: '$15+',
+          details: ['20mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/4TUTRAPH4QLHMDTDTV5GDGA7',
+        },
+        {
+          id: 6,
+          name: 'Special Events',
+          description: 'Wedding, prom, anniversary, photo shoot or class reunion... if you want to look extra special we provide convenient on-site hair and/or make-up services or you can reserve the salon for parties of three or more.',
+          price: 'Please call for estimates or schedule a free consultation.',
+          details: ['15mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/G42VA5MQTGKXY7EXP47ZB5RA'
+        }
       ],
       faqs: [
         {

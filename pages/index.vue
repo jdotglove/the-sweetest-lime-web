@@ -65,24 +65,23 @@ useSeo({
       </div>
 
       <!-- Hero Content -->
-      <div class="relative container mx-auto px-6 py-20">
-        <div class="max-w-3xl">
+      <div class="relative container mx-auto px-6 py-20 items-center flex flex-col">
+        <div class="max-w-3xl flex flex-col items-center">
           <div class="my-4 grid justify-center bg-white w-[50dvw] h-[40dvh] rounded-3xl">
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>
-          <p class="text-xl text-primary/90 mb-8 max-w-2xl">
+          <p class="text-xl text-primary/90 mb-8 max-w-2xl text-center">
             Your destination for premium beauty and wellness services. Where nature meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
-          <div class="flex gap-4 flex-wrap">
+          <p class="text-xl text-primary/90 mb-8 max-w-2xl">
+            Certified Sustainable Salon with Green Circle Salons
+          </p>
+          <div class="flex gap-4 flex-wrap justify-center">
             <button
               class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
               Book Appointment
-            </button>
-            <button
-              class="border-2 bg-secondary border-secondary text-primary px-8 py-4 rounded-full hover:bg-secondary/70 transition-all duration-300">
-              View Services
             </button>
           </div>
         </div>
@@ -140,20 +139,22 @@ useSeo({
                 <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
               </svg>
             </div>
-            <div class="p-8 relative">
-              <h3 class="text-2xl font-bold text-primary mb-4">{{ service.name }}</h3>
-              <p class="text-primary/70 mb-6">{{ service.description }}</p>
-              <ul class="space-y-2 mb-6">
-                <li v-for="(feature, idx) in service.features" :key="idx"
-                  class="flex items-center gap-2 text-primary/80">
-                  <svg class="w-4 h-4 text-accent" viewBox="0 0 100 100">
-                    <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-                  </svg>
-                  {{ feature }}
-                </li>
-              </ul>
+            <div class="p-8 relative h-full flex flex-col justify-between">
+              <section>
+                <h3 class="text-2xl font-bold text-primary mb-4">{{ service.name }}</h3>
+                <p class="text-primary/70 mb-3">{{ service.description }}</p>
+                <ul class="space-y-2 mb-4">
+                  <li v-for="(feature, idx) in service.features" :key="idx"
+                    class="flex items-center gap-2 text-primary/80">
+                    <svg class="w-4 h-4 text-accent" viewBox="0 0 100 100">
+                      <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
+                    </svg>
+                    {{ feature }}
+                  </li>
+                </ul>
+              </section>
               <router-link :to="service.link"
-                class="inline-flex items-center gap-2 text-accent group-hover:text-dark-green transition-colors">
+                class="inline-flex items-center justify-end gap-2 text-accent group-hover:text-dark-green transition-colors">
                 Explore Services
                 <span class="transform group-hover:translate-x-2 transition-transform">→</span>
               </router-link>
@@ -198,23 +199,32 @@ useSeo({
     <!-- Why Choose Us -->
     <section class="py-20 px-6">
       <div class="container mx-auto">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 class="text-4xl font-bold text-primary mb-6">Why Choose The Sweetest Lime?</h2>
-            <div class="space-y-6">
-              <div v-for="reason in reasons" :key="reason.id" class="flex gap-4">
-                <div class="w-12 h-12 shrink-0 bg-accent/10 rounded-full flex items-center justify-center text-accent">
-                  {{ reason.icon }}
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold text-primary mb-2">{{ reason.title }}</h3>
-                  <p class="text-primary/70">{{ reason.description }}</p>
+        <div class="flex justify-center gap-16 items-center">
+          <section class="py-16">
+            <div class="container mx-auto px-4">
+              <h2 class="text-4xl font-bold text-primary text-center mb-12">
+                The Sweetest Lime Difference
+              </h2>
+
+              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div v-for="benefit in benefits" :key="benefit.id"
+                  class="group p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="w-12 h-12 shrink-0 bg-accent/10 rounded-full flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                      <component :is="benefit.icon" class="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 class="text-xl font-bold text-primary mb-2">{{ benefit.title }}</h3>
+                      <p class="text-primary/70 leading-relaxed">{{ benefit.description }}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
-          <div class="grid grid-cols-2 gap-4">
+          <!-- <div class="grid grid-cols-2 gap-4">
             <div class="space-y-4">
               <div class="bg-secondary rounded-lg p-6 shadow-lg">
                 <h3 class="text-3xl font-bold text-accent mb-2">15+</h3>
@@ -235,7 +245,7 @@ useSeo({
                 <p class="text-primary">Awards Won</p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -283,7 +293,7 @@ useSeo({
             Book Online
           </a>
           <a href="mailto:makayah1@gmail.com"
-            class="border-2 border-secondary text-primary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
+            class="border-2 border-primary text-primary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
             Contact Us
           </a>
         </div>
@@ -296,6 +306,7 @@ useSeo({
 <script lang="ts">
 import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
+import { GraduationCap, Gem, Clock, Wand2, HeartHandshake, Sparkles } from 'lucide-vue-next';
 
 export default {
   components: {
@@ -333,8 +344,6 @@ export default {
           features: [
             'Massage Therapy',
             'Body Treatments',
-            'Spa Packages',
-            'Wellness Services'
           ],
           link: '/body-work'
         }
@@ -413,6 +422,44 @@ export default {
           content: 'I love my hair!! Makayah is amazingly blessed and talented. She always no what I want even when I don\'t know what I want 🥰',
           stars: 5,
           link: 'https://g.co/kgs/oeWvU8R',
+        }
+      ],
+      benefits: [
+        {
+          id: 1,
+          icon: GraduationCap,
+          title: 'Expert Team',
+          description: 'Our certified professionals bring decades of combined experience in hair design, nail artistry, and body wellness.'
+        },
+        {
+          id: 2,
+          icon: Gem,
+          title: 'Premium Experience',
+          description: 'Enjoy a luxurious atmosphere with high-end products and personalized attention to detail.'
+        },
+        {
+          id: 3,
+          icon: Clock,
+          title: 'Convenient Hours',
+          description: 'Early morning and evening appointments available to fit your busy schedule.'
+        },
+        {
+          id: 4,
+          icon: Wand2,
+          title: 'Custom Solutions',
+          description: 'Every service is tailored to your unique style, preferences, and beauty goals.'
+        },
+        {
+          id: 5,
+          icon: HeartHandshake,
+          title: 'Client-First Focus',
+          description: 'Your comfort and satisfaction are our top priorities, ensuring a relaxing and rewarding visit.'
+        },
+        {
+          id: 6,
+          icon: Sparkles,
+          title: 'Lasting Results',
+          description: 'Quality techniques and products that help you maintain your beautiful look long after your visit.'
         }
       ]
     }

@@ -93,12 +93,20 @@ useSeo({
                   <div class="text-sm text-primary/60">{{ service.duration }}</div>
                 </div>
               </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
             </div>
           </div>
         </section>
@@ -114,7 +122,16 @@ useSeo({
             <div v-for="addon in addOns" :key="addon.id" class="bg-white p-6 rounded-lg shadow-md text-center">
               <h3 class="text-xl font-bold text-primary mb-2">{{ addon.name }}</h3>
               <p class="text-primary/70 mb-4">{{ addon.description }}</p>
-              <span class="text-accent font-bold">+{{ addon.price }}</span>
+              <section class="flex justify-between items-center">
+                <span class="text-accent font-bold">+{{ addon.price }}</span>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="addon.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+
             </div>
           </div>
         </section>
@@ -234,7 +251,8 @@ export default {
           description: 'A massage therapy technique focused on relaxation and improving circulation. Typically performed on the whole body, but can also be focused on specific areas such as the back, shoulders, or neck.',
           price: '$60/$145/$180',
           duration: '30mins/90mins/2hrs',
-          details: ['Stress relief', 'Improved circulation', 'Relaxation']
+          details: ['Stress relief', 'Improved circulation', 'Relaxation'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/AXOJBWUROTKLU6GHV3CQSVFP',
         },
         {
           id: 2,
@@ -242,7 +260,8 @@ export default {
           description: 'A massage technique using slow, deep strokes and pressure to target chronic muscle tension and pain. It\'s often used to treat injuries and chronic pain, improve range of motion, increase blood flow, and reduce inflammation.',
           price: '$150+',
           duration: '90mins',
-          details: ['Pain relief', 'Muscle recovery', 'Tension release']
+          details: ['Pain relief', 'Muscle recovery', 'Tension release'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RIIQIN2NCJL2ZYCXVZ5N7RXW',
         },
       ],
       addOns: [
@@ -251,30 +270,35 @@ export default {
           name: 'Aromatherapy',
           description: '5-minute add-on',
           price: '$10',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
         },
         {
           id: 2,
           name: 'Hot Stones',
           description: '30-minute add-on',
           price: '$25',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
         },
         {
           id: 3,
           name: 'Scalp Massage',
           description: '15-minute add-on',
           price: '$20',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
         },
         {
           id: 4,
           name: 'Collagen Eye Treatment',
           description: '10-minute add-on',
           price: '$15',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
         },
         {
           id: 5,
           name: 'Peppermint Foot & Hand Scrub',
           description: '20-minute add-on',
           price: '$30',
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
         }
       ],
       benefits: [
