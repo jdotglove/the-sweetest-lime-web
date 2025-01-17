@@ -80,7 +80,7 @@ useSeo({
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in nailServices" :key="service.id"
+            <article v-for="service in nailServices" :key="service.id"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
@@ -89,20 +89,28 @@ useSeo({
                 </div>
                 <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
-              <div class="flex gap-2 flex-wrap">
-                <span v-for="(detail, idx) in service.details" :key="idx"
-                  class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                  {{ detail }}
-                </span>
-              </div>
-            </div>
+              <section class="flex items-center justify-between">
+                <div class="flex gap-2 h-fit  flex-wrap">
+                  <span v-for="(detail, idx) in service.details" :key="idx"
+                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                    {{ detail }}
+                  </span>
+                </div>
+                <div class="flex gap-2 flex-wrap">
+                  <a :href="service.link" target="_blank"
+                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                    Book Now
+                  </a>
+                </div>
+              </section>
+            </article>
           </div>
         </section>
       </div>
     </div>
 
     <!-- Add-Ons Section -->
-    <section class="py-16 px-6">
+    <!-- <section class="py-16 px-6">
       <div class="container mx-auto">
         <h3 class="text-3xl font-bold text-primary text-center">Service Add-Ons</h3>
         <div class="w-24 h-1 bg-accent mx-auto mt-4 mb-8"></div>
@@ -114,7 +122,7 @@ useSeo({
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Care Tips -->
     <section class="bg-dark-green/20 text-primary py-16 px-6">
@@ -163,94 +171,40 @@ export default {
       nailServices: [
         {
           id: 1,
-          name: 'Classic Manicure',
-          description: 'Basic nail care with regular polish',
-          price: '$35',
-          details: ['30 minutes', 'Includes massage', 'Regular polish']
+          name: 'Gel X',
+          description: '',
+          price: '$65',
+          details: ['30mins+'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/6KAHZFKHLZGC25VBZFBEF53P',
         },
         {
           id: 2,
-          name: 'Gel Manicure',
-          description: 'Long-lasting gel polish with nail care',
-          price: '$45',
-          details: ['45 minutes', 'LED cured', '2-3 weeks lasting']
-        },
-        {
-          id: 3,
-          name: 'Luxury Manicure',
-          description: 'Premium treatment with extended massage',
-          price: '$55',
-          details: ['60 minutes', 'Paraffin treatment', 'Premium products']
-        },
-        {
-          id: 4,
-          name: 'Classic Pedicure',
-          description: 'Essential foot care with regular polish',
-          price: '$45',
-          details: ['45 minutes', 'Foot massage', 'Regular polish']
-        },
-        {
-          id: 5,
-          name: 'Gel Pedicure',
-          description: 'Long-lasting gel polish with foot care',
-          price: '$55',
-          details: ['60 minutes', 'LED cured', 'Extended massage']
-        },
-        {
-          id: 6,
-          name: 'Luxury Spa Pedicure',
-          description: 'Premium foot treatment with extras',
-          price: '$75',
-          details: ['75 minutes', 'Hot stone massage', 'Paraffin treatment']
-        },
-        {
-          id: 7,
-          name: 'Acrylic Full Set',
-          description: 'Full set of acrylic extensions',
-          price: '$65+',
-          details: ['90 minutes', 'Customizable length', 'Natural look']
-        },
-        {
-          id: 8,
-          name: 'Gel-X Extensions',
-          description: 'Natural-looking gel extensions',
-          price: '$75+',
-          details: ['75 minutes', 'Lightweight', 'Less damage']
-        },
-        {
-          id: 9,
-          name: 'Basic Art',
-          description: 'Simple designs on 1-2 nails',
-          price: '$5+ per nail',
-          details: ['Geometric', 'French tips', 'Simple patterns']
-        },
-        {
-          id: 10,
-          name: 'Advanced Art',
-          description: 'Complex designs and patterns',
-          price: '$10+ per nail',
-          details: ['3D effects', 'Hand-painted', 'Crystals']
+          name: 'Dip Powder',
+          description: '',
+          price: '$10',
+          details: ['30mins'],
+          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/W3ZIUYXSYAPNYLB7NXZ7H4HX',
         }
       ],
       addOns: [
-        {
-          id: 1,
-          name: 'French Tips',
-          description: 'Classic white tips design',
-          price: '$10'
-        },
-        {
-          id: 2,
-          name: 'Paraffin Treatment',
-          description: 'Deep moisturizing treatment',
-          price: '$15'
-        },
-        {
-          id: 3,
-          name: 'Nail Repair',
-          description: 'Fix broken or damaged nails',
-          price: '$5 per nail'
-        }
+        // {
+        //   id: 1,
+        //   name: 'French Tips',
+        //   description: 'Classic white tips design',
+        //   price: '$10'
+        // },
+        // {
+        //   id: 2,
+        //   name: 'Paraffin Treatment',
+        //   description: 'Deep moisturizing treatment',
+        //   price: '$15'
+        // },
+        // {
+        //   id: 3,
+        //   name: 'Nail Repair',
+        //   description: 'Fix broken or damaged nails',
+        //   price: '$5 per nail'
+        // }
       ],
       careTips: [
         {
