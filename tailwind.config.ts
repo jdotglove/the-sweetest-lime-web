@@ -19,6 +19,15 @@ export default {
         'dark-green': '#749A46',
         'light-green': '#A4CE5E',
       },
+      animation: {
+        'sway-slow': 'sway-slow 8s ease-in-out infinite',
+      },
+      keyframes: {
+        'sway-slow': {
+          '0%, 100%': { transform: 'rotate(-2deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        },
+      },
     },
   },
   plugins: [],

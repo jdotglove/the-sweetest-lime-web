@@ -17,37 +17,7 @@ useSeo({
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
-        <!-- Hero Leaf Pattern Overlay -->
-        <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
-
-          <!-- Scattered Small Leaves -->
-          <svg class="absolute top-1/4 right-3/5 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute top-1/3 right-2/3 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute bottom-2/3 left-2/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute top-2/4 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-        </div>
-      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
         <div class="text-primary max-w-2xl bg-white p-10 rounded-xl">
           <h2 class="text-5xl font-bold mb-4">Nail Services</h2>

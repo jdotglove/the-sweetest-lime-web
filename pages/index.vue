@@ -13,56 +13,13 @@ useSeo({
 </script>
 
 <template>
+
   <Navbar />
-  <div class="min-h-screen bg-background overflow-hidden">
-    <!-- Decorative Leaves SVG Components -->
-    <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
-
-      <!-- Scattered Small Leaves -->
-      <svg class="absolute top-1/4 right-1/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-        fill="currentColor">
-        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-      </svg>
-      <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-        fill="currentColor">
-        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-      </svg>
-
-    </div>
+  <div class="relative min-h-screen bg-background overflow-hidden">
 
     <!-- Hero Section -->
     <section class="relative h-[70dvh] flex items-center">
-      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50">
-        <!-- Hero Leaf Pattern Overlay -->
-        <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
-
-          <!-- Scattered Small Leaves -->
-          <svg class="absolute top-1/4 right-3/5 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute top-1/3 right-2/3 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute bottom-2/3 left-2/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute top-2/4 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-          <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-            fill="currentColor">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-          </svg>
-        </div>
-      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
 
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20 items-center flex flex-col">
@@ -87,34 +44,23 @@ useSeo({
         </div>
       </div>
     </section>
-    <div class=" inset-0 pointer-events-none overflow-hidden opacity-10">
+    <!-- Large Corner Leaves -->
+    <div class=" absolute right-0 flex flex-col gap-40 pointer-events-none overflow-hidden">
+      <!-- Top Left Leaf -->
+      <svg class="w-72 h-72 text-accent/50" viewBox="0 0 100 100">
+        <path
+          d="M50,5 C75,5 90,20 90,45 L80,35 L90,55 L70,45 L80,65 L60,55 L70,75 L50,65 L60,85 L40,75 L50,95 L30,85 L40,65 L20,75 L30,55 L10,65 L20,45 L10,35 L20,25 C30,10 40,5 50,5"
+          fill="currentColor" class="animate-sway-slow" />
 
-      <!-- Scattered Small Leaves -->
-      <svg class="absolute top-1/4 right-1/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-        fill="currentColor">
-        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-      </svg>
-      <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-        fill="currentColor">
-        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
       </svg>
     </div>
     <!-- Services Section with Leaf Accents -->
-    <section class="py-20 px-6 relative">
-      <div class="absolute top-0 right-0 w-64 h-64 opacity-10">
-        <svg viewBox="0 0 100 100" class="text-accent">
-          <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-        </svg>
-      </div>
-
+    <section class="py-20 px-6 relative z-10">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-primary text-center mb-16">
           Our Services
           <div class="relative">
             <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
-            <svg class="absolute -right-4 -top-2 w-8 h-8 text-accent transform rotate-45" viewBox="0 0 100 100">
-              <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-            </svg>
           </div>
         </h2>
 
@@ -122,23 +68,7 @@ useSeo({
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="service in mainServices" :key="service.id"
             class="group relative bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-            <div class="absolute top-0 right-0 w-20 h-20 opacity-10 transform rotate-45">
-              <svg viewBox="0 0 100 100" class="text-accent">
-                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-              </svg>
-            </div>
-            <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
-              <!-- Scattered Small Leaves -->
-              <svg class="absolute top-1/4 right-1/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-                fill="currentColor">
-                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-              </svg>
-              <svg class="absolute bottom-1/3 left-1/3 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-                fill="currentColor">
-                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-              </svg>
-            </div>
             <div class="p-8 relative h-full flex flex-col justify-between">
               <section>
                 <h3 class="text-2xl font-bold text-primary mb-4">{{ service.name }}</h3>
@@ -163,18 +93,7 @@ useSeo({
         </div>
       </div>
     </section>
-    <div class="inset-0 pointer-events-none overflow-hidden opacity-10">
 
-      <!-- Scattered Small Leaves -->
-      <svg class="absolute top-2/5 right-2/4 w-32 h-32 text-accent transform rotate-45" viewBox="0 0 100 100"
-        fill="currentColor">
-        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-      </svg>
-      <svg class="absolute top-3/5 right-3/6 w-24 h-24 text-accent transform -rotate-45" viewBox="0 0 100 100"
-        fill="currentColor">
-        <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" />
-      </svg>
-    </div>
     <!-- Special Offers Section -->
     <section class="py-20 px-6 bg-dark-green/20 text-primary">
       <div class="container mx-auto">
@@ -195,7 +114,16 @@ useSeo({
         </div>
       </div>
     </section>
+    <!-- Large Corner Leaves -->
+    <div class=" absolute right-0 flex flex-col gap-40 pointer-events-none overflow-hidden">
+      <!-- Top Left Leaf -->
+      <svg class="w-72 h-72 text-accent/50" viewBox="0 0 100 100">
+        <path
+          d="M50,5 C70,20 90,40 90,70 C90,85 80,95 50,95 C20,95 10,85 10,70 C10,40 30,20 50,5 M30,30 C40,35 50,45 50,60 M70,30 C60,35 50,45 50,60"
+          fill="currentColor" class="animate-sway-slow" />
 
+      </svg>
+    </div>
     <!-- Why Choose Us -->
     <section class="py-20 px-6">
       <div class="container mx-auto">
@@ -208,7 +136,7 @@ useSeo({
 
               <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div v-for="benefit in benefits" :key="benefit.id"
-                  class="group p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                  class="group p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 z-10">
                   <div class="flex items-start gap-4">
                     <div
                       class="w-12 h-12 shrink-0 bg-accent/10 rounded-full flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
@@ -223,33 +151,19 @@ useSeo({
               </div>
             </div>
           </section>
-
-          <!-- <div class="grid grid-cols-2 gap-4">
-            <div class="space-y-4">
-              <div class="bg-secondary rounded-lg p-6 shadow-lg">
-                <h3 class="text-3xl font-bold text-accent mb-2">15+</h3>
-                <p class="text-primary">Expert Stylists</p>
-              </div>
-              <div class="bg-secondary rounded-lg p-6 shadow-lg">
-                <h3 class="text-3xl font-bold text-accent mb-2">5k+</h3>
-                <p class="text-primary">Happy Clients</p>
-              </div>
-            </div>
-            <div class="space-y-4 pt-8">
-              <div class="bg-secondary rounded-lg p-6 shadow-lg">
-                <h3 class="text-3xl font-bold text-accent mb-2">10+</h3>
-                <p class="text-primary">Years Experience</p>
-              </div>
-              <div class="bg-secondary rounded-lg p-6 shadow-lg">
-                <h3 class="text-3xl font-bold text-accent mb-2">20+</h3>
-                <p class="text-primary">Awards Won</p>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </section>
+    <!-- Large Corner Leaves -->
+    <div class=" absolute pointer-events-none overflow-hidden">
+      <!-- Top Left Leaf -->
+      <svg class="-right-0 bottom-48 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
+        <path
+          d="M10,90 C30,80 40,60 45,40 C60,50 80,45 90,20 C70,40 60,45 50,45 C70,20 75,10 80,5 C60,15 50,25 45,40 C40,20 30,10 20,5 C30,20 35,35 35,45 C20,40 10,20 5,10 C15,35 25,60 10,90"
+          fill="currentColor" class="animate-sway-slow" />
 
+      </svg>
+    </div>
     <!-- Testimonials -->
     <section class="py-20 px-6 bg-dark-green/20">
       <div class="container mx-auto">
@@ -260,7 +174,7 @@ useSeo({
 
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="testimonial in testimonials" :key="testimonial.id"
-            class="bg-white grid rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-[35dvh]">
+            class="bg-white grid rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-[35dvh] z-10">
             <section>
               <div class="flex gap-4 items-center mb-6">
                 <div>
@@ -277,7 +191,16 @@ useSeo({
         </div>
       </div>
     </section>
+    <!-- Large Corner Leaves -->
+    <div class=" absolute top-[70dvh] pointer-events-none overflow-hidden">
+      <!-- Top Left Leaf -->
+      <svg class="-right-0 top-48 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
+        <path
+          d="M50,5 C70,20 90,40 90,70 C90,85 80,95 50,95 C20,95 10,85 10,70 C10,40 30,20 50,5 M30,30 C40,35 50,45 50,60 M70,30 C60,35 50,45 50,60"
+          fill="currentColor" class="animate-sway-slow" />
 
+      </svg>
+    </div>
     <!-- Book Now CTA -->
     <section class="py-20 px-6">
       <div class="container mx-auto max-w-4xl text-center text-primary">
@@ -301,6 +224,7 @@ useSeo({
     </section>
     <Footer />
   </div>
+
 </template>
 
 <script lang="ts">
@@ -475,4 +399,21 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+@keyframes sway-slow {
+
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-sway-slow {
+  animation: sway-slow 8s ease-in-out infinite;
+  transform-origin: center;
+}
+</style>
