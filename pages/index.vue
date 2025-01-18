@@ -20,16 +20,15 @@ useSeo({
     <!-- Hero Section -->
     <section class="relative h-[70dvh] flex items-center">
       <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
-
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20 items-center flex flex-col">
         <div class="max-w-3xl flex flex-col items-center">
-          <div class="my-4 grid justify-center bg-white w-[50dvw] h-[40dvh] rounded-3xl">
+          <div class="lg:my-4 grid justify-center bg-white lg:w-[50dvw] lg:h-[40dvh] rounded-3xl">
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>
           <p class="text-xl text-primary/90 mb-8 max-w-2xl text-center">
-            Your destination for premium beauty and wellness services. Where nature meets luxury,
+            Your destination for premium beauty and wellness services. Where self-care meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
           <p class="text-xl text-primary/90 mb-8 max-w-2xl">
@@ -115,7 +114,7 @@ useSeo({
       </div>
     </section>
     <!-- Large Corner Leaves -->
-    <div class=" absolute right-0 flex flex-col gap-40 pointer-events-none overflow-hidden">
+    <div class="hidden absolute right-0 lg:flex flex-col gap-40 pointer-events-none overflow-hidden">
       <!-- Top Left Leaf -->
       <svg class="w-72 h-72 text-accent/50" viewBox="0 0 100 100">
         <path
@@ -155,7 +154,7 @@ useSeo({
       </div>
     </section>
     <!-- Large Corner Leaves -->
-    <div class=" absolute pointer-events-none overflow-hidden">
+    <div class="hidden lg:absolute pointer-events-none overflow-hidden">
       <!-- Top Left Leaf -->
       <svg class="-right-0 bottom-48 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
         <path
@@ -165,9 +164,9 @@ useSeo({
       </svg>
     </div>
     <!-- Testimonials -->
-    <section class="py-20 px-6 bg-dark-green/20">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-primary text-center mb-16">
+    <section class="py-20 px-6 z-10 bg-dark-green/20">
+      <div class="containernz-10 mx-auto">
+        <h2 class="text-4xl z-10nfont-bold text-primary text-center z- mb-16">
           Client Testimonials
           <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
         </h2>
@@ -194,7 +193,7 @@ useSeo({
     <!-- Large Corner Leaves -->
     <div class=" absolute top-[70dvh] pointer-events-none overflow-hidden">
       <!-- Top Left Leaf -->
-      <svg class="-right-0 top-48 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
+      <svg class="-right-0 top-24 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
         <path
           d="M50,5 C70,20 90,40 90,70 C90,85 80,95 50,95 C20,95 10,85 10,70 C10,40 30,20 50,5 M30,30 C40,35 50,45 50,60 M70,30 C60,35 50,45 50,60"
           fill="currentColor" class="animate-sway-slow" />
@@ -390,8 +389,8 @@ export default {
   },
   methods: {
     trimTestimonial(testimonialContent: string) {
-      if (testimonialContent.length > 300) {
-        return `${testimonialContent.slice(0, 300)}...`
+      if (testimonialContent.length > 200) {
+        return `${testimonialContent.slice(0, 200)}...`
       }
       return testimonialContent;
     }

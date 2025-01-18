@@ -19,8 +19,10 @@
         </li>
       </ul>
     </div>
+
   </nav>
-  <nav class="fixed w-full md:hidden top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
+
+  <nav class="h-[9dvh] fixed w-full md:hidden top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
     <div class="w-[100%] flex justify-between items-center px-6 py-4">
       <div>
         <img src="../assets/sweetest-lime-logo.png" class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh]"
@@ -51,6 +53,7 @@
       </div>
     </div>
   </nav>
+  <div class="h-[9dvh] lg:hidden"></div>
 </template>
 
 <script lang="ts">

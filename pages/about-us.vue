@@ -177,9 +177,9 @@ useSeo({
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="(member, index) in teamMembers" :key="index" class="group">
             <div class="relative overflow-hidden rounded-xl mb-4">
-              <img v-if="!!member.imageSrc" :src="member.imageSrc" class="w-[30dvw] h-[45dvh]" />
-              <div v-else class="w-[30dvw] h-[45dvh] bg-secondary"></div>
-              <div class="absolute inset-0 bg-accent/80 text-white p-6 flex flex-col justify-end
+              <img v-if="!!member.imageSrc" :src="member.imageSrc" class="lg:w-[30dvw] lg:h-[45dvh]" />
+              <div v-else class="lg:w-[30dvw] lg:h-[45dvh] bg-secondary"></div>
+              <div class="hidden absolute inset-0 bg-accent/80 text-white p-6 lg:flex flex-col justify-end
                 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h4 class="text-xl font-bold">{{ member.name }}</h4>
                 <p>{{ member.bio }}</p>

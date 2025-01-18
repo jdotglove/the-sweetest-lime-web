@@ -14,6 +14,22 @@ useSeo({
 
 <template>
   <Navbar />
+  <!-- Quick Navigation -->
+  <nav
+    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-secondary/95 backdrop-blur-md shadow-md">
+    <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
+      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-primary font-medium relative">
+        <li class="" v-for="section in ['Massage', 'Add-ons']" :key="section">
+          <a :href="`#${section.toLowerCase()}`"
+            class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
+            {{ section }}
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 lg:bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
@@ -26,19 +42,7 @@ useSeo({
       </div>
     </section>
 
-    <!-- Quick Navigation -->
-    <nav class="sticky top-0 z-40 bg-secondary/95 backdrop-blur-md shadow-md">
-      <div class="container mx-auto px-6">
-        <ul class="flex overflow-x-auto gap-8 py-4 text-primary font-medium">
-          <li v-for="section in ['Massage', 'Add-ons']" :key="section">
-            <a :href="`#${section.toLowerCase().replace(' ', '-')}`"
-              class="hover:text-accent transition-colors whitespace-nowrap">
-              {{ section }}
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+
 
     <!-- Service Categories -->
     <div class="bg-dark-green/20 py-16 px-6">

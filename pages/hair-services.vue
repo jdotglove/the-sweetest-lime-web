@@ -14,6 +14,22 @@ useSeo({
 
 <template>
   <Navbar />
+  <!-- Quick Navigation with Leaf Accents -->
+  <nav
+    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-secondary/95 backdrop-blur-md shadow-md">
+    <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
+      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-primary font-medium relative">
+        <li class="" v-for="section in ['Locs', 'Braids', 'Styling', 'Treatments', 'Esthetics']" :key="section">
+          <a :href="`#${section.toLowerCase()}`"
+            class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
+            {{ section }}
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 lg:bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
@@ -26,65 +42,7 @@ useSeo({
       </div>
     </section>
 
-    <!-- Quick Navigation with Leaf Accents -->
-    <nav class="sticky top-0 z-40 bg-secondary/95 backdrop-blur-md shadow-md">
-      <div class="container mx-auto px-6 relative">
-        <div class="absolute right-0 top-0 w-32 h-full opacity-5">
-          <svg viewBox="0 0 100 100" class="h-full text-accent">
-            <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-          </svg>
-        </div>
-        <ul class="flex overflow-x-auto gap-8 py-4 text-primary font-medium relative">
-          <li v-for="section in ['Locs', 'Braids', 'Styling', 'Treatments']" :key="section">
-            <a :href="`#${section.toLowerCase()}`"
-              class="hover:text-accent transition-colors whitespace-nowrap relative group">
-              {{ section }}
-              <span
-                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <!-- Featured Services with Organic Design -->
-    <section class="py-16 px-6">
-      <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-primary mb-12 text-center relative">
-          Popular Services
-          <div class="relative">
-            <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
-            <svg class="absolute -right-4 -top-2 w-8 h-8 text-accent transform rotate-45" viewBox="0 0 100 100">
-              <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-            </svg>
-          </div>
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div v-for="service in featuredServices" :key="service.id"
-            class="bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 relative group">
-            <div
-              class="absolute top-0 right-0 w-20 h-20 opacity-10 transform rotate-45 group-hover:rotate-90 transition-transform">
-              <svg viewBox="0 0 100 100" class="text-accent">
-                <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
-              </svg>
-            </div>
-
-            <div class="p-6 relative h-full flex flex-col justify-between">
-              <h3 class="text-xl font-bold text-primary mb-2">{{ service.name }}</h3>
-              <p class="text-primary/70 mb-4">{{ service.description }}</p>
-              <div class="flex justify-between items-center justify-self-end">
-                <span class="text-accent font-bold">{{ service.price }}</span>
-                <a :href="service.link" target="_blank"
-                  class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                  Book Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Service Categories -->
     <div class="bg-dark-green/20 py-16 px-6">
@@ -99,12 +57,12 @@ useSeo({
           <div class="grid lg:grid-cols-2 gap-8">
             <article v-for="service in locsServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="flex justify-between items-start mb-4">
+              <div class="justify-between grid grid-cols-[1fr_10dvw] items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
                   <p class="text-primary/70">{{ service.description }}</p>
                 </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
+                <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
               <section class="flex items-center justify-between">
                 <div class="flex gap-2 h-fit  flex-wrap">
@@ -134,12 +92,12 @@ useSeo({
           <div class="grid lg:grid-cols-2 gap-8">
             <article v-for="service in braidsServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="flex justify-between items-start mb-4">
+              <div class="justify-between grid grid-cols-[1fr_10dvw] items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
                   <p class="text-primary/70">{{ service.description }}</p>
                 </div>
-                <span class="text-accent font-bold whitespace-nowrap">from {{ service.price }}</span>
+                <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
               <section class="flex items-center justify-between">
                 <div class="flex gap-2 h-fit  flex-wrap">
@@ -168,13 +126,13 @@ useSeo({
 
           <div class="grid lg:grid-cols-2 gap-8">
             <article v-for="service in stylingServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="flex justify-between items-start mb-4">
+              class="bg-white rounded-lg lg:w-full w-[87dvw] p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
+              <div class="grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
                 <div>
-                  <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
+                  <h3 class="text-xl font-bold flex-wrap text-primary">{{ service.name }}</h3>
                   <p class="text-primary/70">{{ service.description }}</p>
                 </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
+                <span class="text-accent text-right font-bold">{{ service.price }}</span>
               </div>
               <section class="flex items-center justify-between">
                 <div class="flex gap-2 h-fit  flex-wrap">
@@ -204,12 +162,12 @@ useSeo({
           <div class="grid lg:grid-cols-2 gap-8">
             <article v-for="service in treatmentServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="flex justify-between items-start mb-4">
+              <div class="grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
                   <p class="text-primary/70">{{ service.description }}</p>
                 </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
+                <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
               <section class="flex items-center justify-between">
                 <div class="flex gap-2 h-fit  flex-wrap">
@@ -239,12 +197,12 @@ useSeo({
           <div class="grid lg:grid-cols-2 gap-8">
             <article v-for="service in estheticsServices" :key="service.id" :href="service.link" target="_blank"
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="flex justify-between items-start mb-4">
+              <div class="lg:flex grid grid-cols-[1fr_7dvw] justify-between items-start mb-4">
                 <div>
                   <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
                   <p class="text-primary/70">{{ service.description }}</p>
                 </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
+                <span class="text-accent font-bold">{{ service.price }}</span>
               </div>
               <section class="flex items-center justify-between">
                 <div class="flex gap-2 h-fit  flex-wrap">
@@ -317,9 +275,8 @@ useSeo({
 </template>
 
 <script lang="ts">
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
-
+import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   components: {
@@ -696,7 +653,7 @@ export default {
           id: 16,
           name: 'Special Events',
           description: 'Wedding, prom, anniversary, photo shoot or class reunion... if you want to look extra special we provide convenient on-site hair and/or make-up services or you can reserve the salon for parties of three or more.',
-          price: 'Please call for estimates or schedule a free consultation.',
+          // price: 'Call for pricing.',
           details: ['15mins+'],
           link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/G42VA5MQTGKXY7EXP47ZB5RA'
         }
@@ -861,7 +818,7 @@ export default {
           id: 6,
           name: 'Special Events',
           description: 'Wedding, prom, anniversary, photo shoot or class reunion... if you want to look extra special we provide convenient on-site hair and/or make-up services or you can reserve the salon for parties of three or more.',
-          price: 'Please call for estimates or schedule a free consultation.',
+          // price: 'Call for pricing.',
           details: ['15mins+'],
           link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/G42VA5MQTGKXY7EXP47ZB5RA'
         }
