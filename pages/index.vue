@@ -27,18 +27,19 @@ useSeo({
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>
-          <p class="text-xl text-primary/90 mb-8 max-w-2xl text-center">
+          <p class="text-xl text-[#522413]/90 mb-8 max-w-2xl text-center">
             Your destination for premium beauty and wellness services. Where self-care meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
-          <p class="text-xl text-primary/90 mb-8 max-w-2xl">
+          <p class="text-xl text-[#522413]/90 mb-8 max-w-2xl">
             Certified Sustainable Salon with Green Circle Salons
           </p>
           <div class="flex gap-4 flex-wrap justify-center">
-            <button
+            <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+              target="_blank"
               class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
               Book Appointment
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -56,7 +57,7 @@ useSeo({
     <!-- Services Section with Leaf Accents -->
     <section class="py-20 px-6 relative z-10">
       <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-primary text-center mb-16">
+        <h2 class="text-4xl font-bold text-[#522413] text-center mb-16">
           Our Services
           <div class="relative">
             <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
@@ -70,11 +71,11 @@ useSeo({
 
             <div class="p-8 relative h-full flex flex-col justify-between">
               <section>
-                <h3 class="text-2xl font-bold text-primary mb-4">{{ service.name }}</h3>
-                <p class="text-primary/70 mb-3">{{ service.description }}</p>
+                <h3 class="text-2xl font-bold text-[#522413] mb-4">{{ service.name }}</h3>
+                <p class="text-[#522413]/70 mb-3">{{ service.description }}</p>
                 <ul class="space-y-2 mb-4">
                   <li v-for="(feature, idx) in service.features" :key="idx"
-                    class="flex items-center gap-2 text-primary/80">
+                    class="flex items-center gap-2 text-[#522413]/80">
                     <svg class="w-4 h-4 text-accent" viewBox="0 0 100 100">
                       <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
                     </svg>
@@ -94,7 +95,7 @@ useSeo({
     </section>
 
     <!-- Special Offers Section -->
-    <section class="py-20 px-6 bg-dark-green/20 text-primary">
+    <section class="py-20 px-6 bg-dark-green/20 text-[#522413]">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16">
           Special Offers
@@ -102,12 +103,22 @@ useSeo({
         </h2>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="offer in specialOffers" :key="offer.id" class="bg-[#F8F0D3] backdrop-blur-sm rounded-xl p-8">
-            <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
-            <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
-            <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
-            <button class="w-full bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+          <div v-for="offer in specialOffers" :key="offer.id"
+            class="bg-background backdrop-blur-sm rounded-xl grid p-8">
+            <section>
+              <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
+              <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
+              <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
+            </section>
+            <a v-if="offer.name !== 'Sign up for Notifications'"
+              href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+              target="_blank"
+              class="w-full h-[50px] self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
               Book Now
+            </a>
+            <button v-else
+              class="w-full h-[50px] self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+              Sign Up
             </button>
           </div>
         </div>
@@ -129,7 +140,7 @@ useSeo({
         <div class="flex justify-center gap-16 items-center">
           <section class="py-16">
             <div class="container mx-auto px-4">
-              <h2 class="text-4xl font-bold text-primary text-center mb-12">
+              <h2 class="text-4xl font-bold text-[#522413] text-center mb-12">
                 The Sweetest Lime Difference
               </h2>
 
@@ -142,8 +153,8 @@ useSeo({
                       <component :is="benefit.icon" class="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 class="text-xl font-bold text-primary mb-2">{{ benefit.title }}</h3>
-                      <p class="text-primary/70 leading-relaxed">{{ benefit.description }}</p>
+                      <h3 class="text-xl font-bold text-[#522413] mb-2">{{ benefit.title }}</h3>
+                      <p class="text-[#522413]/70 leading-relaxed">{{ benefit.description }}</p>
                     </div>
                   </div>
                 </div>
@@ -166,7 +177,7 @@ useSeo({
     <!-- Testimonials -->
     <section class="py-20 px-6 z-10 bg-dark-green/20">
       <div class="containernz-10 mx-auto">
-        <h2 class="text-4xl z-10nfont-bold text-primary text-center z- mb-16">
+        <h2 class="text-4xl z-10nfont-bold text-[#522413] text-center z- mb-16">
           Client Testimonials
           <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
         </h2>
@@ -177,11 +188,11 @@ useSeo({
             <section>
               <div class="flex gap-4 items-center mb-6">
                 <div>
-                  <h4 class="font-bold text-primary">{{ testimonial.name }}</h4>
-                  <p class="text-primary/60">{{ testimonial.service }}</p>
+                  <h4 class="font-bold text-[#522413]">{{ testimonial.name }}</h4>
+                  <p class="text-[#522413]/60">{{ testimonial.service }}</p>
                 </div>
               </div>
-              <p class="text-primary/80 mb-4 h-[15dvh]">{{ trimTestimonial(testimonial.content) }}</p>
+              <p class="text-[#522413]/80 mb-4 h-[15dvh]">{{ trimTestimonial(testimonial.content) }}</p>
             </section>
             <div class="flex gap-1 text-accent">
               <span class="self-end" v-for="star in testimonial.stars" :key="star">★</span>
@@ -202,7 +213,7 @@ useSeo({
     </div>
     <!-- Book Now CTA -->
     <section class="py-20 px-6">
-      <div class="container mx-auto max-w-4xl text-center text-primary">
+      <div class="container mx-auto max-w-4xl text-center text-[#522413]">
         <h2 class="text-4xl font-bold mb-6">Ready for Your Transformation?</h2>
         <p class="text-xl mb-8">
           Experience the luxury and expertise at The Sweetest Lime. Book your appointment today.
@@ -215,7 +226,7 @@ useSeo({
             Book Online
           </a>
           <a href="mailto:makayah1@gmail.com"
-            class="border-2 border-primary text-primary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
+            class="border-2 border-primary text-[#522413] px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
             Contact Us
           </a>
         </div>
@@ -275,20 +286,20 @@ export default {
         {
           id: 1,
           discount: '20% OFF',
-          name: 'First Time Clients',
-          description: 'Special discount for your first visit to any of our services.'
+          name: 'First Visit to New Location',
+          description: 'Special discount for your first visit to our new location for any of our services.'
         },
         {
           id: 2,
-          discount: 'SAVE $50',
-          name: 'Spa Package',
-          description: 'Complete relaxation package including massage and body treatment.'
+          discount: 'SAVE $__',
+          name: 'Bundle Package',
+          description: 'Bundle any 3 services and receive $__ off your vist.'
         },
         {
           id: 3,
-          discount: 'FREE',
-          name: 'Consultation',
-          description: 'Professional consultation for hair coloring and styling services.'
+          discount: '10% OFF',
+          name: 'Sign up for Notifications',
+          description: 'Signup for text or email notifications and receive 10% off your next visit.'
         }
       ],
       reasons: [

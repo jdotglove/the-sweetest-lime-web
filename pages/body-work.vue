@@ -16,9 +16,9 @@ useSeo({
   <Navbar />
   <!-- Quick Navigation -->
   <nav
-    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-secondary/95 backdrop-blur-md shadow-md">
+    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[10dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md">
     <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
-      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-primary font-medium relative">
+      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-[#522413] font-medium relative">
         <li class="" v-for="section in ['Massage', 'Add-ons']" :key="section">
           <a :href="`#${section.toLowerCase()}`"
             class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
@@ -35,7 +35,7 @@ useSeo({
     <section class="relative h-[70vh] overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-primary rounded-xl max-w-2xl bg-white p-10">
+        <div class="text-[#522413] rounded-xl max-w-2xl bg-white p-10">
           <h2 class="text-5xl font-bold mb-4">Body Work & Spa</h2>
           <p class="text-xl text-accent">Rejuvenate your body and calm your mind with our therapeutic treatments</p>
         </div>
@@ -50,7 +50,7 @@ useSeo({
         <!-- Massage Services -->
         <section id="massage" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-primary">Massage Therapy</h2>
+            <h2 class="text-3xl font-bold text-[#522413]">Massage Therapy</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
@@ -59,12 +59,12 @@ useSeo({
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
-                  <h3 class="text-xl font-bold text-primary">{{ service.name }}</h3>
-                  <p class="text-primary/70">{{ service.description }}</p>
+                  <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
+                  <p class="text-[#522413]/70">{{ service.description }}</p>
                 </div>
                 <div class="text-right">
                   <div class="text-accent font-bold">{{ service.price }}</div>
-                  <div class="text-sm text-primary/60">{{ service.duration }}</div>
+                  <div class="text-sm text-[#522413]/60">{{ service.duration }}</div>
                 </div>
               </div>
               <section class="flex items-center justify-between">
@@ -88,14 +88,14 @@ useSeo({
         <!-- Add-ons -->
         <section id="add-ons">
           <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-primary">Service Add-ons</h2>
+            <h2 class="text-3xl font-bold text-[#522413]">Service Add-ons</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
           <div class="grid md:grid-cols-3 gap-6">
             <div v-for="addon in addOns" :key="addon.id" class="bg-white p-6 rounded-lg shadow-md text-center">
-              <h3 class="text-xl font-bold text-primary mb-2">{{ addon.name }}</h3>
-              <p class="text-primary/70 mb-4">{{ addon.description }}</p>
+              <h3 class="text-xl font-bold text-[#522413] mb-2">{{ addon.name }}</h3>
+              <p class="text-[#522413]/70 mb-4">{{ addon.description }}</p>
               <section class="flex justify-between items-center">
                 <span class="text-accent font-bold">+{{ addon.price }}</span>
                 <div class="flex gap-2 flex-wrap">
@@ -113,13 +113,13 @@ useSeo({
     </div>
 
     <!-- Benefits Section -->
-    <section class="py-16 px-6 text-primary">
+    <section class="py-16 px-6 text-[#522413]">
       <div class="container mx-auto">
         <h2 class="text-3xl font-bold mb-12 text-center">Benefits of Regular Body Work</h2>
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="(benefit, index) in benefits" :key="index" class="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
             <h3 class="text-xl font-bold mb-3">{{ benefit.title }}</h3>
-            <p class="text-primary/80">{{ benefit.description }}</p>
+            <p class="text-[#522413]/80">{{ benefit.description }}</p>
           </div>
         </div>
       </div>
@@ -128,15 +128,15 @@ useSeo({
     <!-- FAQ Section -->
     <section class="py-16 px-6 bg-dark-green/20">
       <div class="container mx-auto max-w-3xl">
-        <h2 class="text-3xl font-bold text-primary text-center mb-12">Frequently Asked Questions</h2>
+        <h2 class="text-3xl font-bold text-[#522413] text-center mb-12">Frequently Asked Questions</h2>
         <div class="space-y-4">
           <div v-for="(faq, index) in faqs" :key="index" class="border border-accent/20 rounded-lg overflow-hidden">
             <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-accent/5"
               @click="faq.isOpen = !faq.isOpen">
-              <span class="font-medium text-primary">{{ faq.question }}</span>
+              <span class="font-medium text-[#522413]">{{ faq.question }}</span>
               <span class="text-accent">{{ faq.isOpen ? '−' : '+' }}</span>
             </button>
-            <div v-if="faq.isOpen" class="px-6 py-4 bg-secondary/50 text-primary/80">
+            <div v-if="faq.isOpen" class="px-6 py-4 bg-secondary/50 text-[#522413]/80">
               {{ faq.answer }}
             </div>
           </div>
@@ -147,8 +147,8 @@ useSeo({
     <!-- Booking CTA -->
     <section class="py-16 px-6">
       <div class="container mx-auto max-w-4xl text-center">
-        <h2 class="text-3xl font-bold text-primary mb-6">Ready to Relax?</h2>
-        <p class="text-lg text-primary/80 mb-8">
+        <h2 class="text-3xl font-bold text-[#522413] mb-6">Ready to Relax?</h2>
+        <p class="text-lg text-[#522413]/80 mb-8">
           Book your spa experience today and let our expert therapists help you unwind.
         </p>
         <div class="flex gap-4 justify-center">

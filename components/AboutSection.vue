@@ -15,7 +15,7 @@
           <div class="grid grid-cols-2 gap-6">
             <div v-for="(stat, index) in stats" :key="index" class="p-4 bg-white/50 rounded-lg backdrop-blur-sm">
               <div class="text-3xl font-bold text-accent mb-1">{{ stat.value }}</div>
-              <div class="text-sm text-primary/80">{{ stat.label }}</div>
+              <div class="text-sm text-[#522413]/80">{{ stat.label }}</div>
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
               <span class="text-accent">{{ feature.icon }}</span>
               {{ feature.title }}
             </h3>
-            <p class="text-primary/80">{{ feature.description }}</p>
+            <p class="text-[#522413]/80">{{ feature.description }}</p>
           </div>
         </div>
       </div>

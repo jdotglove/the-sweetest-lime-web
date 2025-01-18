@@ -16,9 +16,9 @@ useSeo({
   <Navbar />
   <!-- Quick Navigation -->
   <nav
-    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-secondary/95 backdrop-blur-md shadow-md">
+    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md">
     <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
-      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-primary font-medium relative">
+      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-[#522413] font-medium relative">
         <li class="" v-for="section in ['Manicures', 'Pedicures', 'Extensions', 'Art']" :key="section">
           <a :href="`#${section.toLowerCase()}`"
             class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
@@ -35,7 +35,7 @@ useSeo({
     <section class="relative h-[70vh] overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
       <div class="relative h-full container mx-auto px-6 flex items-center">
-        <div class="text-primary max-w-2xl bg-white p-10 rounded-xl">
+        <div class="text-[#522413] max-w-2xl bg-white p-10 rounded-xl">
           <h2 class="text-5xl font-bold mb-4">Nail Services</h2>
           <p class="text-xl text-accent">Luxury nail care and artistic designs for every occasion</p>
         </div>
@@ -50,7 +50,7 @@ useSeo({
         <!-- Manicures -->
         <section id="manicures" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <h3 class="text-3xl font-bold text-primary">Services</h3>
+            <h3 class="text-3xl font-bold text-[#522413]">Services</h3>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
@@ -59,8 +59,8 @@ useSeo({
               class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-4">
                 <div>
-                  <h4 class="text-xl font-bold text-primary">{{ service.name }}</h4>
-                  <p class="text-primary/70">{{ service.description }}</p>
+                  <h4 class="text-xl font-bold text-[#522413]">{{ service.name }}</h4>
+                  <p class="text-[#522413]/70">{{ service.description }}</p>
                 </div>
                 <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
               </div>
@@ -100,13 +100,13 @@ useSeo({
     </section> -->
 
     <!-- Care Tips -->
-    <section class="bg-dark-green/20 text-primary py-16 px-6">
+    <section class="bg-dark-green/20 text-[#522413] py-16 px-6">
       <div class="container mx-auto">
         <h3 class="text-3xl font-bold mb-12 text-center">Nail Care Tips</h3>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div v-for="(tip, index) in careTips" :key="index" class="bg-white rounded-lg p-6 backdrop-blur-sm">
             <h4 class="text-xl font-bold mb-3">{{ tip.title }}</h4>
-            <p class="text-primary/80">{{ tip.content }}</p>
+            <p class="text-[#522413]/80">{{ tip.content }}</p>
           </div>
         </div>
       </div>
@@ -115,8 +115,8 @@ useSeo({
     <!-- Booking CTA -->
     <section class="py-16 px-6">
       <div class="container mx-auto max-w-4xl text-center">
-        <h3 class="text-3xl font-bold text-primary mb-6">Ready for Beautiful Nails?</h3>
-        <p class="text-lg text-primary/80 mb-8">
+        <h3 class="text-3xl font-bold text-[#522413] mb-6">Ready for Beautiful Nails?</h3>
+        <p class="text-lg text-[#522413]/80 mb-8">
           Book your appointment today and let our expert nail technicians create your perfect look.
         </p>
         <div class="flex gap-4 justify-center">

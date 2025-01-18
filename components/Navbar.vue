@@ -1,13 +1,13 @@
 <template>
-  <nav class="sticky hidden md:flex top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
+  <nav class="sticky hidden md:flex top-0 z-50 backdrop-blur-md bg-white/85 text-secondary">
     <div class="w-[100%] self-stretch flex justify-between items-center px-6 py-4">
       <div class="flex text-2xl items-center">
         <img src="../assets/sweetest-lime-logo.png"
           class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh] xl:w-[3.5dvw]" alt="sweetest lime logo" />
-        <div>The Sweetest <span class="text-light-green">Lime</span></div>
+        <div>The Sweetest <span class="">Lime</span></div>
       </div>
 
-      <ul class="nav-links hidden md:flex gap-8 font-medium"
+      <ul class="nav-links hidden md:flex gap-8 font-medium text-[#522413]"
         :class="{ 'block absolute bg-primary/95 backdrop-blur-md top-16 left-0 w-full px-6 py-4 shadow-lg': isMenuOpen }">
         <li v-for="(link, index) in links" :key="index">
           <a :href="link.href"
@@ -22,7 +22,7 @@
 
   </nav>
 
-  <nav class="h-[9dvh] fixed w-full md:hidden top-0 z-50 backdrop-blur-md bg-primary/95 text-secondary">
+  <nav class="h-[9dvh] fixed w-full md:hidden top-0 z-50 backdrop-blur-md bg-white/95 text-secondary">
     <div class="w-[100%] flex justify-between items-center px-6 py-4">
       <div>
         <img src="../assets/sweetest-lime-logo.png" class="w-[10dvw] h-[5dvh] sm:w-[6dvw] lg:w-[4dvw] lg:h-[5dvh]"
@@ -43,10 +43,10 @@
       </div>
     </div>
 
-    <div v-if="isMenuOpen" class="z-10 md:hidden h-[100dvh] w-[100dvw] fixed inset-x-0 bg-secondary backdrop-blur-md">
+    <div v-if="isMenuOpen" class="z-10 md:hidden h-[100dvh] w-[100dvw] fixed inset-x-0 bg-white backdrop-blur-md">
       <div class="px-2 pt-2 pb-3 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
         <a v-for="item in links" :key="item.name" :href="item.href"
-          class="block px-4 py-3 text-primary hover:bg-accent/10 hover:text-accent rounded-lg transition-colors"
+          class="block px-4 py-3 text-[#522413] hover:bg-accent/10 hover:text-accent rounded-lg transition-colors"
           @click="closeMenu">
           {{ item.name }}
         </a>

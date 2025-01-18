@@ -13,8 +13,8 @@ export default {
     extend: {
       colors: {
         background: '#FFFFFF',
-        primary: '#522413',
-        secondary: '#FFFFFF',
+        primary: '#A4CE5E',
+        secondary: '#749A46',
         accent: '#0C8500',
         'dark-green': '#749A46',
         'light-green': '#A4CE5E',
