@@ -233,7 +233,7 @@ useSeo({
         <!-- Braids Services -->
         <section id="braids" class="mb-16">
           <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-[#522413]">Braids Services</h2>
+            <h2 class="text-3xl font-bold text-[#522413]">Braiding Services</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
@@ -372,7 +372,7 @@ useSeo({
         <!-- Esthetics -->
         <section id="esthetics">
           <div class="flex items-center gap-4 mb-8">
-            <h2 class="text-3xl font-bold text-[#522413]">Hair Esthetics</h2>
+            <h2 class="text-3xl font-bold text-[#522413]">Esthetics</h2>
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
@@ -1020,18 +1020,18 @@ export default {
       ],
       faqs: [
         {
-          question: 'How often should I get a haircut?',
-          answer: 'We recommend getting a trim every 6-8 weeks to maintain healthy hair and style. This may vary based on your hair type and style preferences.',
+          question: 'How often should I get my locs retwisted/maintained?',
+          answer: 'We recommend maintenance every 4-6 weeks, though the timeline may vary based on your style and scalp health.',
           isOpen: false
         },
         {
-          question: 'Do you provide consultations before coloring services?',
-          answer: 'Yes, we provide complimentary consultations for all color services. This helps us understand your goals and assess your hair\'s condition.',
+          question: 'Do you require consultations before hair services?',
+          answer: 'Consultations are mandatory for all new clients and before any chemical services, including color or relaxers. A nominal fee applies.',
           isOpen: false
         },
         {
-          question: 'What should I do to prepare for my appointment?',
-          answer: 'Come with clean, dry hair unless specified otherwise. Bring reference photos if you have a specific style in mind.',
+          question: 'What should I do to prepare for my hair appointment?',
+          answer: 'Ensure your hair is loose and free of any previous style. We will handle shampooing, conditioning, and treatments before styling. If time allows, we can remove your previous style for a $50 Hair Prep fee. If time does not permit, your appointment will need to be rescheduled, and a $35 late cancellation fee will apply.',
           isOpen: false
         },
         // Add more FAQs
