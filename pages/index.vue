@@ -31,9 +31,6 @@ useSeo({
             Your destination for premium beauty and wellness services. Where self-care meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
-          <p class="text-xl text-[#522413]/90 mb-8 max-w-2xl">
-            Certified Sustainable Salon with Green Circle Salons
-          </p>
           <div class="flex gap-4 flex-wrap justify-center">
             <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
               target="_blank"
