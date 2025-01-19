@@ -275,6 +275,8 @@ export default {
             professionalism, and uplifting others. With decades of experience nurturing natural hair,
             creating stunning styles, and enhancing her clients' confidence, Makayah is dedicated
             to healthy hair and providing exemplary services to each of her guests.
+            Makayah is also an Educator for Ashtae Products, an international professional hair
+            care line that specializes in products for global texture clients.
             Makayah relocated from Boston, MA to Winston-Salem, NC over 20 years ago, but will
             always consider Trinidad and Tobago “home”. She is the proud mom of two brilliant
             young kings, Akheal & Samir, and Nona (grandma) to the magnificent young prince,
