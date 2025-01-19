@@ -1,8 +1,37 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+import locClientImage from '~/assets/Loc Trio.jpg';
 const offersContainer = ref<HTMLElement | null>(null)
 const currentOfferIndex = ref(0)
+const clientsContainer = ref<HTMLElement | null>(null)
+const currentClientIndex = ref<number>(0)
+
+const happyClients: any[] = [
+  {
+    src: locClientImage,
+    alt: 'Happy client showing off their new hairstyle'
+  },
+  // Add more images as needed
+]
+
+const scrollToClientIndex = (index: number): void => {
+  if (!clientsContainer.value) return
+
+  const slideWidth: number = clientsContainer.value.offsetWidth
+  clientsContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleClientScroll = (): void => {
+  if (!clientsContainer.value) return
+
+  const slideWidth: number = clientsContainer.value.offsetWidth
+  const scrollPosition: number = clientsContainer.value.scrollLeft
+  currentClientIndex.value = Math.round(scrollPosition / slideWidth)
+}
 
 const scrollToOfferIndex = (index: number) => {
   if (!offersContainer.value) return
@@ -123,6 +152,9 @@ onMounted(() => {
   if (offersContainer.value) {
     offersContainer.value.addEventListener('scroll', handleOfferScroll)
   }
+  if (clientsContainer.value) {
+    clientsContainer.value.addEventListener('scroll', handleClientScroll)
+  }
 })
 
 onUnmounted(() => {
@@ -131,6 +163,9 @@ onUnmounted(() => {
   }
   if (offersContainer.value) {
     offersContainer.value.removeEventListener('scroll', handleOfferScroll)
+  }
+  if (clientsContainer.value) {
+    clientsContainer.value.removeEventListener('scroll', handleClientScroll)
   }
 })
 const route = useRoute()
@@ -493,6 +528,31 @@ useSeo({
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Happy Clients Section -->
+    <section class="py-20 px-6 bg-dark-green/20">
+      <div class="container mx-auto">
+        <div class="relative">
+          <div ref="clientsContainer"
+            class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+            {/* Replace the image sources with your actual client images */}
+            <div v-for="(image, index) in happyClients" :key="index" class="min-w-[85vw] md:min-w-0 snap-center">
+              <div
+                class="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Dots (Mobile Only) -->
+          <div class="flex justify-center gap-2 mt-4 md:hidden">
+            <button v-for="(_, index) in happyClients" :key="`dot-${index}`" @click="scrollToClientIndex(index)"
+              class="w-2 h-2 rounded-full transition-all duration-300"
+              :class="currentClientIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+              aria-label="Go to image"></button>
           </div>
         </div>
       </div>
