@@ -15,7 +15,7 @@ useSeo({
 <template>
 
   <Navbar />
-  <div class=" min-h-screen bg-background overflow-hidden">
+  <div class="min-h-screen bg-background overflow-hidden">
 
     <!-- Hero Section -->
     <section class="relative h-[70dvh] flex items-center">
