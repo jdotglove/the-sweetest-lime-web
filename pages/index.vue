@@ -67,7 +67,7 @@ useSeo({
         <!-- Service Cards -->
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="service in mainServices" :key="service.id"
-            class="group relative bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+            class="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
 
             <div class="p-8 relative h-full flex flex-col justify-between">
               <section>
