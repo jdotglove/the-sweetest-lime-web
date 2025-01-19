@@ -22,15 +22,16 @@ useSeo({
       <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20 items-center flex flex-col">
-        <div class="max-w-3xl flex flex-col items-center">
+        <div class="max-w-3xl flex flex-col items-center gap-3">
           <div class="lg:my-4 grid justify-center bg-white lg:w-[50dvw] lg:h-[40dvh] rounded-3xl">
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>
-          <p class="text-xl text-[#522413]/90 mb-8 max-w-2xl text-center">
+          <p class="text-xl text-[#522413]/90 max-w-2xl text-center">
             Your destination for premium beauty and wellness services. Where self-care meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
+
           <div class="flex gap-4 flex-wrap justify-center">
             <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
               target="_blank"
