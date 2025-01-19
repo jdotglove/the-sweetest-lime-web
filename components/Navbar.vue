@@ -53,7 +53,7 @@
       </div>
     </div>
   </nav>
-  <div class="h-[75px] lg:hidden bg-white"></div>
+  <div class="h-[100px] lg:hidden bg-white"></div>
 </template>
 
 <script lang="ts">
