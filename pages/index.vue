@@ -537,12 +537,10 @@ useSeo({
       <div class="container mx-auto">
         <div class="relative">
           <div ref="clientsContainer"
-            class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
-            {/* Replace the image sources with your actual client images */}
+            class="flex md:grid md:grid-cols-3 lg:flex lg:justify-center gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
             <div v-for="(image, index) in happyClients" :key="index" class="min-w-[85vw] md:min-w-0 snap-center">
-              <div
-                class="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover" />
+              <div class="aspect-auto rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                <img :src="image.src" :alt="image.alt" class="w-full h-full lg:w-[30dvw] object-cover" />
               </div>
             </div>
           </div>
