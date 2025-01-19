@@ -319,7 +319,7 @@ useSeo({
             <!-- Form Content -->
             <div class="text-center mb-6">
               <h3 class="text-2xl font-bold text-[#522413] mb-2">Stay Updated</h3>
-              <p class="text-[#522413]/70">Sign up to receive special offers and updates</p>
+              <p class="text-[#522413]/70">Sign up to receive special offers and updates.</p>
             </div>
 
             <form @submit.prevent="handleSubmit" class="space-y-4">
@@ -339,6 +339,8 @@ useSeo({
 
               <div>
                 <label class="block text-sm font-medium text-[#522413] mb-1">Phone (optional)</label>
+                <p class="text-xs">Your mobile carrier may charge SMS fees. Text &quot;STOP&quot; at any time to opt out
+                  of alerts</p>
                 <input v-model="formData.phone" type="tel"
                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-accent focus:ring-1 focus:ring-accent">
               </div>
@@ -584,7 +586,7 @@ useSeo({
 <script lang="ts">
 import Navbar from '../components/Navbar.vue';
 import Footer from '../components/Footer.vue';
-import { GraduationCap, Gem, Clock, Wand2, HeartHandshake, Sparkles } from 'lucide-vue-next';
+import { GraduationCap, Gem, Users, Wand2, HeartHandshake, Sparkles } from 'lucide-vue-next';
 
 export default {
   components: {
@@ -635,9 +637,9 @@ export default {
         },
         {
           id: 2,
-          discount: 'SAVE $__',
+          discount: 'SAVE 20%',
           name: 'Bundle Package',
-          description: 'Bundle any 3 services and receive $__ off your vist.'
+          description: 'Bundle any 3 services and receive 20% off your vist.'
         },
         {
           id: 3,
@@ -717,9 +719,9 @@ export default {
         },
         {
           id: 3,
-          icon: Clock,
-          title: 'Convenient Hours',
-          description: 'Early morning and evening appointments available to fit your busy schedule.'
+          icon: Users,  // Changed to Users icon
+          title: 'Inclusivity & Community',
+          description: 'Creating a welcoming space where all guests feel valued, respected, and part of our beauty community.'
         },
         {
           id: 4,
