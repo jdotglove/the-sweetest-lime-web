@@ -1,6 +1,65 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
+import { ref, onMounted, onUnmounted } from 'vue'
 
+const addonsContainer = ref<HTMLElement | null>(null)
+const currentAddonIndex = ref<number>(0)
+const massageContainer = ref<HTMLElement | null>(null)
+const currentMassageIndex = ref<number>(0)
+
+const scrollToMassageIndex = (index: number): void => {
+  if (!massageContainer.value) return
+
+  const slideWidth: number = massageContainer.value.offsetWidth
+  massageContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleMassageScroll = (): void => {
+  if (!massageContainer.value) return
+
+  const slideWidth: number = massageContainer.value.offsetWidth
+  const scrollPosition: number = massageContainer.value.scrollLeft
+  currentMassageIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+const scrollToAddonIndex = (index: number): void => {
+  if (!addonsContainer.value) return
+
+  const slideWidth: number = addonsContainer.value.offsetWidth
+  addonsContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleAddonScroll = (): void => {
+  if (!addonsContainer.value) return
+
+  const slideWidth: number = addonsContainer.value.offsetWidth
+  const scrollPosition: number = addonsContainer.value.scrollLeft
+  currentAddonIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+onMounted((): void => {
+  if (addonsContainer.value) {
+    addonsContainer.value.addEventListener('scroll', handleAddonScroll)
+  }
+  if (massageContainer.value) {
+    massageContainer.value.addEventListener('scroll', handleMassageScroll)
+  }
+})
+
+onUnmounted((): void => {
+  if (addonsContainer.value) {
+    addonsContainer.value.removeEventListener('scroll', handleAddonScroll)
+  }
+  if (massageContainer.value) {
+    massageContainer.value.removeEventListener('scroll', handleMassageScroll)
+  }
+})
 const route = useRoute()
 
 // Basic usage for a service page
@@ -54,33 +113,44 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div v-for="service in massageServices" :key="service.id"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="massageContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <div v-for="service in massageServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-accent font-bold">{{ service.price }}</div>
+                    <div class="text-sm text-[#522413]/60">{{ service.duration }}</div>
+                  </div>
                 </div>
-                <div class="text-right">
-                  <div class="text-accent font-bold">{{ service.price }}</div>
-                  <div class="text-sm text-[#522413]/60">{{ service.duration }}</div>
-                </div>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
               </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in massageServices" :key="`dot-${service.id}`"
+                @click="scrollToMassageIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentMassageIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
             </div>
           </div>
         </section>
@@ -92,20 +162,31 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-6">
-            <div v-for="addon in addOns" :key="addon.id" class="bg-white p-6 rounded-lg shadow-md text-center">
-              <h3 class="text-xl font-bold text-[#522413] mb-2">{{ addon.name }}</h3>
-              <p class="text-[#522413]/70 mb-4">{{ addon.description }}</p>
-              <section class="flex justify-between items-center">
-                <span class="text-accent font-bold">+{{ addon.price }}</span>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="addon.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
+          <div class="relative">
+            <div ref="addonsContainer"
+              class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <div v-for="addon in addOns" :key="addon.id"
+                class="bg-white p-6 rounded-lg shadow-md text-center min-w-[85vw] md:min-w-0 snap-center">
+                <h3 class="text-xl font-bold text-[#522413] mb-2">{{ addon.name }}</h3>
+                <p class="text-[#522413]/70 mb-4">{{ addon.description }}</p>
+                <section class="flex justify-between items-center">
+                  <span class="text-accent font-bold">+{{ addon.price }}</span>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="addon.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </div>
+            </div>
 
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 md:hidden">
+              <button v-for="(addon, index) in addOns" :key="`dot-${addon.id}`" @click="scrollToAddonIndex(index)"
+                class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentAddonIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to add-on"></button>
             </div>
           </div>
         </section>
@@ -309,5 +390,14 @@ export default {
     }
   }
 }
-
 </script>
+<style lang="css" scoped>
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+</style>

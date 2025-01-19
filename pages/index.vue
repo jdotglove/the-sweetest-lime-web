@@ -1,6 +1,26 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+const offersContainer = ref<HTMLElement | null>(null)
+const currentOfferIndex = ref(0)
+
+const scrollToOfferIndex = (index: number) => {
+  if (!offersContainer.value) return
+
+  const slideWidth = offersContainer.value.offsetWidth
+  offersContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleOfferScroll = () => {
+  if (!offersContainer.value) return
+
+  const slideWidth = offersContainer.value.offsetWidth
+  const scrollPosition = offersContainer.value.scrollLeft
+  currentOfferIndex.value = Math.round(scrollPosition / slideWidth)
+}
 
 const showModal = ref(false)
 const formData = ref({
@@ -100,11 +120,17 @@ onMounted(() => {
   if (scrollContainer.value) {
     scrollContainer.value.addEventListener('scroll', handleScroll)
   }
+  if (offersContainer.value) {
+    offersContainer.value.addEventListener('scroll', handleOfferScroll)
+  }
 })
 
 onUnmounted(() => {
   if (scrollContainer.value) {
     scrollContainer.value.removeEventListener('scroll', handleScroll)
+  }
+  if (offersContainer.value) {
+    offersContainer.value.removeEventListener('scroll', handleOfferScroll)
   }
 })
 const route = useRoute()
@@ -206,24 +232,34 @@ useSeo({
           <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
         </h2>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="offer in specialOffers" :key="offer.id"
-            class="bg-background backdrop-blur-sm rounded-xl grid p-8">
-            <section>
-              <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
-              <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
-              <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
-            </section>
-            <a v-if="offer.name !== 'Sign up for Notifications'"
-              href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
-              target="_blank"
-              class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
-              Book Now
-            </a>
-            <button v-else @click="showModal = true"
-              class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
-              Sign Up
-            </button>
+        <div class="relative">
+          <div ref="offersContainer"
+            class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+            <div v-for="offer in specialOffers" :key="offer.id"
+              class="bg-background backdrop-blur-sm rounded-xl grid p-8 min-w-[85vw] md:min-w-0 snap-center">
+              <section>
+                <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
+                <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
+                <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
+              </section>
+              <a v-if="offer.name !== 'Sign up for Notifications'"
+                href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+                target="_blank"
+                class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+                Book Now
+              </a>
+              <button v-else @click="showModal = true"
+                class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+                Sign Up
+              </button>
+            </div>
+          </div>
+
+          <!-- Navigation Dots (Mobile Only) -->
+          <div class="flex justify-center gap-2 mt-4 md:hidden">
+            <button v-for="(offer, index) in specialOffers" :key="`dot-${offer.id}`" @click="scrollToOfferIndex(index)"
+              class="w-2 h-2 rounded-full transition-all duration-300"
+              :class="currentOfferIndex === index ? 'bg-accent w-4' : 'bg-accent/30'" aria-label="Go to offer"></button>
           </div>
         </div>
       </div>
@@ -392,6 +428,75 @@ useSeo({
 
       </svg>
     </div>
+    <section class="py-20 px-6">
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-[#522413] text-center mb-16">
+          Our Partners
+          <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
+        </h2>
+
+        <div class="flex flex-col items-center">
+          <!-- Partnership Description -->
+          <div class="max-w-2xl text-center mb-12">
+            <p class="text-lg text-[#522413]/80 mb-6">
+              We are proud to partner with organizations that share our commitment to sustainability,
+              excellence, and community empowerment.
+            </p>
+          </div>
+
+          <!-- Partners Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+            <a href="https://greencirclesalons.com/" target="_blank"
+              class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center">
+                <img src="../assets/Green Circle Salons Logo.png" alt="Green Circle Salons Logo"
+                  class="w-32 h-32 object-contain mb-4" />
+                <h3 class="text-xl font-bold text-[#522413] mb-2">Green Circle Salons</h3>
+                <p class="text-[#522413]/70">
+                  Certified sustainable salon partner, committed to environmental responsibility
+                  and eco-friendly practices in the beauty industry.
+                </p>
+              </div>
+            </a>
+
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-32 h-32 flex items-center justify-center mb-4">
+                  <svg class="w-16 h-16 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-[#522413] mb-2">Partner With Us</h3>
+                <p class="text-[#522413]/70 mb-4">
+                  Join our network of partners and collaborate with The Sweetest Lime to create
+                  exceptional experiences for our clients.
+                </p>
+                <a href="mailto:makayah1@gmail.com" class="text-accent hover:text-dark-green transition-colors">
+                  Contact us to learn more →
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center">
+                <div class="w-32 h-32 flex items-center justify-center mb-4">
+                  <svg class="w-16 h-16 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-[#522413] mb-2">Community Partners</h3>
+                <p class="text-[#522413]/70">
+                  We believe in building strong relationships with local organizations and
+                  businesses to better serve our community.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Book Now CTA -->
     <section class="py-20 px-6">
       <div class="container mx-auto max-w-4xl text-center text-[#522413]">

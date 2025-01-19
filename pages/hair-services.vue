@@ -1,6 +1,143 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
+import { ref, onMounted, onUnmounted } from 'vue'
 
+const braidsContainer = ref<HTMLElement | null>(null)
+const currentBraidsIndex = ref<number>(0)
+const locsContainer = ref<HTMLElement | null>(null)
+const currentLocsIndex = ref<number>(0)
+const stylingContainer = ref<HTMLElement | null>(null)
+const currentStylingIndex = ref<number>(0)
+const treatmentsContainer = ref<HTMLElement | null>(null)
+const currentTreatmentIndex = ref<number>(0)
+const estheticsContainer = ref<HTMLElement | null>(null)
+const currentEstheticsIndex = ref<number>(0)
+
+const scrollToEstheticsIndex = (index: number): void => {
+  if (!estheticsContainer.value) return
+
+  const slideWidth: number = estheticsContainer.value.offsetWidth
+  estheticsContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleEstheticsScroll = (): void => {
+  if (!estheticsContainer.value) return
+
+  const slideWidth: number = estheticsContainer.value.offsetWidth
+  const scrollPosition: number = estheticsContainer.value.scrollLeft
+  currentEstheticsIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+const scrollToTreatmentIndex = (index: number): void => {
+  if (!treatmentsContainer.value) return
+
+  const slideWidth: number = treatmentsContainer.value.offsetWidth
+  treatmentsContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleTreatmentScroll = (): void => {
+  if (!treatmentsContainer.value) return
+
+  const slideWidth: number = treatmentsContainer.value.offsetWidth
+  const scrollPosition: number = treatmentsContainer.value.scrollLeft
+  currentTreatmentIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+const scrollToStylingIndex = (index: number): void => {
+  if (!stylingContainer.value) return
+
+  const slideWidth: number = stylingContainer.value.offsetWidth
+  stylingContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleStylingScroll = (): void => {
+  if (!stylingContainer.value) return
+
+  const slideWidth: number = stylingContainer.value.offsetWidth
+  const scrollPosition: number = stylingContainer.value.scrollLeft
+  currentStylingIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+const scrollToBraidsIndex = (index: number): void => {
+  if (!braidsContainer.value) return
+
+  const slideWidth: number = braidsContainer.value.offsetWidth
+  braidsContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleBraidsScroll = (): void => {
+  if (!braidsContainer.value) return
+
+  const slideWidth: number = braidsContainer.value.offsetWidth
+  const scrollPosition: number = braidsContainer.value.scrollLeft
+  currentBraidsIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+const scrollToLocsIndex = (index: number): void => {
+  if (!locsContainer.value) return
+
+  const slideWidth: number = locsContainer.value.offsetWidth
+  locsContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleLocsScroll = (): void => {
+  if (!locsContainer.value) return
+
+  const slideWidth: number = locsContainer.value.offsetWidth
+  const scrollPosition: number = locsContainer.value.scrollLeft
+  currentLocsIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+onMounted((): void => {
+  if (locsContainer.value) {
+    locsContainer.value.addEventListener('scroll', handleLocsScroll)
+  }
+  if (braidsContainer.value) {
+    braidsContainer.value.addEventListener('scroll', handleBraidsScroll)
+  }
+  if (stylingContainer.value) {
+    stylingContainer.value.addEventListener('scroll', handleStylingScroll)
+  }
+  if (treatmentsContainer.value) {
+    treatmentsContainer.value.addEventListener('scroll', handleTreatmentScroll)
+  }
+  if (estheticsContainer.value) {
+    estheticsContainer.value.addEventListener('scroll', handleEstheticsScroll)
+  }
+})
+
+onUnmounted((): void => {
+  if (locsContainer.value) {
+    locsContainer.value.removeEventListener('scroll', handleLocsScroll)
+  }
+  if (braidsContainer.value) {
+    braidsContainer.value.removeEventListener('scroll', handleBraidsScroll)
+  }
+  if (stylingContainer.value) {
+    stylingContainer.value.removeEventListener('scroll', handleStylingScroll)
+  }
+  if (treatmentsContainer.value) {
+    treatmentsContainer.value.removeEventListener('scroll', handleTreatmentScroll)
+  }
+  if (estheticsContainer.value) {
+    estheticsContainer.value.removeEventListener('scroll', handleEstheticsScroll)
+  }
+})
 const route = useRoute()
 
 // Basic usage for a service page
@@ -54,31 +191,42 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <article v-for="service in locsServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="justify-between grid grid-cols-[1fr_10dvw] items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="locsContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <article v-for="service in locsServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="justify-between grid grid-cols-[1fr_10dvw] items-start mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
                 </div>
-                <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
-              </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
-            </article>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in locsServices" :key="`dot-${service.id}`"
+                @click="scrollToLocsIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentLocsIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
+            </div>
           </div>
         </section>
 
@@ -89,33 +237,45 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <article v-for="service in braidsServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="justify-between grid grid-cols-[1fr_10dvw] items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="braidsContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <article v-for="service in braidsServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="justify-between grid grid-cols-[1fr_10dvw] items-start mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <span class="text-accent text-right font-bold">{{ service.price }}</span>
                 </div>
-                <span class="text-accent text-right font-bold ">{{ service.price }}</span>
-              </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
-            </article>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in braidsServices" :key="`dot-${service.id}`"
+                @click="scrollToBraidsIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentBraidsIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
+            </div>
           </div>
         </section>
+
 
         <!-- Styling Services -->
         <section id="styling" class="mb-16">
@@ -124,31 +284,42 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <article v-for="service in stylingServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg lg:w-full w-[87dvw] p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold flex-wrap text-[#522413]">{{ service.name }}</h3>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="stylingContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <article v-for="service in stylingServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold flex-wrap text-[#522413]">{{ service.name }}</h3>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <span class="text-accent text-right font-bold">{{ service.price }}</span>
                 </div>
-                <span class="text-accent text-right font-bold">{{ service.price }}</span>
-              </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
-            </article>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in stylingServices" :key="`dot-${service.id}`"
+                @click="scrollToStylingIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentStylingIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
+            </div>
           </div>
         </section>
 
@@ -159,31 +330,42 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <article v-for="service in treatmentServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="treatmentsContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <article v-for="service in treatmentServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
                 </div>
-                <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.price }}</span>
-              </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
-            </article>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in treatmentServices" :key="`dot-${service.id}`"
+                @click="scrollToTreatmentIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentTreatmentIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
+            </div>
           </div>
         </section>
 
@@ -194,31 +376,42 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <article v-for="service in estheticsServices" :key="service.id" :href="service.link" target="_blank"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-              <div class="lg:flex grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="estheticsContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <article v-for="service in estheticsServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="lg:flex grid grid-cols-[1fr_10dvw] justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <span class="text-accent font-bold">{{ service.price }}</span>
                 </div>
-                <span class="text-accent font-bold">{{ service.price }}</span>
-              </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
-            </article>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in estheticsServices" :key="`dot-${service.id}`"
+                @click="scrollToEstheticsIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentEstheticsIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
+            </div>
           </div>
         </section>
       </div>
@@ -846,5 +1039,15 @@ export default {
     }
   }
 }
-
 </script>
+
+<style lang="css" scoped>
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+</style>

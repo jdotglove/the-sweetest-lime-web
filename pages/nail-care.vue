@@ -1,5 +1,40 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
+import { ref, onMounted, onUnmounted } from 'vue'
+
+
+const servicesContainer = ref<HTMLElement | null>(null)
+const currentServiceIndex = ref<number>(0)
+
+const scrollToServiceIndex = (index: number): void => {
+  if (!servicesContainer.value) return
+
+  const slideWidth: number = servicesContainer.value.offsetWidth
+  servicesContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleServiceScroll = (): void => {
+  if (!servicesContainer.value) return
+
+  const slideWidth: number = servicesContainer.value.offsetWidth
+  const scrollPosition: number = servicesContainer.value.scrollLeft
+  currentServiceIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+onMounted((): void => {
+  if (servicesContainer.value) {
+    servicesContainer.value.addEventListener('scroll', handleServiceScroll)
+  }
+})
+
+onUnmounted((): void => {
+  if (servicesContainer.value) {
+    servicesContainer.value.removeEventListener('scroll', handleServiceScroll)
+  }
+})
 
 const route = useRoute()
 
@@ -15,7 +50,7 @@ useSeo({
 <template>
   <Navbar />
   <!-- Quick Navigation -->
-  <nav
+  <!-- <nav
     class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md">
     <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
       <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-[#522413] font-medium relative">
@@ -29,7 +64,7 @@ useSeo({
         </li>
       </ul>
     </div>
-  </nav>
+  </nav> -->
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
@@ -54,31 +89,42 @@ useSeo({
             <div class="flex-grow h-px bg-accent/20"></div>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-8">
-            <article v-for="service in nailServices" :key="service.id"
-              class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <h4 class="text-xl font-bold text-[#522413]">{{ service.name }}</h4>
-                  <p class="text-[#522413]/70">{{ service.description }}</p>
+          <div class="relative">
+            <div ref="servicesContainer"
+              class="flex lg:grid lg:grid-cols-2 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+              <article v-for="service in nailServices" :key="service.id"
+                class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow min-w-[85vw] lg:min-w-0 snap-center">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h4 class="text-xl font-bold text-[#522413]">{{ service.name }}</h4>
+                    <p class="text-[#522413]/70">{{ service.description }}</p>
+                  </div>
+                  <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
                 </div>
-                <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
-              </div>
-              <section class="flex items-center justify-between">
-                <div class="flex gap-2 h-fit  flex-wrap">
-                  <span v-for="(detail, idx) in service.details" :key="idx"
-                    class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
-                    {{ detail }}
-                  </span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                  <a :href="service.link" target="_blank"
-                    class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
-                    Book Now
-                  </a>
-                </div>
-              </section>
-            </article>
+                <section class="flex items-center justify-between">
+                  <div class="flex gap-2 h-fit flex-wrap">
+                    <span v-for="(detail, idx) in service.details" :key="idx"
+                      class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
+                      {{ detail }}
+                    </span>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <a :href="service.link" target="_blank"
+                      class="bg-accent text-white px-4 py-2 rounded-full hover:bg-dark-green transition-colors">
+                      Book Now
+                    </a>
+                  </div>
+                </section>
+              </article>
+            </div>
+
+            <!-- Navigation Dots (Mobile Only) -->
+            <div class="flex justify-center gap-2 mt-4 lg:hidden">
+              <button v-for="(service, index) in nailServices" :key="`dot-${service.id}`"
+                @click="scrollToServiceIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="currentServiceIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+                aria-label="Go to service"></button>
+            </div>
           </div>
         </section>
       </div>
@@ -207,3 +253,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+</style>
