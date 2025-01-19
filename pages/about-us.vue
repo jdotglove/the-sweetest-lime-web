@@ -1,7 +1,45 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
 import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg';
+import { ref, onMounted, onUnmounted } from 'vue'
 
+const teamContainer = ref<HTMLElement | null>(null)
+const currentTeamIndex = ref<number>(0)
+const expandedBios = ref<Record<number, boolean>>({})
+
+const toggleBio = (index: number): void => {
+  expandedBios.value[index] = !expandedBios.value[index]
+}
+
+const scrollToTeamIndex = (index: number): void => {
+  if (!teamContainer.value) return
+
+  const slideWidth: number = teamContainer.value.offsetWidth
+  teamContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleTeamScroll = (): void => {
+  if (!teamContainer.value) return
+
+  const slideWidth: number = teamContainer.value.offsetWidth
+  const scrollPosition: number = teamContainer.value.scrollLeft
+  currentTeamIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+onMounted((): void => {
+  if (teamContainer.value) {
+    teamContainer.value.addEventListener('scroll', handleTeamScroll)
+  }
+})
+
+onUnmounted((): void => {
+  if (teamContainer.value) {
+    teamContainer.value.removeEventListener('scroll', handleTeamScroll)
+  }
+})
 const route = useRoute()
 
 // Basic usage for a service page
@@ -174,18 +212,41 @@ useSeo({
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="(member, index) in teamMembers" :key="index" class="group">
-            <div class="relative overflow-hidden rounded-xl mb-4">
-              <img v-if="!!member.imageSrc" :src="member.imageSrc" class="lg:w-[45dvw] lg:h-[50dvh]" />
-              <div v-else class="lg:w-[45dvw] lg:h-[50dvh] bg-secondary"></div>
-              <div class="hidden ovrflow-y-scroll h-[90dvh] absolute inset-0 bg-[#522413]/80 text-white lg:flex flex-col
-                translate-y-full group-hover:translate-y-0 transition-transform duration-300 p-4">
-                <p>{{ member.bio }}</p>
+        <div class="relative">
+          <div ref="teamContainer"
+            class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+            <div v-for="(member, index) in teamMembers" :key="index" class="group min-w-[85vw] md:min-w-0 snap-center">
+              <div class="relative overflow-hidden rounded-xl mb-4">
+                <img v-if="!!member.imageSrc" :src="member.imageSrc"
+                  class="w-full h-[50vh] md:h-[40vh] lg:h-[50vh] object-cover"
+                  :alt="`${member.name} - ${member.role}`" />
+                <div v-else class="w-full h-[50vh] md:h-[40vh] lg:h-[50vh] bg-secondary"></div>
+
+                <!-- Bio Overlay (Desktop) -->
+                <div class="hidden lg:flex flex-col absolute inset-0 bg-[#522413]/80 text-white
+              translate-y-full group-hover:translate-y-0 transition-transform duration-300 p-4 overflow-y-auto">
+                  <p>{{ member.bio }}</p>
+                </div>
+
+                <!-- Bio (Mobile) -->
+                <div class="lg:hidden mt-2 text-[#522413]/80">
+                  <button @click="toggleBio(index)" class="text-accent text-sm hover:text-accent/80 transition-colors">
+                    {{ expandedBios[index] ? 'Read Less' : 'Read More' }}
+                  </button>
+                  <p v-if="expandedBios[index]" class="mt-2">{{ member.bio }}</p>
+                </div>
               </div>
+              <h4 class="text-xl font-bold text-[#522413]">{{ member.name }}</h4>
+              <p class="text-[#522413]/80">{{ member.role }}</p>
             </div>
-            <h4 class="text-xl font-bold text-[#522413]">{{ member.name }}</h4>
-            <p class="text-[#522413]/80">{{ member.role }}</p>
+          </div>
+
+          <!-- Navigation Dots (Mobile Only) -->
+          <div class="flex justify-center gap-2 mt-4 md:hidden">
+            <button v-for="(member, index) in teamMembers" :key="`dot-${index}`" @click="scrollToTeamIndex(index)"
+              class="w-2 h-2 rounded-full transition-all duration-300"
+              :class="currentTeamIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
+              aria-label="Go to team member"></button>
           </div>
         </div>
       </div>
@@ -363,5 +424,14 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>
