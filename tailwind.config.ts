@@ -12,9 +12,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#F8F0DE',
-        primary: '#522413',
-        secondary: '#F4E7BB',
+        background: '#FFFFFF',
+        primary: '#A4CE5E',
+        secondary: '#749A46',
         accent: '#0C8500',
         'dark-green': '#749A46',
         'light-green': '#A4CE5E',

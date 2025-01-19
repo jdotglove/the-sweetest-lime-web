@@ -17,7 +17,7 @@
           <a :href="service.href" class="relative z-10 grid h-full">
             <span class="text-accent text-5xl font-light">0{{ index + 1 }}</span>
             <h3 class="text-2xl font-bold mt-4 mb-3">{{ service.title }}</h3>
-            <p class="text-primary/80 mb-6">{{ service.description }}</p>
+            <p class="text-[#522413]/80 mb-6">{{ service.description }}</p>
             <span
               class="text-accent self-end group-hover:text-dark-green transition-colors inline-flex items-center gap-2">
               Learn More

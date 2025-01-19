@@ -18,6 +18,7 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "lucide-vue-next": "^0.471.0",
     "nuxt": "^3.15.1",
+    "square": "^39.1.1",
     "vue": "^3.5.12"
   },
   "devDependencies": {

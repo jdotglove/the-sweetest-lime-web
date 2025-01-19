@@ -1,6 +1,112 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 
+const showModal = ref(false)
+const formData = ref({
+  name: '',
+  email: '',
+  phone: ''
+})
+let originalOverflow = '';
+
+// Watch for menu state changes
+watch(showModal, (newValue) => {
+  if (newValue) {
+    // Store current overflow and prevent scrolling
+    originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  } else {
+    // Just restore the overflow property
+    document.body.style.overflow = originalOverflow;
+  }
+});
+
+const isSubmitting = ref(false)
+const error = ref('')
+
+
+const handleSubmit = async () => {
+  try {
+    isSubmitting.value = true
+    error.value = ''
+
+    const response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData.value)
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to subscribe')
+    }
+
+    const data = await response.json()
+
+    // Show success message
+    alert('Thank you for subscribing!')
+
+    // Reset form and close modal
+    formData.value = {
+      name: '',
+      email: '',
+      phone: ''
+    }
+    showModal.value = false
+
+  } catch (err) {
+    error.value = 'Failed to subscribe. Please try again.'
+    console.error('Error:', err)
+  } finally {
+    isSubmitting.value = false
+  }
+}
+
+const scrollContainer = ref<HTMLElement | null>(null)
+const currentIndex = ref(0)
+const expandedReviews = ref<Record<number, boolean>>({})
+
+// Check if content is long enough to need truncation
+const isContentLong = (content: string) => {
+  return content.length > 150 // Adjust this number based on your needs
+}
+
+// Toggle expanded state for a review
+const toggleReview = (id: number) => {
+  expandedReviews.value[id] = !expandedReviews.value[id]
+}
+
+const scrollToIndex = (index: number) => {
+  if (!scrollContainer.value) return
+
+  const slideWidth = scrollContainer.value.offsetWidth
+  scrollContainer.value.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth'
+  })
+}
+
+const handleScroll = () => {
+  if (!scrollContainer.value) return
+
+  const slideWidth = scrollContainer.value.offsetWidth
+  const scrollPosition = scrollContainer.value.scrollLeft
+  currentIndex.value = Math.round(scrollPosition / slideWidth)
+}
+
+onMounted(() => {
+  if (scrollContainer.value) {
+    scrollContainer.value.addEventListener('scroll', handleScroll)
+  }
+})
+
+onUnmounted(() => {
+  if (scrollContainer.value) {
+    scrollContainer.value.removeEventListener('scroll', handleScroll)
+  }
+})
 const route = useRoute()
 
 // Basic usage for a service page
@@ -15,31 +121,29 @@ useSeo({
 <template>
 
   <Navbar />
-  <div class="relative min-h-screen bg-background overflow-hidden">
+  <div class="min-h-screen bg-background overflow-hidden">
 
     <!-- Hero Section -->
     <section class="relative h-[70dvh] flex items-center">
       <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
-
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20 items-center flex flex-col">
-        <div class="max-w-3xl flex flex-col items-center">
-          <div class="my-4 grid justify-center bg-white w-[50dvw] h-[40dvh] rounded-3xl">
+        <div class="max-w-3xl flex flex-col items-center gap-3">
+          <div class="lg:my-4 grid justify-center bg-white lg:w-[50dvw] lg:h-[40dvh] rounded-3xl">
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>
-          <p class="text-xl text-primary/90 mb-8 max-w-2xl text-center">
-            Your destination for premium beauty and wellness services. Where nature meets luxury,
+          <p class="text-xl text-[#522413]/90 max-w-2xl text-center">
+            Your destination for premium beauty and wellness services. Where self-care meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
-          <p class="text-xl text-primary/90 mb-8 max-w-2xl">
-            Certified Sustainable Salon with Green Circle Salons
-          </p>
+
           <div class="flex gap-4 flex-wrap justify-center">
-            <button
+            <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+              target="_blank"
               class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
               Book Appointment
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -57,7 +161,7 @@ useSeo({
     <!-- Services Section with Leaf Accents -->
     <section class="py-20 px-6 relative z-10">
       <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-primary text-center mb-16">
+        <h2 class="text-4xl font-bold text-[#522413] text-center mb-16">
           Our Services
           <div class="relative">
             <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
@@ -67,15 +171,15 @@ useSeo({
         <!-- Service Cards -->
         <div class="grid md:grid-cols-3 gap-8">
           <div v-for="service in mainServices" :key="service.id"
-            class="group relative bg-secondary rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+            class="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
 
             <div class="p-8 relative h-full flex flex-col justify-between">
               <section>
-                <h3 class="text-2xl font-bold text-primary mb-4">{{ service.name }}</h3>
-                <p class="text-primary/70 mb-3">{{ service.description }}</p>
+                <h3 class="text-2xl font-bold text-[#522413] mb-4">{{ service.name }}</h3>
+                <p class="text-[#522413]/70 mb-3">{{ service.description }}</p>
                 <ul class="space-y-2 mb-4">
                   <li v-for="(feature, idx) in service.features" :key="idx"
-                    class="flex items-center gap-2 text-primary/80">
+                    class="flex items-center gap-2 text-[#522413]/80">
                     <svg class="w-4 h-4 text-accent" viewBox="0 0 100 100">
                       <path d="M20,40 Q0,60 20,80 Q40,60 20,40 Z" fill="currentColor" />
                     </svg>
@@ -95,7 +199,7 @@ useSeo({
     </section>
 
     <!-- Special Offers Section -->
-    <section class="py-20 px-6 bg-dark-green/20 text-primary">
+    <section class="py-20 px-6 bg-dark-green/20 text-[#522413]">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16">
           Special Offers
@@ -103,19 +207,82 @@ useSeo({
         </h2>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div v-for="offer in specialOffers" :key="offer.id" class="bg-[#F8F0D3] backdrop-blur-sm rounded-xl p-8">
-            <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
-            <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
-            <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
-            <button class="w-full bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+          <div v-for="offer in specialOffers" :key="offer.id"
+            class="bg-background backdrop-blur-sm rounded-xl grid p-8">
+            <section>
+              <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
+              <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
+              <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
+            </section>
+            <a v-if="offer.name !== 'Sign up for Notifications'"
+              href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+              target="_blank"
+              class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
               Book Now
+            </a>
+            <button v-else @click="showModal = true"
+              class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+              Sign Up
             </button>
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <Transition enter-active-class="transition duration-300 ease-out" enter-from-class="transform scale-95 opacity-0"
+        enter-to-class="transform scale-100 opacity-100" leave-active-class="transition duration-200 ease-in"
+        leave-from-class="transform scale-100 opacity-100" leave-to-class="transform scale-95 opacity-0">
+        <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center">
+          <!-- Backdrop -->
+          <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" @click="showModal = false"></div>
+
+          <!-- Modal Content -->
+          <div class="relative bg-white rounded-2xl p-8 w-full max-w-md mx-4">
+            <!-- Close Button -->
+            <button @click="showModal = false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <!-- Form Content -->
+            <div class="text-center mb-6">
+              <h3 class="text-2xl font-bold text-[#522413] mb-2">Stay Updated</h3>
+              <p class="text-[#522413]/70">Sign up to receive special offers and updates</p>
+            </div>
+
+            <form @submit.prevent="handleSubmit" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-[#522413] mb-1">Name</label>
+                <input v-model="formData.name" type="text"
+                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-accent focus:ring-1 focus:ring-accent"
+                  required>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-[#522413] mb-1">Email</label>
+                <input v-model="formData.email" type="email"
+                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-accent focus:ring-1 focus:ring-accent"
+                  required>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-[#522413] mb-1">Phone (optional)</label>
+                <input v-model="formData.phone" type="tel"
+                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-accent focus:ring-1 focus:ring-accent">
+              </div>
+
+              <button type="submit"
+                class="w-full bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </Transition>
     </section>
     <!-- Large Corner Leaves -->
-    <div class=" absolute right-0 flex flex-col gap-40 pointer-events-none overflow-hidden">
+    <div class="hidden absolute right-0 lg:flex flex-col gap-40 pointer-events-none overflow-hidden">
       <!-- Top Left Leaf -->
       <svg class="w-72 h-72 text-accent/50" viewBox="0 0 100 100">
         <path
@@ -130,7 +297,7 @@ useSeo({
         <div class="flex justify-center gap-16 items-center">
           <section class="py-16">
             <div class="container mx-auto px-4">
-              <h2 class="text-4xl font-bold text-primary text-center mb-12">
+              <h2 class="text-4xl font-bold text-[#522413] text-center mb-12">
                 The Sweetest Lime Difference
               </h2>
 
@@ -143,8 +310,8 @@ useSeo({
                       <component :is="benefit.icon" class="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 class="text-xl font-bold text-primary mb-2">{{ benefit.title }}</h3>
-                      <p class="text-primary/70 leading-relaxed">{{ benefit.description }}</p>
+                      <h3 class="text-xl font-bold text-[#522413] mb-2">{{ benefit.title }}</h3>
+                      <p class="text-[#522413]/70 leading-relaxed">{{ benefit.description }}</p>
                     </div>
                   </div>
                 </div>
@@ -155,7 +322,7 @@ useSeo({
       </div>
     </section>
     <!-- Large Corner Leaves -->
-    <div class=" absolute pointer-events-none overflow-hidden">
+    <div class="hidden lg:absolute pointer-events-none overflow-hidden">
       <!-- Top Left Leaf -->
       <svg class="-right-0 bottom-48 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
         <path
@@ -165,28 +332,52 @@ useSeo({
       </svg>
     </div>
     <!-- Testimonials -->
-    <section class="py-20 px-6 bg-dark-green/20">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-primary text-center mb-16">
+    <section class="py-20 px-6 z-10 bg-dark-green/20">
+      <div class="container z-10 mx-auto">
+        <h2 class="text-4xl z-10 font-bold text-[#522413] text-center z- mb-16">
           Client Testimonials
           <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
         </h2>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <div v-for="testimonial in testimonials" :key="testimonial.id"
-            class="bg-white grid rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow h-[35dvh] z-10">
-            <section>
-              <div class="flex gap-4 items-center mb-6">
-                <div>
-                  <h4 class="font-bold text-primary">{{ testimonial.name }}</h4>
-                  <p class="text-primary/60">{{ testimonial.service }}</p>
+        <div class="relative">
+          <div ref="scrollContainer"
+            class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
+            <div v-for="testimonial in testimonials" :key="testimonial.id"
+              class="bg-white grid rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow min-w-[85vw] md:min-w-0 h-[40dvh] snap-center">
+              <section>
+                <div class="flex gap-4 items-center mb-6">
+                  <div>
+                    <h4 class="font-bold text-[#522413]">{{ testimonial.name }}</h4>
+                    <p class="text-[#522413]/60">{{ testimonial.service }}</p>
+                  </div>
                 </div>
+
+                <!-- Review Content with Expand/Collapse -->
+                <div class="relative">
+                  <p class="text-[#522413]/80 mb-4" :class="{
+                    'line-clamp-4': !expandedReviews[testimonial.id],
+                    'h-[15dvh] overflow-y-auto': expandedReviews[testimonial.id]
+                  }">
+                    {{ testimonial.content }}
+                  </p>
+
+                  <!-- Show "Read More" button if content is long -->
+                  <button v-if="isContentLong(testimonial.content)" @click="toggleReview(testimonial.id)"
+                    class="text-accent text-sm hover:text-accent/80 transition-colors">
+                    {{ expandedReviews[testimonial.id] ? 'Read Less' : 'Read More' }}
+                  </button>
+                </div>
+              </section>
+              <div class="flex gap-1 text-accent mt-auto">
+                <span class="self-end" v-for="star in testimonial.stars" :key="star">★</span>
               </div>
-              <p class="text-primary/80 mb-4 h-[15dvh]">{{ trimTestimonial(testimonial.content) }}</p>
-            </section>
-            <div class="flex gap-1 text-accent">
-              <span class="self-end" v-for="star in testimonial.stars" :key="star">★</span>
             </div>
+          </div>
+
+          <div class="flex justify-center gap-2 mt-4 md:hidden">
+            <button v-for="(testimonial, index) in testimonials" :key="`dot-${testimonial.id}`"
+              @click="scrollToIndex(index)" class="w-2 h-2 rounded-full transition-all duration-300"
+              :class="currentIndex === index ? 'bg-accent w-4' : 'bg-accent/30'" aria-label="Go to slide"></button>
           </div>
         </div>
       </div>
@@ -194,7 +385,7 @@ useSeo({
     <!-- Large Corner Leaves -->
     <div class=" absolute top-[70dvh] pointer-events-none overflow-hidden">
       <!-- Top Left Leaf -->
-      <svg class="-right-0 top-48 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
+      <svg class="-right-0 top-24 w-72 h-72 text-accent/50" viewBox="0 0 100 100">
         <path
           d="M50,5 C70,20 90,40 90,70 C90,85 80,95 50,95 C20,95 10,85 10,70 C10,40 30,20 50,5 M30,30 C40,35 50,45 50,60 M70,30 C60,35 50,45 50,60"
           fill="currentColor" class="animate-sway-slow" />
@@ -203,7 +394,7 @@ useSeo({
     </div>
     <!-- Book Now CTA -->
     <section class="py-20 px-6">
-      <div class="container mx-auto max-w-4xl text-center text-primary">
+      <div class="container mx-auto max-w-4xl text-center text-[#522413]">
         <h2 class="text-4xl font-bold mb-6">Ready for Your Transformation?</h2>
         <p class="text-xl mb-8">
           Experience the luxury and expertise at The Sweetest Lime. Book your appointment today.
@@ -216,7 +407,7 @@ useSeo({
             Book Online
           </a>
           <a href="mailto:makayah1@gmail.com"
-            class="border-2 border-primary text-primary px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
+            class="border-2 border-primary text-[#522413] px-8 py-4 rounded-full hover:bg-secondary/10 transition-all duration-300">
             Contact Us
           </a>
         </div>
@@ -276,20 +467,20 @@ export default {
         {
           id: 1,
           discount: '20% OFF',
-          name: 'First Time Clients',
-          description: 'Special discount for your first visit to any of our services.'
+          name: 'First Visit to New Location',
+          description: 'Special discount for your first visit to our new location for any of our services.'
         },
         {
           id: 2,
-          discount: 'SAVE $50',
-          name: 'Spa Package',
-          description: 'Complete relaxation package including massage and body treatment.'
+          discount: 'SAVE $__',
+          name: 'Bundle Package',
+          description: 'Bundle any 3 services and receive $__ off your vist.'
         },
         {
           id: 3,
-          discount: 'FREE',
-          name: 'Consultation',
-          description: 'Professional consultation for hair coloring and styling services.'
+          discount: '10% OFF',
+          name: 'Sign up for Notifications',
+          description: 'Signup for text or email notifications and receive 10% off your next visit.'
         }
       ],
       reasons: [
@@ -390,8 +581,8 @@ export default {
   },
   methods: {
     trimTestimonial(testimonialContent: string) {
-      if (testimonialContent.length > 300) {
-        return `${testimonialContent.slice(0, 300)}...`
+      if (testimonialContent.length > 200) {
+        return `${testimonialContent.slice(0, 200)}...`
       }
       return testimonialContent;
     }
@@ -400,6 +591,11 @@ export default {
 </script>
 
 <style scoped>
+/* Prevent body scroll when modal is open */
+:deep(body.modal-open) {
+  overflow: hidden;
+}
+
 @keyframes sway-slow {
 
   0%,
@@ -415,5 +611,33 @@ export default {
 .animate-sway-slow {
   animation: sway-slow 8s ease-in-out infinite;
   transform-origin: center;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Customize scrollbar for expanded reviews */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>
