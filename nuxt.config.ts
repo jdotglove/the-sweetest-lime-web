@@ -3,7 +3,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineNuxtConfig({
   runtimeConfig: {
-
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
       siteName: 'The Sweetest Lime',

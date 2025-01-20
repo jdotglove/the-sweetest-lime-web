@@ -233,8 +233,7 @@ useSeo({
           Book your spa experience today and let our expert therapists help you unwind.
         </p>
         <div class="flex gap-4 justify-center">
-          <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
-            target="_blank"
+          <a href="https://sweet-lime-salon.square.site/" target="_blank"
             class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
           </a>

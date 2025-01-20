@@ -10,12 +10,11 @@
       <ul class="nav-links hidden md:flex gap-8 font-medium text-[#522413]"
         :class="{ 'block absolute bg-primary/95 backdrop-blur-md top-16 left-0 w-full px-6 py-4 shadow-lg': isMenuOpen }">
         <li v-for="(link, index) in links" :key="index">
-          <a :href="link.href"
-            :class="`${currentPath === link.href ? 'text-secondary' : 'hover:text-secondary'} transition-colors relative group`">
+          <NuxtLink :to="link.href" :class="`${currentPath === link.href ? 'text-secondary' : 'hover:text-secondary'} transition-colors relative group`">
             {{ link.name }}
             <span
               :class="`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${currentPath === link.href ? 'w-full' : 'w-0 group-hover:w-full'}`"></span>
-          </a>
+          </NuxtLink>
         </li>
       </ul>
     </div>
