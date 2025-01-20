@@ -6,10 +6,9 @@ export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
     const { name, email, phone } = body
-    console.log(process.env.SQUARE_ACCESS_TOKEN)
     const client = new Client({
       accessToken: process.env.SQUARE_ACCESS_TOKEN,
-      environment: Environment.Sandbox // or Environment.Sandbox for testing
+      environment: process.env.NUXT_SITE_ENV === "development" ? Environment.Sandbox : Environment.Production // or Environment.Sandbox for testing
     })
 
     // Create a customer in Square

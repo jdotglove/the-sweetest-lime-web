@@ -200,8 +200,7 @@ useSeo({
           </p>
 
           <div class="flex gap-4 flex-wrap justify-center">
-            <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
-              target="_blank"
+            <a href="https://sweet-lime-salon.square.site/" target="_blank"
               class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
               Book Appointment
             </a>
@@ -277,8 +276,7 @@ useSeo({
                 <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
                 <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
               </section>
-              <a v-if="offer.name !== 'Sign up for Notifications'"
-                href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
+              <a v-if="offer.name !== 'Sign up for Notifications'" href="https://sweet-lime-salon.square.site/"
                 target="_blank"
                 class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
                 Book Now
@@ -498,6 +496,22 @@ useSeo({
 
             <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div class="flex flex-col items-center text-center">
+                <img src="../assets/images.jpeg" alt="Green Circle Salons Logo" class="w-32 h-32 object-contain mb-4" />
+                <h3 class="text-xl font-bold text-[#522413] mb-2">Ashtae Products</h3>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center">
+                <img src="../assets/Logo_W_Link_2x-8.webp" alt="Green Circle Salons Logo"
+                  class="w-32 h-32 object-contain mb-4" />
+                <h3 class="text-xl font-bold text-[#522413] mb-2">Smiles by Wrapstar</h3>
+              </div>
+            </div>
+
+
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class="flex flex-col items-center text-center">
                 <div class="w-32 h-32 flex items-center justify-center mb-4">
                   <svg class="w-16 h-16 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -566,8 +580,7 @@ useSeo({
         </p>
 
         <div class="flex gap-4 justify-center">
-          <a href="https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services?buttonTextColor=ffffff&color=006aff&locale=en&referrer=so"
-            target="_blank"
+          <a href="https://sweet-lime-salon.square.site/" target="_blank"
             class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
           </a>
@@ -645,7 +658,7 @@ export default {
           id: 3,
           discount: '10% OFF',
           name: 'Sign up for Notifications',
-          description: 'Signup for text or email notifications and receive 10% off your next visit.'
+          description: 'Sign up for text or email notifications and receive 10% off your next visit.'
         }
       ],
       reasons: [
