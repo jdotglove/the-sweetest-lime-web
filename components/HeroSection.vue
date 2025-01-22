@@ -1,7 +1,7 @@
 <template>
   <!-- Hero Section with Modern Design -->
   <section class="hero relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-[url('/path-to-your-image.jpg')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-cover bg-center"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
 
     <div class="relative z-10 max-w-4xl mx-auto px-6 py-20">
