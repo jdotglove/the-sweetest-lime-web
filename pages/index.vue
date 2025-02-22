@@ -186,19 +186,25 @@ useSeo({
 
     <!-- Hero Section -->
     <section class="relative h-[70dvh] flex items-center">
+      <!-- Background with gradient -->
       <div class="absolute inset-0 bg-gradient-to-r from-dark-green/95 to-dark-green/50"></div>
+
       <!-- Hero Content -->
       <div class="relative container mx-auto px-6 py-20 items-center flex flex-col">
         <div class="max-w-3xl flex flex-col items-center gap-3">
+          <!-- Logo Container -->
           <div class="lg:my-4 grid justify-center bg-white lg:w-[50dvw] lg:h-[40dvh] rounded-3xl">
             <img class="self-center aspect-auto lg:w-[50dvw] lg:h-[40dvh] xl:w-[40dvw]"
               alt="the sweetest lime logo with text" src="../assets/sweetest-lime-logo-and-text.png">
           </div>
+
+          <!-- Description -->
           <p class="text-xl text-[#522413]/90 max-w-2xl text-center">
             Your destination for premium beauty and wellness services. Where self-care meets luxury,
             and every visit leaves you refreshed and renewed.
           </p>
 
+          <!-- CTA Buttons -->
           <div class="flex gap-4 flex-wrap justify-center">
             <a href="https://sweet-lime-salon.square.site/" target="_blank"
               class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
@@ -551,6 +557,10 @@ useSeo({
     <!-- Happy Clients Section -->
     <section class="py-20 px-6 bg-dark-green/20">
       <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-[#522413] text-center mb-16">
+          Transformations
+          <div class="w-24 h-1 bg-accent mx-auto mt-4"></div>
+        </h2>
         <div class="relative">
           <div ref="clientsContainer"
             class="flex md:grid md:grid-cols-3 lg:flex lg:justify-center gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">

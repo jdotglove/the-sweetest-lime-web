@@ -359,7 +359,15 @@ export default {
         {
           name: 'Apryl Gonzalez',
           role: 'Licensed Massage Therapist',
-          bio: '',
+          bio: `
+            Apryl Gonzalez is a licensed massage and bodywork therapist with 13 years of experience,
+            specializing in Swedish (relaxation) massages that promote deep relaxation and stress relief.
+            She also works full-time as a pharmacy technician, focusing on health and wellness,
+            which allows her to bring a holistic approach to guest care. As a dedicated mother of two and
+            a proud Oma (grandmother), Apryl understands the importance of balance and well-being in everyday life.
+            She will be available for evening and weekend bookings, and we are thrilled to welcome her to
+            The Sweetest Lime Salon Spa family!
+          `,
           imageSrc: '',
         },
         {
