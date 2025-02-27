@@ -373,7 +373,7 @@ export default {
         },
         {
           name: 'Karen Nguyen',
-          role: 'Nail Technician &amp; Massage Therapist',
+          role: 'Nail Technician & Massage Therapist',
           bio: `
             We’re excited to welcome Karen Nguyen to The Sweetest Lime Salon Spa! With over 25 years of experience
             as a nail technician, Karen brings a wealth of skill and expertise to our team. She has a passion for
