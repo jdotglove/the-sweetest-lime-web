@@ -322,8 +322,11 @@ useSeo({
 
             <!-- Form Content -->
             <div class="text-center mb-6">
-              <h3 class="text-2xl font-bold text-[#522413] mb-2">Stay Updated</h3>
-              <p class="text-[#522413]/70">Sign up to receive special offers and updates.</p>
+              <h3 class="text-2xl font-bold text-[#522413] mb-2">Stay Connected with The Sweetest Lime Salon Spa!</h3>
+              <p class="text-[#522413]/70">
+                Enter your phone number to receive exclusive updates, special offers, and VIP
+                discounts straight to your phone and/or email!
+              </p>
             </div>
 
             <form @submit.prevent="handleSubmit" class="space-y-4">
@@ -343,8 +346,11 @@ useSeo({
 
               <div>
                 <label class="block text-sm font-medium text-[#522413] mb-1">Phone (optional)</label>
-                <p class="text-xs">Your mobile carrier may charge SMS fees. Text &quot;STOP&quot; at any time to opt out
-                  of alerts</p>
+                <p class="text-xs">
+                  By providing your phone number, you agree to receive automated promotional and informational messages
+                  from The Sweetest Lime Salon Spa. Message and data rates may apply. Reply &quot;STOP&quot; to
+                  unsubscribe at any time.
+                </p>
                 <input v-model="formData.phone" type="tel"
                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-accent focus:ring-1 focus:ring-accent">
               </div>

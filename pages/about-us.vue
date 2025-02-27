@@ -2,6 +2,10 @@
 import { useSeo } from '../composables/useSeo';
 import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg';
 import karenProfilePic from '~/assets/karen_nguyen_profile_pic.jpg';
+import phanyProfilePic from '~/assets/phany_chhorn_profile_pic.jpeg';
+import aprylProfilePic from '~/assets/apryl_gonzalez_profile_pic.jpeg';
+import alleyProfilePic from '~/assets/alley_shay_profile_pic.jpeg';
+import typhaniProfilePic from '~/assets/typhani_richmond_profile_pic.jpeg';
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const teamContainer = ref<HTMLElement | null>(null)
@@ -86,8 +90,19 @@ useSeo({
               and
               responsibly dispose of all our salon waste, including hair, foils, and color tubes. This
               commitment to our core value of sustainability reflects our dedication to beauty that
-              cares for both our clients and the planet.
+              cares for both our clients and the planet. At The Sweetest Lime Salon Spa, we are committed to
+              sustainability and reducing our environmental impact. That&apos;s why we&apos;ve implemented a $1.50
+              Eco Fee on each service, which allows us to recycle approximately 98% of our waste—including hair
+              clippings,
+              foils, color tubes, excess hair color, and more. This small fee helps us participate in a professional
+              beauty industry recycling program, ensuring that waste from our salon and spa services is properly
+              processed
+              and repurposed instead of ending up in landfills. By supporting this initiative, our clients are helping
+              us
+              maintain a luxurious, eco-conscious space while doing our part for the planet. We appreciate your support
+              in making beauty more sustainable!
             </p>
+
             <p class="text-lg text-[#522413]/80 leading-relaxed">
               We are passionate about empowering Black and Brown beauty professionals, providing
               them with a space to grow their careers and deliver top-tier customer care. At <span class="italic">The
@@ -355,7 +370,7 @@ export default {
             importantly, their confidence. She is thrilled to share her talent and over 20 years of
             experience with the community.
           `,
-          imageSrc: '',
+          imageSrc: alleyProfilePic,
         },
         {
           name: 'Apryl Gonzalez',
@@ -369,7 +384,7 @@ export default {
             She will be available for evening and weekend bookings, and we are thrilled to welcome her to
             The Sweetest Lime Salon Spa family!
           `,
-          imageSrc: '',
+          imageSrc: aprylProfilePic,
         },
         {
           name: 'Karen Nguyen',
@@ -390,20 +405,24 @@ export default {
         {
           name: 'Phany Chhorn',
           role: 'Nail Artist & Technician',
-          bio: '',
-          imageSrc: '',
+          bio: `
+            Phony (Ponnie) has been a licensed nail technician for 18 years and is a gifted nail artist with a passion
+            for making her clients feel confident and beautiful. Outside of her craft, Ponnie loves cooking, painting,
+            photography, and crocheting. She is a proud mother to a beautiful daughter, a loving fur son, and grandma
+            of three adorable grand-cats!
+          `,
+          imageSrc: phanyProfilePic,
         },
         {
           name: 'Typhani Richmond',
           role: 'Guest Services',
           bio: `
-            Typhani, a recent Reagan High School graduate, is pursuing her passion for beauty and
-            business. She plans to attend Guilford Technical Community College to earn an
-            associate degree in Business Administration alongside her cosmetology certification. As
-            the eldest of three sisters, Typhani has had a lifetime of hands-on experience, honing
-            her skills and nurturing her passion for beauty and care.
+            Typhani Richmond, a recent Reagan High School graduate, is dedicated to both beauty and business. She is
+            currently attending Guilford Technical Community College to earn an associate degree in Business Administration
+            alongside her cosmetology certification. As the oldest of three sisters, she has spent a lifetime honing her
+            skills and nurturing her passion for beauty and care.
           `,
-          imageSrc: '',
+          imageSrc: typhaniProfilePic,
         }
       ],
     };
