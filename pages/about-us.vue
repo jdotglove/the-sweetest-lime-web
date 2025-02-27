@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo';
 import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg';
+import karenProfilePic from '~/assets/karen_nguyen_profile_pic.jpg';
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const teamContainer = ref<HTMLElement | null>(null)
@@ -372,15 +373,13 @@ export default {
         },
         {
           name: 'Karen Nguyen',
-          role: 'Nail Artist &amp; Technician',
-          bio: '',
-          imageSrc: '',
-        },
-        {
-          name: 'Latarsa Thames',
-          role: 'Licensed Massage Therapist',
-          bio: '',
-          imageSrc: '',
+          role: 'Nail Technician & Massage Therapist',
+          bio: `
+            We’re excited to welcome Karen Nguyen to The Sweetest Lime Salon Spa! With over 25 years of experience
+            as a nail technician, Karen brings a wealth of skill and expertise to our team. She has a passion for
+            pedicures, ensuring every client enjoys a relaxing and rejuvenating experience.
+          `,
+          imageSrc: karenProfilePic,
         },
         {
           name: 'Noelle Mills-Tarmey',
