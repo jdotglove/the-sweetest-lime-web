@@ -179,7 +179,26 @@ useSeo({
       </div>
     </section>
 
+    <!-- Eco-Friendly Practices Section -->
+    <section class="py-16 px-6 bg-white">
+      <div class="container mx-auto">
+        <div class="flex gap-8 justify-center">
 
+          <!-- Right side: Description and commitments -->
+          <div class="lg:w-2/3">
+            <h2 class="text-3xl font-bold text-[#522413] mb-4">The Sweetest Lime Salon Spa Eco Fee</h2>
+            <p class="text-[#522413]/80 mb-6">
+              To support sustainability, we charge a $1.50 Eco Fee per service, allowing us to recycle 98%
+              of our waste—including hair, foils, color tubes, and more. This helps keep our salon eco-friendly
+              and reduces landfill waste.
+            </p>
+            <p>
+              Thank you for supporting a greener beauty industry!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Service Categories -->
     <div class="bg-dark-green/20 py-16 px-6">
