@@ -52,7 +52,7 @@ useSeo({
   title: 'About Us',
   description: 'Meet the skilled team behind The Sweetest Lime in Winston Salem. Our experienced beauty professionals are dedicated to providing exceptional hair, nail, and body work services in a welcoming environment.',
   path: route.path,
-  keywords: ['beauty salon team', 'professional stylists', 'nail technicians', 'massage therapists', 'beauty experts', 'salon staff', 'about us', 'salon history']
+  keywords: ['beauty salon team', 'professional stylists', 'nail technicians', 'massage therapists', 'beauty experts', 'salon staff', 'salon history']
 })
 </script>
 

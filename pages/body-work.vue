@@ -78,7 +78,7 @@ useSeo({
     class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[10dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md">
     <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
       <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-[#522413] font-medium relative">
-        <li class="" v-for="section in ['Massage', 'Add-ons']" :key="section">
+        <li class="" v-for="section in ['Massage', 'Add-Ons']" :key="section">
           <a :href="`#${section.toLowerCase()}`"
             class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
             {{ section }}
@@ -100,8 +100,6 @@ useSeo({
         </div>
       </div>
     </section>
-
-
 
     <!-- Service Categories -->
     <div class="bg-dark-green/20 py-16 px-6">
