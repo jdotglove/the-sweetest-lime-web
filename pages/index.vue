@@ -348,7 +348,8 @@ useSeo({
                 <label class="block text-sm font-medium text-[#522413] mb-1">Phone (optional)</label>
                 <p class="text-xs">
                   By providing your phone number, you agree to receive automated promotional and informational messages
-                  from The Sweetest Lime Salon Spa. Message and data rates may apply. Reply &quot;STOP&quot; to
+                  from The Sweetest Lime Salon Spa. Standard messaging and data rates may apply. Reply &quot;STOP&quot;
+                  to
                   unsubscribe at any time.
                 </p>
                 <input v-model="formData.phone" type="tel"
@@ -597,7 +598,7 @@ useSeo({
 
         <div class="flex gap-4 justify-center">
           <a href="https://sweet-lime-salon.square.site/" target="_blank"
-            class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
+            class="bg-accent text-white content-center px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
           </a>
           <a href="mailto:makayah1@gmail.com"
@@ -674,7 +675,7 @@ export default {
           id: 3,
           discount: '10% OFF',
           name: 'Sign up for Notifications',
-          description: 'Sign up for text or email notifications and receive 10% off your next visit.'
+          description: 'Sign up for text or email notifications and receive 10% off your next visit. Standard messaging and data rates may apply.'
         }
       ],
       reasons: [
