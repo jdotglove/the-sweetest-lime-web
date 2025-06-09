@@ -206,7 +206,8 @@ useSeo({
 
           <!-- CTA Buttons -->
           <div class="flex gap-4 flex-wrap justify-center">
-            <a href="https://sweet-lime-salon.square.site/" target="_blank"
+            <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start"
+              target="_blank"
               class="bg-primary text-white px-8 py-4 rounded-full hover:bg-primary/80 transition-all duration-300">
               Book Appointment
             </a>
@@ -282,7 +283,8 @@ useSeo({
                 <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
                 <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
               </section>
-              <a v-if="offer.name !== 'Sign up for Notifications'" href="https://sweet-lime-salon.square.site/"
+              <a v-if="offer.name !== 'Sign up for Notifications'"
+                href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start"
                 target="_blank"
                 class="w-full h-[50px] text-center self-end bg-accent text-white py-3 px-6 rounded-lg hover:bg-dark-green transition-colors">
                 Book Now
@@ -597,7 +599,7 @@ useSeo({
         </p>
 
         <div class="flex gap-4 justify-center">
-          <a href="https://sweet-lime-salon.square.site/" target="_blank"
+          <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start" target="_blank"
             class="bg-accent text-white content-center px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
           </a>
