@@ -276,7 +276,8 @@ useSeo({
           Join our community of satisfied clients and let us help you achieve your beauty goals.
         </p>
         <div class="flex gap-4 justify-center">
-          <a href="https://sweet-lime-salon.square.site/" target="_blank"
+          <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start"
+            target="_blank"
             class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Appointment
           </a>
@@ -385,16 +386,6 @@ export default {
             The Sweetest Lime Salon Spa family!
           `,
           imageSrc: aprylProfilePic,
-        },
-        {
-          name: 'Karen Nguyen',
-          role: 'Nail Technician & Massage Therapist',
-          bio: `
-            We’re excited to welcome Karen Nguyen to The Sweetest Lime Salon Spa! With over 25 years of experience
-            as a nail technician, Karen brings a wealth of skill and expertise to our team. She has a passion for
-            pedicures, ensuring every client enjoys a relaxing and rejuvenating experience.
-          `,
-          imageSrc: karenProfilePic,
         },
         {
           name: 'Noelle Mills-Tarmey',
