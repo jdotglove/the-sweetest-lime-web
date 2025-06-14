@@ -1,5 +1,5 @@
 <template>
-  <nav :class="navigationClassName">
+  <nav :class="[navigationClassName, { 'nav-visible': !isAnySectionInView }]">
     <div class="flex  lg:flex-col h-full justify-center mx-auto px-6 relative">
       <span class="absolute bg-accent transition-all left-2 w-0.5 h-[25%] rounded-full"></span>
       <ul class="flex lg:flex-col overflow-x-auto gap-4 lg:gap-3 py-3 text-[#522413] font-medium relative">
@@ -16,6 +16,8 @@
   </nav>
 </template>
 <script>
+import { ref, onMounted, onUnmounted } from 'vue';
+
 export default defineComponent({
   name: 'ServicePageSectionNav',
   props: {
@@ -28,8 +30,38 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const isAnySectionInView = ref(false);
     let navigationClassName = '';
-    console.log(window);
+    let observer = null;
+
+    const checkSectionVisibility = (entries) => {
+      console.log(entries)
+      isAnySectionInView.value = entries.some(entry => entry.isIntersecting);
+    };
+
+    onMounted(() => {
+      // Set up intersection observer
+      observer = new IntersectionObserver(checkSectionVisibility, {
+        root: null,
+        rootMargin: '-20% 0px',
+        threshold: 0.2
+      });
+
+      // Observe all sections
+      props.sections.forEach(section => {
+        const element = document.getElementById(section.toLowerCase());
+        if (element) {
+          observer.observe(element);
+        }
+      });
+    });
+
+    onUnmounted(() => {
+      if (observer) {
+        observer.disconnect();
+      }
+    });
+
     switch (props.pageName) {
       case 'body-work':
         navigationClassName = 'nav-translation w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[10dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md';
@@ -46,6 +78,7 @@ export default defineComponent({
 
     return {
       navigationClassName,
+      isAnySectionInView,
     };
   },
 });
@@ -59,6 +92,10 @@ export default defineComponent({
     transition-duration: 300ms;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-translation.nav-visible {
+    --tw-translate-x: 0;
   }
 
   .nav-translation:hover {
