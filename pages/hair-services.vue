@@ -1,172 +1,157 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo';
+import { useSeo } from '../composables/useSeo'
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const braidsContainer = ref<HTMLElement | null>(null)
-const currentBraidsIndex = ref<number>(0)
-const locsContainer = ref<HTMLElement | null>(null)
-const currentLocsIndex = ref<number>(0)
-const stylingContainer = ref<HTMLElement | null>(null)
-const currentStylingIndex = ref<number>(0)
-const treatmentsContainer = ref<HTMLElement | null>(null)
-const currentTreatmentIndex = ref<number>(0)
-const estheticsContainer = ref<HTMLElement | null>(null)
-const currentEstheticsIndex = ref<number>(0)
+const braidsContainer = ref<HTMLElement | null>(null);
+const currentBraidsIndex = ref<number>(0);
+const locsContainer = ref<HTMLElement | null>(null);
+const currentLocsIndex = ref<number>(0);
+const stylingContainer = ref<HTMLElement | null>(null);
+const currentStylingIndex = ref<number>(0);
+const treatmentsContainer = ref<HTMLElement | null>(null);
+const currentTreatmentIndex = ref<number>(0);
+const estheticsContainer = ref<HTMLElement | null>(null);
+const currentEstheticsIndex = ref<number>(0);
 
 const scrollToEstheticsIndex = (index: number): void => {
-  if (!estheticsContainer.value) return
+  if (!estheticsContainer.value) return;
 
   const slideWidth: number = estheticsContainer.value.offsetWidth
   estheticsContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleEstheticsScroll = (): void => {
-  if (!estheticsContainer.value) return
+  if (!estheticsContainer.value) return;
 
-  const slideWidth: number = estheticsContainer.value.offsetWidth
-  const scrollPosition: number = estheticsContainer.value.scrollLeft
-  currentEstheticsIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = estheticsContainer.value.offsetWidth;
+  const scrollPosition: number = estheticsContainer.value.scrollLeft;
+  currentEstheticsIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 const scrollToTreatmentIndex = (index: number): void => {
-  if (!treatmentsContainer.value) return
+  if (!treatmentsContainer.value) return;
 
-  const slideWidth: number = treatmentsContainer.value.offsetWidth
+  const slideWidth: number = treatmentsContainer.value.offsetWidth;
   treatmentsContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleTreatmentScroll = (): void => {
-  if (!treatmentsContainer.value) return
+  if (!treatmentsContainer.value) return;
 
-  const slideWidth: number = treatmentsContainer.value.offsetWidth
-  const scrollPosition: number = treatmentsContainer.value.scrollLeft
-  currentTreatmentIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = treatmentsContainer.value.offsetWidth;
+  const scrollPosition: number = treatmentsContainer.value.scrollLeft;
+  currentTreatmentIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 const scrollToStylingIndex = (index: number): void => {
-  if (!stylingContainer.value) return
+  if (!stylingContainer.value) return;
 
   const slideWidth: number = stylingContainer.value.offsetWidth
   stylingContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleStylingScroll = (): void => {
-  if (!stylingContainer.value) return
+  if (!stylingContainer.value) return;
 
-  const slideWidth: number = stylingContainer.value.offsetWidth
-  const scrollPosition: number = stylingContainer.value.scrollLeft
-  currentStylingIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = stylingContainer.value.offsetWidth;
+  const scrollPosition: number = stylingContainer.value.scrollLeft;
+  currentStylingIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 const scrollToBraidsIndex = (index: number): void => {
-  if (!braidsContainer.value) return
+  if (!braidsContainer.value) return;
 
-  const slideWidth: number = braidsContainer.value.offsetWidth
+  const slideWidth: number = braidsContainer.value.offsetWidth;
   braidsContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleBraidsScroll = (): void => {
-  if (!braidsContainer.value) return
+  if (!braidsContainer.value) return;
 
-  const slideWidth: number = braidsContainer.value.offsetWidth
-  const scrollPosition: number = braidsContainer.value.scrollLeft
-  currentBraidsIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = braidsContainer.value.offsetWidth;
+  const scrollPosition: number = braidsContainer.value.scrollLeft;
+  currentBraidsIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 const scrollToLocsIndex = (index: number): void => {
-  if (!locsContainer.value) return
+  if (!locsContainer.value) return;
 
-  const slideWidth: number = locsContainer.value.offsetWidth
+  const slideWidth: number = locsContainer.value.offsetWidth;
   locsContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleLocsScroll = (): void => {
-  if (!locsContainer.value) return
+  if (!locsContainer.value) return;
 
-  const slideWidth: number = locsContainer.value.offsetWidth
-  const scrollPosition: number = locsContainer.value.scrollLeft
-  currentLocsIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = locsContainer.value.offsetWidth;
+  const scrollPosition: number = locsContainer.value.scrollLeft;
+  currentLocsIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 onMounted((): void => {
   if (locsContainer.value) {
-    locsContainer.value.addEventListener('scroll', handleLocsScroll)
+    locsContainer.value.addEventListener('scroll', handleLocsScroll);
   }
   if (braidsContainer.value) {
-    braidsContainer.value.addEventListener('scroll', handleBraidsScroll)
+    braidsContainer.value.addEventListener('scroll', handleBraidsScroll);
   }
   if (stylingContainer.value) {
-    stylingContainer.value.addEventListener('scroll', handleStylingScroll)
+    stylingContainer.value.addEventListener('scroll', handleStylingScroll);
   }
   if (treatmentsContainer.value) {
-    treatmentsContainer.value.addEventListener('scroll', handleTreatmentScroll)
+    treatmentsContainer.value.addEventListener('scroll', handleTreatmentScroll);
   }
   if (estheticsContainer.value) {
-    estheticsContainer.value.addEventListener('scroll', handleEstheticsScroll)
+    estheticsContainer.value.addEventListener('scroll', handleEstheticsScroll);
   }
-})
+});
 
 onUnmounted((): void => {
   if (locsContainer.value) {
-    locsContainer.value.removeEventListener('scroll', handleLocsScroll)
+    locsContainer.value.removeEventListener('scroll', handleLocsScroll);
   }
   if (braidsContainer.value) {
-    braidsContainer.value.removeEventListener('scroll', handleBraidsScroll)
+    braidsContainer.value.removeEventListener('scroll', handleBraidsScroll);
   }
   if (stylingContainer.value) {
-    stylingContainer.value.removeEventListener('scroll', handleStylingScroll)
+    stylingContainer.value.removeEventListener('scroll', handleStylingScroll);
   }
   if (treatmentsContainer.value) {
-    treatmentsContainer.value.removeEventListener('scroll', handleTreatmentScroll)
+    treatmentsContainer.value.removeEventListener('scroll', handleTreatmentScroll);
   }
   if (estheticsContainer.value) {
-    estheticsContainer.value.removeEventListener('scroll', handleEstheticsScroll)
+    estheticsContainer.value.removeEventListener('scroll', handleEstheticsScroll);
   }
-})
-const route = useRoute()
+});
+const route = useRoute();
 
 // Basic usage for a service page
 useSeo({
   title: 'Hair Services',
   description: 'Expert hair styling, braid, cutting, treatment, and coloring services in Winston Salem. Book your appointment today.',
   path: route.path,
-  keywords: ['hair salon', 'hair styling', 'hair coloring', 'haircut', 'loc', 'dreadlocs', 'braids', 'treatment']
-})
+  keywords: ['hair salon', 'hair styling', 'hair coloring', 'haircut', 'loc', 'dreadlocs', 'braids', 'treatment'],
+});
 </script>
 
 <template>
-  <Navbar />
-  <!-- Quick Navigation with Leaf Accents -->
-  <nav
-    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[20dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md">
-    <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
-      <ul class="flex lg:flex-col overflow-x-auto gap-4 lg:gap-3 py-3 text-[#522413] font-medium relative">
-        <li class="" v-for="section in ['Locs', 'Braids', 'Styling', 'Treatments', 'Esthetics']" :key="section">
-          <a :href="`#${section.toLowerCase()}`"
-            class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
-            {{ section }}
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 lg:bg-accent transition-all duration-300 group-hover:w-full"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <MainNavbar />
+  <ServicePageSectionNav pageName="hair-services" :sections="hairServiceSections" />
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
@@ -451,7 +436,8 @@ useSeo({
           Book your appointment today and let our expert stylists help you achieve your dream look.
         </p>
         <div class="flex gap-4 justify-center">
-          <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start" target="_blank"
+          <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start"
+            target="_blank"
             class="bg-accent text-white px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
           </a>
@@ -483,21 +469,24 @@ useSeo({
         </div>
       </div>
     </section>
-    <Footer />
+    <MainFooter />
   </div>
 </template>
 
 <script lang="ts">
-import Navbar from '../components/Navbar.vue';
-import Footer from '../components/Footer.vue';
+import MainNavbar from '../components/Navigation/MainNavbar.vue'
+import ServicePageSectionNav from '../components/Navigation/ServicePageSectionNav.vue'
+import MainFooter from '../components/MainFooter.vue'
 
 export default {
   components: {
-    Navbar,
-    Footer
+    MainNavbar,
+    ServicePageSectionNav,
+    MainFooter,
   },
   data() {
     return {
+      hairServiceSections: ['Locs', 'Braids', 'Styling', 'Treatments', 'Esthetics'],
       featuredServices: [
         {
           id: 1,
@@ -1053,8 +1042,8 @@ export default {
           isOpen: false
         },
         // Add more FAQs
-      ]
-    }
+      ],
+    };
   }
 }
 </script>

@@ -1,62 +1,60 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo';
+import { useSeo } from '../composables/useSeo'
 import { ref, onMounted, onUnmounted, watch } from 'vue'
-import locClientImage from '~/assets/Loc Trio.jpg';
-const offersContainer = ref<HTMLElement | null>(null)
-const currentOfferIndex = ref(0)
-const clientsContainer = ref<HTMLElement | null>(null)
-const currentClientIndex = ref<number>(0)
+import locClientImage from '~/assets/Loc Trio.jpg'
 
-const happyClients: any[] = [
-  {
-    src: locClientImage,
-    alt: 'Happy client showing off their new hairstyle'
-  },
-  // Add more images as needed
-]
+const offersContainer = ref<HTMLElement | null>(null);
+const currentOfferIndex = ref(0);
+const clientsContainer = ref<HTMLElement | null>(null);
+const currentClientIndex = ref<number>(0);
+
+const happyClients: any[] = [{
+  src: locClientImage,
+  alt: 'Happy client showing off their new hairstyle',
+}];
 
 const scrollToClientIndex = (index: number): void => {
-  if (!clientsContainer.value) return
+  if (!clientsContainer.value) return;
 
-  const slideWidth: number = clientsContainer.value.offsetWidth
+  const slideWidth: number = clientsContainer.value.offsetWidth;
   clientsContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleClientScroll = (): void => {
-  if (!clientsContainer.value) return
+  if (!clientsContainer.value) return;
 
-  const slideWidth: number = clientsContainer.value.offsetWidth
-  const scrollPosition: number = clientsContainer.value.scrollLeft
-  currentClientIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = clientsContainer.value.offsetWidth;
+  const scrollPosition: number = clientsContainer.value.scrollLeft;
+  currentClientIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 const scrollToOfferIndex = (index: number) => {
-  if (!offersContainer.value) return
+  if (!offersContainer.value) return;
 
-  const slideWidth = offersContainer.value.offsetWidth
+  const slideWidth = offersContainer.value.offsetWidth;
   offersContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleOfferScroll = () => {
-  if (!offersContainer.value) return
+  if (!offersContainer.value) return;
 
-  const slideWidth = offersContainer.value.offsetWidth
-  const scrollPosition = offersContainer.value.scrollLeft
-  currentOfferIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth = offersContainer.value.offsetWidth;
+  const scrollPosition = offersContainer.value.scrollLeft;
+  currentOfferIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
-const showModal = ref(false)
+const showModal = ref(false);
 const formData = ref({
   name: '',
   email: '',
-  phone: ''
-})
+  phone: '',
+});
 let originalOverflow = '';
 
 // Watch for menu state changes
@@ -71,117 +69,115 @@ watch(showModal, (newValue) => {
   }
 });
 
-const isSubmitting = ref(false)
-const error = ref('')
-
+const isSubmitting = ref(false);
+const error = ref('');
 
 const handleSubmit = async () => {
   try {
-    isSubmitting.value = true
-    error.value = ''
+    isSubmitting.value = true;
+    error.value = '';
 
     const response = await fetch('/api/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData.value)
-    })
+      body: JSON.stringify(formData.value),
+    });
 
     if (!response.ok) {
-      throw new Error('Failed to subscribe')
+      throw new Error('Failed to subscribe');
     }
 
-    const data = await response.json()
+    const data = await response.json();
 
     // Show success message
-    alert('Thank you for subscribing!')
+    alert('Thank you for subscribing!');
 
     // Reset form and close modal
     formData.value = {
       name: '',
       email: '',
-      phone: ''
+      phone: '',
     }
-    showModal.value = false
-
+    showModal.value = false;
   } catch (err) {
-    error.value = 'Failed to subscribe. Please try again.'
-    console.error('Error:', err)
+    error.value = 'Failed to subscribe. Please try again.';
+    console.error('Error:', err);
   } finally {
-    isSubmitting.value = false
+    isSubmitting.value = false;
   }
 }
 
-const scrollContainer = ref<HTMLElement | null>(null)
-const currentIndex = ref(0)
-const expandedReviews = ref<Record<number, boolean>>({})
+const scrollContainer = ref<HTMLElement | null>(null);
+const currentIndex = ref(0);
+const expandedReviews = ref<Record<number, boolean>>({});
 
 // Check if content is long enough to need truncation
 const isContentLong = (content: string) => {
-  return content.length > 150 // Adjust this number based on your needs
+  return content.length > 150;
 }
 
 // Toggle expanded state for a review
 const toggleReview = (id: number) => {
-  expandedReviews.value[id] = !expandedReviews.value[id]
+  expandedReviews.value[id] = !expandedReviews.value[id];
 }
 
 const scrollToIndex = (index: number) => {
-  if (!scrollContainer.value) return
+  if (!scrollContainer.value) return;
 
-  const slideWidth = scrollContainer.value.offsetWidth
+  const slideWidth = scrollContainer.value.offsetWidth;
   scrollContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleScroll = () => {
-  if (!scrollContainer.value) return
+  if (!scrollContainer.value) return;
 
-  const slideWidth = scrollContainer.value.offsetWidth
-  const scrollPosition = scrollContainer.value.scrollLeft
-  currentIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth = scrollContainer.value.offsetWidth;
+  const scrollPosition = scrollContainer.value.scrollLeft;
+  currentIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 onMounted(() => {
   if (scrollContainer.value) {
-    scrollContainer.value.addEventListener('scroll', handleScroll)
+    scrollContainer.value.addEventListener('scroll', handleScroll);
   }
   if (offersContainer.value) {
-    offersContainer.value.addEventListener('scroll', handleOfferScroll)
+    offersContainer.value.addEventListener('scroll', handleOfferScroll);
   }
   if (clientsContainer.value) {
-    clientsContainer.value.addEventListener('scroll', handleClientScroll)
+    clientsContainer.value.addEventListener('scroll', handleClientScroll);
   }
-})
+});
 
 onUnmounted(() => {
   if (scrollContainer.value) {
-    scrollContainer.value.removeEventListener('scroll', handleScroll)
+    scrollContainer.value.removeEventListener('scroll', handleScroll);
   }
   if (offersContainer.value) {
-    offersContainer.value.removeEventListener('scroll', handleOfferScroll)
+    offersContainer.value.removeEventListener('scroll', handleOfferScroll);
   }
   if (clientsContainer.value) {
-    clientsContainer.value.removeEventListener('scroll', handleClientScroll)
+    clientsContainer.value.removeEventListener('scroll', handleClientScroll);
   }
-})
-const route = useRoute()
+});
+const route = useRoute();
 
 // Basic usage for a service page
 useSeo({
   title: 'Home Page',
   description: 'Experience luxury beauty services at The Sweetest Lime in Winston Salem. Professional hair styling, nail care, massages, and body work in a serene environment. Your destination for complete beauty and wellness.',
   path: route.path,
-  keywords: ['beauty salon', 'hair salon', 'nail salon', 'massage', 'body work', 'beauty services', 'hair styling', 'nail care']
-})
+  keywords: ['beauty salon', 'hair salon', 'nail salon', 'massage', 'body work', 'beauty services', 'hair styling', 'nail care'],
+});
 </script>
 
 <template>
 
-  <Navbar />
+  <MainNavbar />
   <div class="min-h-screen bg-background overflow-hidden">
 
     <!-- Hero Section -->
@@ -599,7 +595,8 @@ useSeo({
         </p>
 
         <div class="flex gap-4 justify-center">
-          <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start" target="_blank"
+          <a href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start"
+            target="_blank"
             class="bg-accent text-white content-center px-8 py-4 rounded-full hover:bg-dark-green transition-all duration-300">
             Book Online
           </a>
@@ -610,180 +607,156 @@ useSeo({
         </div>
       </div>
     </section>
-    <Footer />
+    <MainFooter />
   </div>
 
 </template>
 
 <script lang="ts">
-import Navbar from '../components/Navbar.vue';
-import Footer from '../components/Footer.vue';
-import { GraduationCap, Gem, Users, Wand2, HeartHandshake, Sparkles } from 'lucide-vue-next';
+import MainNavbar from '../components/Navigation/MainNavbar.vue'
+import MainFooter from '../components/MainFooter.vue'
+import { GraduationCap, Gem, Users, Wand2, HeartHandshake, Sparkles } from 'lucide-vue-next'
 
 export default {
   components: {
-    Navbar,
-    Footer
+    MainNavbar,
+    MainFooter,
   },
   data() {
     return {
-      mainServices: [
-        {
-          id: 1,
-          name: 'Hair Services',
-          description: 'Expert styling, cutting, and coloring services for all hair types.',
-          features: [
-            'Professional Hair Styling',
-            'Custom Color Services',
-            'Treatment Options',
-            'Style Consultation'
-          ],
-          link: '/hair-services'
-        },
-        {
-          id: 2,
-          name: 'Nail Care',
-          description: 'Luxury nail services from basic care to artistic designs.',
-          features: [
-            'Manicures & Pedicures',
-          ],
-          link: '/nail-care'
-        },
-        {
-          id: 3,
-          name: 'Body Work',
-          description: 'Rejuvenating spa treatments for total relaxation.',
-          features: [
-            'Massage Therapy',
-            'Body Treatments',
-          ],
-          link: '/body-work'
-        }
-      ],
-      specialOffers: [
-        {
-          id: 1,
-          discount: '20% OFF',
-          name: 'First Visit to New Location',
-          description: 'Special discount for your first visit to our new location for any of our services.'
-        },
-        {
-          id: 2,
-          discount: 'SAVE 20%',
-          name: 'Bundle Package',
-          description: 'Bundle any 3 services and receive 20% off your vist.'
-        },
-        {
-          id: 3,
-          discount: '10% OFF',
-          name: 'Sign up for Notifications',
-          description: 'Sign up for text or email notifications and receive 10% off your next visit. Standard messaging and data rates may apply.'
-        }
-      ],
-      reasons: [
-        {
-          id: 1,
-          icon: '✨',
-          title: 'Expert Team',
-          description: 'Our skilled professionals bring years of experience and continuous training.'
-        },
-        {
-          id: 2,
-          icon: '🌿',
-          title: 'Premium Products',
-          description: 'We use only the highest quality, sustainable products for all services.'
-        },
-        {
-          id: 3,
-          icon: '💝',
-          title: 'Personal Attention',
-          description: 'Customized services tailored to your unique needs and preferences.'
-        },
-        {
-          id: 4,
-          icon: '🎨',
-          title: 'Creative Excellence',
-          description: 'Innovative techniques and artistic approaches to beauty services.'
-        }
-      ],
-      testimonials: [
-        {
-          id: 1,
-          name: 'Ellen Forbes',
-          service: 'Hair Services',
-          content: 'I enjoyed my experience. I am appreciative the education provided about my hair and how to truly care for my locs. Before my service; I considered cutting my locs. I purchased many of her products because I want to continue my loc journey after seeing how beautiful my locs really are.',
-          stars: 5,
-          link: 'https://g.co/kgs/JWFFeHP',
-        },
-        {
-          id: 2,
-          name: 'Táshana W',
-          service: 'Hair Services',
-          content: `
-            Makayah is very knowledgeable and professional cosmetologist. Booking her time is easy through Square. She does not overbook her time and moves efficiently. She is an excellent colorist and master stylist. She uses and sells Ashtae products,  along with her own oil blends, curl & loc refresher sprays, bonnets, and caps. Your hair will be well cared for with her or at home. She provides complementary care kits for starter loc appointments so you will leave with everything you need to get started.
-            She is the only person who I will allow to do my color or loc retwist while I am in Winston Salem. I love her Stimulation Oil blend. The peppermint and rosemary oils are great for my dry scalp.
-            I recommend her for any and all genders, hair types or hair care services. I especially recommend her to those interested in services for their loose natural hair or locs/dreadlocks.
-          `,
-          stars: 5,
-          link: 'https://g.co/kgs/8ZiRpPY',
-        },
-        {
-          id: 3,
-          name: 'Tracy Powers',
-          service: 'Hair Services',
-          content: 'I love my hair!! Makayah is amazingly blessed and talented. She always no what I want even when I don\'t know what I want 🥰',
-          stars: 5,
-          link: 'https://g.co/kgs/oeWvU8R',
-        }
-      ],
-      benefits: [
-        {
-          id: 1,
-          icon: GraduationCap,
-          title: 'Expert Team',
-          description: 'Our certified professionals bring decades of combined experience in hair design, nail artistry, and body wellness.'
-        },
-        {
-          id: 2,
-          icon: Gem,
-          title: 'Premium Experience',
-          description: 'Enjoy a luxurious atmosphere with high-end products and personalized attention to detail.'
-        },
-        {
-          id: 3,
-          icon: Users,  // Changed to Users icon
-          title: 'Inclusivity & Community',
-          description: 'Creating a welcoming space where all guests feel valued, respected, and part of our beauty community.'
-        },
-        {
-          id: 4,
-          icon: Wand2,
-          title: 'Custom Solutions',
-          description: 'Every service is tailored to your unique style, preferences, and beauty goals.'
-        },
-        {
-          id: 5,
-          icon: HeartHandshake,
-          title: 'Client-First Focus',
-          description: 'Your comfort and satisfaction are our top priorities, ensuring a relaxing and rewarding visit.'
-        },
-        {
-          id: 6,
-          icon: Sparkles,
-          title: 'Lasting Results',
-          description: 'Quality techniques and products that help you maintain your beautiful look long after your visit.'
-        }
-      ]
+      mainServices: [{
+        id: 1,
+        name: 'Hair Services',
+        description: 'Expert styling, cutting, and coloring services for all hair types.',
+        features: [
+          'Professional Hair Styling',
+          'Custom Color Services',
+          'Treatment Options',
+          'Style Consultation',
+        ],
+        link: '/hair-services',
+      }, {
+        id: 2,
+        name: 'Nail Care',
+        description: 'Luxury nail services from basic care to artistic designs.',
+        features: [
+          'Manicures & Pedicures',
+        ],
+        link: '/nail-care',
+      }, {
+        id: 3,
+        name: 'Body Work',
+        description: 'Rejuvenating spa treatments for total relaxation.',
+        features: [
+          'Massage Therapy',
+          'Body Treatments',
+        ],
+        link: '/body-work',
+      }],
+      specialOffers: [{
+        id: 1,
+        discount: '20% OFF',
+        name: 'First Visit to New Location',
+        description: 'Special discount for your first visit to our new location for any of our services.',
+      }, {
+        id: 2,
+        discount: 'SAVE 20%',
+        name: 'Bundle Package',
+        description: 'Bundle any 3 services and receive 20% off your vist.',
+      }, {
+        id: 3,
+        discount: '10% OFF',
+        name: 'Sign up for Notifications',
+        description: 'Sign up for text or email notifications and receive 10% off your next visit. Standard messaging and data rates may apply.',
+      }],
+      reasons: [{
+        id: 1,
+        icon: '✨',
+        title: 'Expert Team',
+        description: 'Our skilled professionals bring years of experience and continuous training.',
+      }, {
+        id: 2,
+        icon: '🌿',
+        title: 'Premium Products',
+        description: 'We use only the highest quality, sustainable products for all services.',
+      }, {
+        id: 3,
+        icon: '💝',
+        title: 'Personal Attention',
+        description: 'Customized services tailored to your unique needs and preferences.',
+      }, {
+        id: 4,
+        icon: '🎨',
+        title: 'Creative Excellence',
+        description: 'Innovative techniques and artistic approaches to beauty services.',
+      }],
+      testimonials: [{
+        id: 1,
+        name: 'Ellen Forbes',
+        service: 'Hair Services',
+        content: 'I enjoyed my experience. I am appreciative the education provided about my hair and how to truly care for my locs. Before my service; I considered cutting my locs. I purchased many of her products because I want to continue my loc journey after seeing how beautiful my locs really are.',
+        stars: 5,
+        link: 'https://g.co/kgs/JWFFeHP',
+      }, {
+        id: 2,
+        name: 'Táshana W',
+        service: 'Hair Services',
+        content: `
+          Makayah is very knowledgeable and professional cosmetologist. Booking her time is easy through Square. She does not overbook her time and moves efficiently. She is an excellent colorist and master stylist. She uses and sells Ashtae products,  along with her own oil blends, curl & loc refresher sprays, bonnets, and caps. Your hair will be well cared for with her or at home. She provides complementary care kits for starter loc appointments so you will leave with everything you need to get started.
+          She is the only person who I will allow to do my color or loc retwist while I am in Winston Salem. I love her Stimulation Oil blend. The peppermint and rosemary oils are great for my dry scalp.
+          I recommend her for any and all genders, hair types or hair care services. I especially recommend her to those interested in services for their loose natural hair or locs/dreadlocks.
+        `,
+        stars: 5,
+        link: 'https://g.co/kgs/8ZiRpPY',
+      }, {
+        id: 3,
+        name: 'Tracy Powers',
+        service: 'Hair Services',
+        content: 'I love my hair!! Makayah is amazingly blessed and talented. She always no what I want even when I don\'t know what I want 🥰',
+        stars: 5,
+        link: 'https://g.co/kgs/oeWvU8R',
+      }],
+      benefits: [{
+        id: 1,
+        icon: GraduationCap,
+        title: 'Expert Team',
+        description: 'Our certified professionals bring decades of combined experience in hair design, nail artistry, and body wellness.',
+      }, {
+        id: 2,
+        icon: Gem,
+        title: 'Premium Experience',
+        description: 'Enjoy a luxurious atmosphere with high-end products and personalized attention to detail.',
+      }, {
+        id: 3,
+        icon: Users,  // Changed to Users icon
+        title: 'Inclusivity & Community',
+        description: 'Creating a welcoming space where all guests feel valued, respected, and part of our beauty community.',
+      }, {
+        id: 4,
+        icon: Wand2,
+        title: 'Custom Solutions',
+        description: 'Every service is tailored to your unique style, preferences, and beauty goals.',
+      }, {
+        id: 5,
+        icon: HeartHandshake,
+        title: 'Client-First Focus',
+        description: 'Your comfort and satisfaction are our top priorities, ensuring a relaxing and rewarding visit.',
+      }, {
+        id: 6,
+        icon: Sparkles,
+        title: 'Lasting Results',
+        description: 'Quality techniques and products that help you maintain your beautiful look long after your visit.',
+      }],
     }
   },
   methods: {
     trimTestimonial(testimonialContent: string) {
       if (testimonialContent.length > 200) {
-        return `${testimonialContent.slice(0, 200)}...`
+        return `${testimonialContent.slice(0, 200)}...`;
       }
       return testimonialContent;
     }
-  }
+  },
 }
 </script>
 

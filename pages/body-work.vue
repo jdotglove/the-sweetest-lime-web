@@ -1,94 +1,80 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo';
+import { useSeo } from '../composables/useSeo'
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const addonsContainer = ref<HTMLElement | null>(null)
-const currentAddonIndex = ref<number>(0)
-const massageContainer = ref<HTMLElement | null>(null)
-const currentMassageIndex = ref<number>(0)
+const addonsContainer = ref<HTMLElement | null>(null);
+const currentAddonIndex = ref<number>(0);
+const massageContainer = ref<HTMLElement | null>(null);
+const currentMassageIndex = ref<number>(0);
 
 const scrollToMassageIndex = (index: number): void => {
-  if (!massageContainer.value) return
+  if (!massageContainer.value) return;
 
   const slideWidth: number = massageContainer.value.offsetWidth
   massageContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleMassageScroll = (): void => {
-  if (!massageContainer.value) return
+  if (!massageContainer.value) return;
 
-  const slideWidth: number = massageContainer.value.offsetWidth
-  const scrollPosition: number = massageContainer.value.scrollLeft
-  currentMassageIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = massageContainer.value.offsetWidth;
+  const scrollPosition: number = massageContainer.value.scrollLeft;
+  currentMassageIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 const scrollToAddonIndex = (index: number): void => {
-  if (!addonsContainer.value) return
+  if (!addonsContainer.value) return;
 
-  const slideWidth: number = addonsContainer.value.offsetWidth
+  const slideWidth: number = addonsContainer.value.offsetWidth;
   addonsContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleAddonScroll = (): void => {
-  if (!addonsContainer.value) return
+  if (!addonsContainer.value) return;
 
-  const slideWidth: number = addonsContainer.value.offsetWidth
-  const scrollPosition: number = addonsContainer.value.scrollLeft
-  currentAddonIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = addonsContainer.value.offsetWidth;
+  const scrollPosition: number = addonsContainer.value.scrollLeft;
+  currentAddonIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 onMounted((): void => {
   if (addonsContainer.value) {
-    addonsContainer.value.addEventListener('scroll', handleAddonScroll)
+    addonsContainer.value.addEventListener('scroll', handleAddonScroll);
   }
   if (massageContainer.value) {
-    massageContainer.value.addEventListener('scroll', handleMassageScroll)
+    massageContainer.value.addEventListener('scroll', handleMassageScroll);
   }
-})
+});
 
 onUnmounted((): void => {
   if (addonsContainer.value) {
-    addonsContainer.value.removeEventListener('scroll', handleAddonScroll)
+    addonsContainer.value.removeEventListener('scroll', handleAddonScroll);
   }
   if (massageContainer.value) {
-    massageContainer.value.removeEventListener('scroll', handleMassageScroll)
+    massageContainer.value.removeEventListener('scroll', handleMassageScroll);
   }
-})
-const route = useRoute()
+});
+const route = useRoute();
 
 // Basic usage for a service page
 useSeo({
   title: 'Body Work Services',
   description: 'Experience relaxation and healing with our professional massage and bodywork services in Winston Salem. Offering Swedish massage, deep tissue, and therapeutic bodywork treatments.',
   path: route.path,
-  keywords: ['massage therapy', 'body work', 'swedish massage', 'deep tissue massage', 'relaxation massage', 'therapeutic massage']
-})
+  keywords: ['massage therapy', 'body work', 'swedish massage', 'deep tissue massage', 'relaxation massage', 'therapeutic massage'],
+});
 </script>
 
 <template>
-  <Navbar />
-  <!-- Quick Navigation -->
-  <nav
-    class="fixed w-full top-[4.5rem] lg:top-24 lg:right-0 lg:h-[10dvh] lg:w-[16dvw] lg:rounded-s-xl z-40 bg-white/95 backdrop-blur-md shadow-md">
-    <div class="flex lg:flex-col h-full justify-center mx-auto px-6 relative">
-      <ul class="flex lg:flex-col overflow-x-auto gap-2 py-3 text-[#522413] font-medium relative">
-        <li class="" v-for="section in ['Massage', 'Add-Ons']" :key="section">
-          <a :href="`#${section.toLowerCase()}`"
-            class="lg:hover:text-accent transition-colors whitespace-nowrap relative group">
-            {{ section }}
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 lg:bg-accent transition-all duration-300 group-hover:w-full"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <MainNavbar />
+  <ServicePageSectionNav pageName="body-work" :sections="bodyWorkSections" />
+
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
@@ -243,149 +229,134 @@ useSeo({
         </div>
       </div>
     </section>
-    <Footer />
+    <MainFooter />
   </div>
 </template>
 
 <script lang="ts">
-import Navbar from '../components/Navbar.vue';
-import Footer from '../components/Footer.vue';
+import MainNavbar from '../components/Navigation/MainNavbar.vue'
+import ServicePageSectionNav from '../components/Navigation/ServicePageSectionNav.vue'
+import MainFooter from '../components/MainFooter.vue'
 
 export default {
   components: {
-    Navbar,
-    Footer
+    MainNavbar,
+    ServicePageSectionNav,
+    MainFooter,
   },
   data() {
     return {
-      featuredPackages: [
-        {
-          id: 1,
-          name: 'Ultimate Relaxation',
-          description: 'Complete relaxation package with multiple treatments',
-          includes: [
-            '90-min Swedish Massage',
-            'Aromatherapy',
-            'Hot Stone Treatment',
-            'Foot Reflexology'
-          ],
-          price: '$199',
-          duration: '2.5 hours'
-        },
-        {
-          id: 2,
-          name: 'Stress Relief',
-          description: 'Perfect combination for stress relief and relaxation',
-          includes: [
-            '60-min Deep Tissue Massage',
-            'Aromatherapy',
-            'Scalp Massage'
-          ],
-          price: '$149',
-          duration: '1.5 hours'
-        },
-        {
-          id: 3,
-          name: 'Quick Refresh',
-          description: 'Quick but effective relaxation treatment',
-          includes: [
-            '30-min Back Massage',
-            'Express Facial',
-            'Foot Massage'
-          ],
-          price: '$99',
-          duration: '1 hour'
-        }
+      bodyWorkSections: ['Massage', 'Add-Ons'],
+      featuredPackages: [{
+        id: 1,
+        name: 'Ultimate Relaxation',
+        description: 'Complete relaxation package with multiple treatments',
+        includes: [
+          '90-min Swedish Massage',
+          'Aromatherapy',
+          'Hot Stone Treatment',
+          'Foot Reflexology'
+        ],
+        price: '$199',
+        duration: '2.5 hours',
+      }, {
+        id: 2,
+        name: 'Stress Relief',
+        description: 'Perfect combination for stress relief and relaxation',
+        includes: [
+          '60-min Deep Tissue Massage',
+          'Aromatherapy',
+          'Scalp Massage'
+        ],
+        price: '$149',
+        duration: '1.5 hours',
+      }, {
+        id: 3,
+        name: 'Quick Refresh',
+        description: 'Quick but effective relaxation treatment',
+        includes: [
+          '30-min Back Massage',
+          'Express Facial',
+          'Foot Massage'
+        ],
+        price: '$99',
+        duration: '1 hour',
+      }],
+      massageServices: [{
+        id: 1,
+        name: 'Swedish Massage',
+        description: 'A massage therapy technique focused on relaxation and improving circulation. Typically performed on the whole body, but can also be focused on specific areas such as the back, shoulders, or neck.',
+        price: '$60/$145/$180',
+        duration: '30mins/90mins/2hrs',
+        details: ['Stress relief', 'Improved circulation', 'Relaxation'],
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/AXOJBWUROTKLU6GHV3CQSVFP',
+      }, {
+        id: 2,
+        name: 'Deep Tissue Massage',
+        description: 'A massage technique using slow, deep strokes and pressure to target chronic muscle tension and pain. It\'s often used to treat injuries and chronic pain, improve range of motion, increase blood flow, and reduce inflammation.',
+        price: '$150+',
+        duration: '90mins',
+        details: ['Pain relief', 'Muscle recovery', 'Tension release'],
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RIIQIN2NCJL2ZYCXVZ5N7RXW',
+      }],
+      addOns: [{
+        id: 1,
+        name: 'Aromatherapy',
+        description: '5-minute add-on',
+        price: '$10',
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV',
+      }, {
+        id: 2,
+        name: 'Hot Stones',
+        description: '30-minute add-on',
+        price: '$25',
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV',
+      }, {
+        id: 3,
+        name: 'Scalp Massage',
+        description: '15-minute add-on',
+        price: '$20',
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV',
+      }, {
+        id: 4,
+        name: 'Collagen Eye Treatment',
+        description: '10-minute add-on',
+        price: '$15',
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV',
+      }, {
+        id: 5,
+        name: 'Peppermint Foot & Hand Scrub',
+        description: '20-minute add-on',
+        price: '$30',
+        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV',
+      }],
+      benefits: [{
+        title: 'Stress Relief',
+        description: 'Regular massage therapy helps reduce stress and anxiety levels.',
+      }, {
+        title: 'Pain Management',
+        description: 'Effective treatment for chronic pain and muscle tension.',
+      }, {
+        title: 'Better Sleep',
+        description: 'Improved sleep quality and relaxation.',
+      }],
+      faqs: [{
+        question: 'What should I expect during my first massage?',
+        answer: 'Your therapist will discuss your needs and preferences before the session. You\'ll be given privacy to undress to your comfort level and lie on the massage table under a sheet.',
+        isOpen: false,
+      },
+      {
+        question: 'How often should I get a massage?',
+        answer: 'For optimal results, we recommend regular sessions every 4-6 weeks, but this can vary based on your individual needs and goals.',
+        isOpen: false,
+      },
+      {
+        question: 'What are the contraindications for massage?',
+        answer: 'Certain conditions may require medical clearance. Please inform us of any medical conditions, injuries, or pregnancies before booking.',
+        isOpen: false,
+      },
       ],
-      massageServices: [
-        {
-          id: 1,
-          name: 'Swedish Massage',
-          description: 'A massage therapy technique focused on relaxation and improving circulation. Typically performed on the whole body, but can also be focused on specific areas such as the back, shoulders, or neck.',
-          price: '$60/$145/$180',
-          duration: '30mins/90mins/2hrs',
-          details: ['Stress relief', 'Improved circulation', 'Relaxation'],
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/AXOJBWUROTKLU6GHV3CQSVFP',
-        },
-        {
-          id: 2,
-          name: 'Deep Tissue Massage',
-          description: 'A massage technique using slow, deep strokes and pressure to target chronic muscle tension and pain. It\'s often used to treat injuries and chronic pain, improve range of motion, increase blood flow, and reduce inflammation.',
-          price: '$150+',
-          duration: '90mins',
-          details: ['Pain relief', 'Muscle recovery', 'Tension release'],
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RIIQIN2NCJL2ZYCXVZ5N7RXW',
-        },
-      ],
-      addOns: [
-        {
-          id: 1,
-          name: 'Aromatherapy',
-          description: '5-minute add-on',
-          price: '$10',
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
-        },
-        {
-          id: 2,
-          name: 'Hot Stones',
-          description: '30-minute add-on',
-          price: '$25',
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
-        },
-        {
-          id: 3,
-          name: 'Scalp Massage',
-          description: '15-minute add-on',
-          price: '$20',
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
-        },
-        {
-          id: 4,
-          name: 'Collagen Eye Treatment',
-          description: '10-minute add-on',
-          price: '$15',
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
-        },
-        {
-          id: 5,
-          name: 'Peppermint Foot & Hand Scrub',
-          description: '20-minute add-on',
-          price: '$30',
-          link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/CLQAZS35W4HQ3HMSZGL4XESV'
-        }
-      ],
-      benefits: [
-        {
-          title: 'Stress Relief',
-          description: 'Regular massage therapy helps reduce stress and anxiety levels.'
-        },
-        {
-          title: 'Pain Management',
-          description: 'Effective treatment for chronic pain and muscle tension.'
-        },
-        {
-          title: 'Better Sleep',
-          description: 'Improved sleep quality and relaxation.'
-        }
-      ],
-      faqs: [
-        {
-          question: 'What should I expect during my first massage?',
-          answer: 'Your therapist will discuss your needs and preferences before the session. You\'ll be given privacy to undress to your comfort level and lie on the massage table under a sheet.',
-          isOpen: false
-        },
-        {
-          question: 'How often should I get a massage?',
-          answer: 'For optimal results, we recommend regular sessions every 4-6 weeks, but this can vary based on your individual needs and goals.',
-          isOpen: false
-        },
-        {
-          question: 'What are the contraindications for massage?',
-          answer: 'Certain conditions may require medical clearance. Please inform us of any medical conditions, injuries, or pregnancies before booking.',
-          isOpen: false
-        }
-      ]
-    }
+    };
   }
 }
 </script>

@@ -1,48 +1,47 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo';
-import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg';
-import karenProfilePic from '~/assets/karen_nguyen_profile_pic.jpg';
-import phanyProfilePic from '~/assets/phany_chhorn_profile_pic.jpeg';
-import aprylProfilePic from '~/assets/apryl_gonzalez_profile_pic.jpeg';
-import alleyProfilePic from '~/assets/alley_shay_profile_pic.jpeg';
-import typhaniProfilePic from '~/assets/typhani_richmond_profile_pic.jpeg';
+import { useSeo } from '../composables/useSeo'
+import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg'
+import phanyProfilePic from '~/assets/phany_chhorn_profile_pic.jpeg'
+import aprylProfilePic from '~/assets/apryl_gonzalez_profile_pic.jpeg'
+import alleyProfilePic from '~/assets/alley_shay_profile_pic.jpeg'
+import typhaniProfilePic from '~/assets/typhani_richmond_profile_pic.jpeg'
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const teamContainer = ref<HTMLElement | null>(null)
-const currentTeamIndex = ref<number>(0)
-const expandedBios = ref<Record<number, boolean>>({})
+const teamContainer = ref<HTMLElement | null>(null);
+const currentTeamIndex = ref<number>(0);
+const expandedBios = ref<Record<number, boolean>>({});
 
 const toggleBio = (index: number): void => {
-  expandedBios.value[index] = !expandedBios.value[index]
+  expandedBios.value[index] = !expandedBios.value[index];
 }
 
 const scrollToTeamIndex = (index: number): void => {
-  if (!teamContainer.value) return
+  if (!teamContainer.value) return;
 
-  const slideWidth: number = teamContainer.value.offsetWidth
+  const slideWidth: number = teamContainer.value.offsetWidth;
   teamContainer.value.scrollTo({
     left: slideWidth * index,
-    behavior: 'smooth'
-  })
+    behavior: 'smooth',
+  });
 }
 
 const handleTeamScroll = (): void => {
-  if (!teamContainer.value) return
+  if (!teamContainer.value) return;
 
-  const slideWidth: number = teamContainer.value.offsetWidth
-  const scrollPosition: number = teamContainer.value.scrollLeft
-  currentTeamIndex.value = Math.round(scrollPosition / slideWidth)
+  const slideWidth: number = teamContainer.value.offsetWidth;
+  const scrollPosition: number = teamContainer.value.scrollLeft;
+  currentTeamIndex.value = Math.round(scrollPosition / slideWidth);
 }
 
 onMounted((): void => {
   if (teamContainer.value) {
-    teamContainer.value.addEventListener('scroll', handleTeamScroll)
+    teamContainer.value.addEventListener('scroll', handleTeamScroll);
   }
 })
 
 onUnmounted((): void => {
   if (teamContainer.value) {
-    teamContainer.value.removeEventListener('scroll', handleTeamScroll)
+    teamContainer.value.removeEventListener('scroll', handleTeamScroll);
   }
 })
 const route = useRoute()
@@ -52,12 +51,12 @@ useSeo({
   title: 'About Us',
   description: 'Meet the skilled team behind The Sweetest Lime in Winston Salem. Our experienced beauty professionals are dedicated to providing exceptional hair, nail, and body work services in a welcoming environment.',
   path: route.path,
-  keywords: ['beauty salon team', 'professional stylists', 'nail technicians', 'massage therapists', 'beauty experts', 'salon staff', 'salon history']
-})
+  keywords: ['beauty salon team', 'professional stylists', 'nail technicians', 'massage therapists', 'beauty experts', 'salon staff', 'salon history'],
+});
 </script>
 
 <template>
-  <Navbar />
+  <MainNavbar />
   <div class="min-h-screen bg-background">
     <!-- Hero Section -->
     <section class="relative h-[70vh] overflow-hidden">
@@ -288,139 +287,115 @@ useSeo({
         </div>
       </div>
     </section>
-    <Footer />
+    <MainFooter />
   </div>
 </template>
 
 <script lang="ts">
-import Navbar from '../components/Navbar.vue';
-import Footer from '../components/Footer.vue';
-import { Star, Users, HandshakeIcon, Lightbulb, Heart, Flower2 } from 'lucide-vue-next';
+import MainNavbar from '../components/Navigation/MainNavbar.vue'
+import MainFooter from '../components/MainFooter.vue'
+import { Star, Users, HandshakeIcon, Lightbulb, Heart, Flower2 } from 'lucide-vue-next'
 
 export default {
+  components: {
+    MainNavbar,
+    MainFooter,
+  },
   data() {
     return {
-      coreValues: [
-        {
-          icon: Star,  // Professional excellence and service quality
-          title: 'Excellence',
-          description: 'We are committed to delivering exceptional service, with attention to detail, cleanliness and dedication to ensuring every guest experiences luxury care with every visit.'
-        },
-        {
-          icon: Users,  // Community, people, support
-          title: 'Empowerment',
-          description: 'We uplift and support the growth of young Black and Brown beauty professionals, helping them cultivate their careers and build their clientele.'
-        },
-        {
-          icon: HandshakeIcon,  // Trust, partnership, agreements
-          title: 'Integrity & Trust',
-          description: 'We build lasting relationships with our guests and professionals through honesty, transparency, and consistent delivery on our promises.'
-        },
-        {
-          icon: Lightbulb,  // Ideas, creativity, innovation
-          title: 'Innovation & Creativity',
-          description: 'We encourage continuous learning, creativity, and the use of modern techniques to stay at the forefront of beauty and wellness trends.'
-        },
-        {
-          icon: Heart,  // Love, inclusivity, caring
-          title: 'Inclusivity & Community',
-          description: 'We celebrate diversity and foster a welcoming space where all guests and professionals feel valued, respected, and embraced.'
-        },
-        {
-          icon: Flower2,  // Growth, wellness, nature
-          title: 'Holistic Wellness',
-          description: 'We believe in nurturing the mind, body, and spirit, offering services that promote relaxation, rejuvenation, and self-care.'
-        }
-        // {
-        //   icon: '💫',
-        //   title: 'Cultural Celebration',
-        //   description: 'We honor the beauty of diverse cultures, recognizing incorporating traditions that reflect the heritage of the community we serve.'
-        // },
-        // {
-        //   icon: '💫',
-        //   title: 'Sustainability & Responsibility',
-        //   description: 'We are committed to minimizing our carbon footprint by adopting eco-friendly practices, from sourcing sustainable products to reducing and recycling salon and spa waste. The Sweetest Lime Salon Spa, is a Certified Sustainable Salon partnering with Green Circle Salons to recycle all our waste, including hair, excess hair color, nail files and used metals. We strive to make a positive environmental impact, ensuring beauty and wellness go hand-in-hand with care for the planet.'
-        // }
-      ],
-      teamMembers: [
-        {
-          name: 'Makayah Mitchell',
-          role: 'Founder, Master Loctician, Stylist & Make-Up Artist',
-          bio: `
-            Makayah brings over 30 years of expertise as a master Loctician, stylist, and makeup
-            artist. Her passion for beauty and wellness is rooted in a commitment to artistry,
-            professionalism, and uplifting others. With decades of experience nurturing natural hair,
-            creating stunning styles, and enhancing her clients' confidence, Makayah is dedicated
-            to healthy hair and providing exemplary services to each of her guests.
-            Makayah is also an Educator for Ashtae Products, an international professional hair
-            care line that specializes in products for global texture clients.
-            Makayah relocated from Boston, MA to Winston-Salem, NC over 20 years ago, but will
-            always consider Trinidad and Tobago “home”. She is the proud mom of two brilliant
-            young kings, Akheal & Samir, and Nona (grandma) to the magnificent young prince,
-            Kareem.
-          `,
-          imageSrc: makayahProfilePic
-        },
-        {
-          name: 'Alley Shay',
-          role: 'Master Braider & Stylist',
-          bio: `
-            A native New Yorker, Alley Shay has been perfecting her craft as a braider since the
-            age of 12. Her passion shines through in the intricate and creative styles she creates.
-            With a heart for children of all ages, Alley takes pride in nurturing their hair, but more
-            importantly, their confidence. She is thrilled to share her talent and over 20 years of
-            experience with the community.
-          `,
-          imageSrc: alleyProfilePic,
-        },
-        {
-          name: 'Apryl Gonzalez',
-          role: 'Licensed Massage Therapist',
-          bio: `
-            Apryl Gonzalez is a licensed massage and bodywork therapist with 13 years of experience,
-            specializing in Swedish (relaxation) massages that promote deep relaxation and stress relief.
-            She also works full-time as a pharmacy technician, focusing on health and wellness,
-            which allows her to bring a holistic approach to guest care. As a dedicated mother of two and
-            a proud Oma (grandmother), Apryl understands the importance of balance and well-being in everyday life.
-            She will be available for evening and weekend bookings, and we are thrilled to welcome her to
-            The Sweetest Lime Salon Spa family!
-          `,
-          imageSrc: aprylProfilePic,
-        },
-        {
-          name: 'Noelle Mills-Tarmey',
-          role: 'Social Media',
-          bio: '',
-          imageSrc: '',
-        },
-        {
-          name: 'Phany Chhorn',
-          role: 'Nail Artist & Technician',
-          bio: `
-            Phony (Ponnie) has been a licensed nail technician for 18 years and is a gifted nail artist with a passion
-            for making her clients feel confident and beautiful. Outside of her craft, Ponnie loves cooking, painting,
-            photography, and crocheting. She is a proud mother to a beautiful daughter, a loving fur son, and grandma
-            of three adorable grand-cats!
-          `,
-          imageSrc: phanyProfilePic,
-        },
-        {
-          name: 'Typhani Richmond',
-          role: 'Guest Services',
-          bio: `
-            Typhani Richmond, a recent Reagan High School graduate, is dedicated to both beauty and business. She is
-            currently attending Guilford Technical Community College to earn an associate degree in Business Administration
-            alongside her cosmetology certification. As the oldest of three sisters, she has spent a lifetime honing her
-            skills and nurturing her passion for beauty and care.
-          `,
-          imageSrc: typhaniProfilePic,
-        }
-      ],
+      coreValues: [{
+        icon: Star,
+        title: 'Excellence',
+        description: 'We are committed to delivering exceptional service, with attention to detail, cleanliness and dedication to ensuring every guest experiences luxury care with every visit.',
+      }, {
+        icon: Users,
+        title: 'Empowerment',
+        description: 'We uplift and support the growth of young Black and Brown beauty professionals, helping them cultivate their careers and build their clientele.',
+      }, {
+        icon: HandshakeIcon,
+        title: 'Integrity & Trust',
+        description: 'We build lasting relationships with our guests and professionals through honesty, transparency, and consistent delivery on our promises.',
+      }, {
+        icon: Lightbulb,
+        title: 'Innovation & Creativity',
+        description: 'We encourage continuous learning, creativity, and the use of modern techniques to stay at the forefront of beauty and wellness trends.',
+      }, {
+        icon: Heart,
+        title: 'Inclusivity & Community',
+        description: 'We celebrate diversity and foster a welcoming space where all guests and professionals feel valued, respected, and embraced.',
+      }, {
+        icon: Flower2,
+        title: 'Holistic Wellness',
+        description: 'We believe in nurturing the mind, body, and spirit, offering services that promote relaxation, rejuvenation, and self-care.',
+      }],
+      teamMembers: [{
+        name: 'Makayah Mitchell',
+        role: 'Founder, Master Loctician, Stylist & Make-Up Artist',
+        bio: `
+          Makayah brings over 30 years of expertise as a master Loctician, stylist, and makeup
+          artist. Her passion for beauty and wellness is rooted in a commitment to artistry,
+          professionalism, and uplifting others. With decades of experience nurturing natural hair,
+          creating stunning styles, and enhancing her clients' confidence, Makayah is dedicated
+          to healthy hair and providing exemplary services to each of her guests.
+          Makayah is also an Educator for Ashtae Products, an international professional hair
+          care line that specializes in products for global texture clients.
+          Makayah relocated from Boston, MA to Winston-Salem, NC over 20 years ago, but will
+          always consider Trinidad and Tobago “home”. She is the proud mom of two brilliant
+          young kings, Akheal & Samir, and Nona (grandma) to the magnificent young prince,
+          Kareem.
+        `,
+        imageSrc: makayahProfilePic,
+      }, {
+        name: 'Alley Shay',
+        role: 'Master Braider & Stylist',
+        bio: `
+          A native New Yorker, Alley Shay has been perfecting her craft as a braider since the
+          age of 12. Her passion shines through in the intricate and creative styles she creates.
+          With a heart for children of all ages, Alley takes pride in nurturing their hair, but more
+          importantly, their confidence. She is thrilled to share her talent and over 20 years of
+          experience with the community.
+        `,
+        imageSrc: alleyProfilePic,
+      }, {
+        name: 'Apryl Gonzalez',
+        role: 'Licensed Massage Therapist',
+        bio: `
+          Apryl Gonzalez is a licensed massage and bodywork therapist with 13 years of experience,
+          specializing in Swedish (relaxation) massages that promote deep relaxation and stress relief.
+          She also works full-time as a pharmacy technician, focusing on health and wellness,
+          which allows her to bring a holistic approach to guest care. As a dedicated mother of two and
+          a proud Oma (grandmother), Apryl understands the importance of balance and well-being in everyday life.
+          She will be available for evening and weekend bookings, and we are thrilled to welcome her to
+          The Sweetest Lime Salon Spa family!
+        `,
+        imageSrc: aprylProfilePic,
+      }, {
+        name: 'Noelle Mills-Tarmey',
+        role: 'Social Media',
+        bio: '',
+        imageSrc: '',
+      }, {
+        name: 'Phany Chhorn',
+        role: 'Nail Artist & Technician',
+        bio: `
+          Phony (Ponnie) has been a licensed nail technician for 18 years and is a gifted nail artist with a passion
+          for making her clients feel confident and beautiful. Outside of her craft, Ponnie loves cooking, painting,
+          photography, and crocheting. She is a proud mother to a beautiful daughter, a loving fur son, and grandma
+          of three adorable grand-cats!
+        `,
+        imageSrc: phanyProfilePic,
+      }, {
+        name: 'Typhani Richmond',
+        role: 'Guest Services',
+        bio: `
+          Typhani Richmond, a recent Reagan High School graduate, is dedicated to both beauty and business. She is
+          currently attending Guilford Technical Community College to earn an associate degree in Business Administration
+          alongside her cosmetology certification. As the oldest of three sisters, she has spent a lifetime honing her
+          skills and nurturing her passion for beauty and care.
+        `,
+        imageSrc: typhaniProfilePic,
+      }],
     };
-  },
-  components: {
-    Navbar,
-    Footer,
   },
 }
 
