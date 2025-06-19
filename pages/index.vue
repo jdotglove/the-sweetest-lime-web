@@ -89,7 +89,7 @@ const handleSubmit = async () => {
       throw new Error('Failed to subscribe');
     }
 
-    const data = await response.json();
+    await response.json();
 
     // Show success message
     alert('Thank you for subscribing!');

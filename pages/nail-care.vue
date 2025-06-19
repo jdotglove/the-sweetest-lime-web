@@ -109,14 +109,14 @@ useSeo({
                     <h4 class="text-xl font-bold text-[#522413]">{{ service.name }}</h4>
                     <p class="text-[#522413]/70">{{ service.description }}</p>
                   </div>
-                  <span class="text-accent font-bold whitespace-nowrap">{{ service.price }}</span>
+                  <span class="text-accent font-bold whitespace-nowrap">{{ service.displayPrice }}</span>
                 </div>
                 <section class="flex items-center justify-between">
                   <div class="flex gap-2 h-fit flex-wrap">
-                    <span v-for="(detail, idx) in service.details" :key="idx"
+                    <!-- <span v-for="(detail, idx) in service.details" :key="idx"
                       class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
                       {{ detail }}
-                    </span>
+                    </span> -->
                   </div>
                   <div class="flex gap-2 flex-wrap">
                     <a :href="service.link" target="_blank"
@@ -216,6 +216,7 @@ useSeo({
 </template>
 
 <script lang="ts">
+import { inject } from 'vue'
 import MainNavbar from '../components/Navigation/MainNavbar.vue'
 import ServicePageSectionNav from '../components/Navigation/ServicePageSectionNav.vue'
 import MainFooter from '../components/MainFooter.vue'
@@ -227,146 +228,14 @@ export default {
     MainFooter,
   },
   data() {
+    const catalogItems = inject<SweetestLime.Catalog.Map | null>('catalogItems');
+    const nailSpaCategory = catalogItems?.category.find(category => category.name === 'Nail Spa');
+    const feeCategory = catalogItems?.category.find(category => category.name === 'Fees');
+    const nailSpaServices = catalogItems?.item.filter(item => (item.categories?.find((category) => category.id === nailSpaCategory?.id) && !item.categories?.find((category) => category.id === feeCategory?.id)) || false);
+
     return {
       nailCareSections: ['Services', 'Add-Ons'],
-      nailServices: [{
-        id: 1,
-        name: 'Manicure',
-        description: 'Includes nail cutting and shaping, cuticle grooming, lotion massage, hot towel wrap and your choice of polish.',
-        price: 'Starting at $20',
-        details: ['15min+'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/PZ3SCFRO7E3KVA3Q2ONXLCOX',
-      }, {
-        id: 2,
-        name: 'Mini Pedicure',
-        description: 'Ideal for a quick refresh, our Mini Pedicure includes a soothing foot soak, nail trimming and shaping, light cuticle care, and a moisturizing lotion application. Finish with a polish of your choice or a natural buff for a clean, well-groomed look in no time.',
-        price: '$20',
-        detials: ['15mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/7EIPY7Z7HOZIBOGSSASRLSFT',
-      }, {
-        id: 3,
-        name: 'Basic Pedicure',
-        description: 'Treat your feet to a relaxing experience with our Basic Pedicure. This service includes a warm soak, nail trimming and shaping, cuticule care, exfoliation, callus smoothing, and a hydrating massage. Finish with a polish of your choice or a natural buff for a fresh, clean look. Pefect for maintaining healthy, beautiful feet.',
-        price: '$45',
-        details: ['30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/7EIPY7Z7HOZIBOGSSASRLSFT',
-      }, {
-        id: 3,
-        name: 'Gel-X',
-        description: '',
-        price: '$75',
-        details: ['1hr 30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/6KAHZFKHLZGC25VBZFBEF53P',
-      }, {
-        id: 4,
-        name: 'Gel-X Fullset (Short)',
-        description: 'This service offers gel-x extensions in any desired shape of choice (almond, square, etc.) w/ any desired solid gel polish color of choice to complete the look!',
-        price: '$75',
-        details: ['2hr'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/76YAGAUFDQ5ZIKECL2YZK5XA',
-      }, {
-        id: 5,
-        name: 'Gel-X Fullset (Medium)',
-        description: 'This service is intended for gel-x extensions in any desired shape of choice. Finish the look with a solid color gel polish of choice!',
-        price: '$80',
-        details: ['2hr 30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/R5AKHPVXLEIHIH3FN7B3ZEAA',
-      }, {
-        id: 6,
-        name: 'Gel-X Extensions (S/M) Freestyle',
-        description: 'This service offers gel-x extensions + designs, charms, frenchie, 3d effects etc. For more information, reach out to your nail technician with your nail inspiration to complete the look.',
-        price: '$110',
-        details: ['3hr'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/GKWZKHUYBN275DHNXNXDVZU7',
-      }, {
-        id: 7,
-        name: 'S/M Acrylic Freestyle Fullset',
-        description: 'Experience a full set of acrylic nails designed with freestyle artistry, incorporating 3D effects (flowers, clear designs etc), chrome finishes, charms & MORE! For more detailed customization, please reach out to your nail technician with your nail inspiration to bring your vision to life.',
-        price: '$105',
-        details: ['3hr'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RF2OOT7MKJKSNOR7PXUIM4SJ',
-      }, {
-        id: 8,
-        name: 'Medium Ombre Fullset (w/ extensions)',
-        description: 'Enjoy a medium ombre full set w/ extensions (nail tips in desired nail shape of your choice - i.e. almond, square, coffin etc) featuring two colors of your choice (commonly white/pink).',
-        price: '$75',
-        details: ['2hr 30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/3KR2XNIPPBZ3MW5XFB3OW5WG',
-      },
-      {
-        id: 9,
-        name: 'Short Ombre Fullset (w/ extensions)',
-        description: 'Enjoy a short ombre fullset with extensions (nail tips) featuring two colors of your choice (commonly white and pink). You can choose between an almond or square shape for your nails.',
-        price: '$70',
-        details: ['2hr 15mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/YLYQESFM5ZLCM44VNVPAY5XM',
-      }, {
-        id: 10,
-        name: 'Manly-Cure (Mens Mani)',
-        description: 'This service is designed for mens nail care, including cleaning, buffing, cuticle removal and the option to apply a clear coat of gel polish for a polished finish.',
-        price: '$50',
-        details: ['1hr'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/4JRUSQ5XUEWGCWZEHUS7FO5Q',
-      }, {
-        id: 11,
-        name: 'Short Acrylic Overlay + Frenchie',
-        description: 'Fullset of short acrylic overlay applied to natural nails featuring a solid base color of your choice + a white (or color of your choice) frenchie design with a glossy top coat for a polished look.',
-        price: '$70',
-        details: ['2hr 15mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/BXRLGOCJGPAZYVNAPPYON4ZK',
-      }, {
-        id: 12,
-        name: 'Short Arcylic Overlay w/ Ombre',
-        description: 'Fullset of short acrylic overlay applied to natural nails featuring a ombre effect (2 colors blended) of your choice with a glossy top coat for a polished look.',
-        price: '$65',
-        details: ['2hr'],
-      }, {
-        id: 13,
-        name: 'Short Acrylic Overlay Fullset',
-        description: 'Fullset of short acrylic overlay applied to natural nails featuring a solid base color of your choice with a glossy top coat for a polished look.',
-        price: '$55',
-        details: ['1hr 30mins'],
-      }, {
-        id: 14,
-        name: 'Short Solid Color Acrylic Fullset',
-        description: 'This service offers a complete acrylic nail set featuring a base color of your choice (i.e. nude, pink nude, etc). Enjoy a short fullset in any shape desired (i.e. almond, square, etc) finished with a glossy top coat.',
-        price: '$60',
-        details: ['1hr 30mins'],
-      }, {
-        id: 15,
-        name: 'Medium Solid Color Fullset',
-        description: 'This service offers a complete acrylic nail set featuring a base color of your choice (i.e. nude, pink nude etc). Enjoy a medium full set finished with a glossy top coat.',
-        price: '$70',
-        details: ['2hr 15mins'],
-      }, {
-        id: 16,
-        name: 'Dip Powder',
-        description: '',
-        price: '$10',
-        details: ['30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/W3ZIUYXSYAPNYLB7NXZ7H4HX',
-      }, {
-        id: 17,
-        name: 'Gel Nails',
-        description: 'Application of gel hardener on natural nail bed, nail bed and nail extensions or on new growth of nail bed. Includes shaping nails and application of nail lacquer (additional charge for gel polish). Includes 1.5oz of hand lotion. All nail services are waterless so as to avoid the expansion of the nail bed and enhance the life of polish.',
-        price: '$45',
-        detials: ['30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/SGFWMSJIJDQSOVS5CXO7H375',
-      }, {
-        id: 18,
-        name: 'Acrylic Nail Fill In (Re-Balance - 2 weeks)',
-        description: '',
-        price: '$45',
-        details: ['1hr 30mins'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/6V7BCFAMXNENLNTLTVMPNUVO',
-      }, {
-        id: 19,
-        name: 'Color Change - Feet',
-        description: 'Removal of reapplication of nail lacquer on feet.',
-        price: 'Starting at $25',
-        details: ['20mins+'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/URBNDHVI5DJXUQORDGU5SIVW',
-      }],
+      nailServices: nailSpaServices,
       addOns: [{
         id: 1,
         name: 'Frenchie Design Add-On',

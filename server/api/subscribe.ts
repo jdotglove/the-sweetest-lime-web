@@ -2,7 +2,6 @@
 import { Client, Environment } from 'square'
 
 export default defineEventHandler(async (event) => {
-
   try {
     const body = await readBody(event)
     const { name, email, phone } = body

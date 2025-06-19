@@ -44,11 +44,11 @@ export default defineComponent({
       observer = new IntersectionObserver(checkSectionVisibility, {
         root: null,
         rootMargin: '-20% 0px',
-        threshold: 0.2
+        threshold: 0.1
       });
 
       // Observe all sections
-      props.sections.forEach(section => {
+      props.sections?.forEach(section => {
         const element = document.getElementById(section.toLowerCase());
         if (element) {
           observer.observe(element);

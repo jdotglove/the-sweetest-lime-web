@@ -108,16 +108,16 @@ useSeo({
                     <p class="text-[#522413]/70">{{ service.description }}</p>
                   </div>
                   <div class="text-right">
-                    <div class="text-accent font-bold">{{ service.price }}</div>
-                    <div class="text-sm text-[#522413]/60">{{ service.duration }}</div>
+                    <div class="text-accent font-bold">{{ service.displayPrice }}</div>
+                    <!-- <div class="text-sm text-[#522413]/60">{{ service.duration }}</div> -->
                   </div>
                 </div>
                 <section class="flex items-center justify-between">
                   <div class="flex gap-2 h-fit flex-wrap">
-                    <span v-for="(detail, idx) in service.details" :key="idx"
+                    <!-- <span v-for="(detail, idx) in service.details" :key="idx"
                       class="text-xs bg-accent/10 text-accent px-3 py-1 rounded-full">
                       {{ detail }}
-                    </span>
+                    </span> -->
                   </div>
                   <div class="flex gap-2 flex-wrap">
                     <a :href="service.link" target="_blank"
@@ -234,6 +234,7 @@ useSeo({
 </template>
 
 <script lang="ts">
+import { inject } from 'vue'
 import MainNavbar from '../components/Navigation/MainNavbar.vue'
 import ServicePageSectionNav from '../components/Navigation/ServicePageSectionNav.vue'
 import MainFooter from '../components/MainFooter.vue'
@@ -245,6 +246,10 @@ export default {
     MainFooter,
   },
   data() {
+    const catalogItems = inject<SweetestLime.Catalog.Map | null>('catalogItems');
+    const bodyWorkCategory = catalogItems?.category.find(category => category.name === 'Body Work');
+    const bodyWorkServices = catalogItems?.item.filter(item => item.categories?.find((category) => category.id === bodyWorkCategory?.id) || false);
+
     return {
       bodyWorkSections: ['Massage', 'Add-Ons'],
       featuredPackages: [{
@@ -282,23 +287,7 @@ export default {
         price: '$99',
         duration: '1 hour',
       }],
-      massageServices: [{
-        id: 1,
-        name: 'Swedish Massage',
-        description: 'A massage therapy technique focused on relaxation and improving circulation. Typically performed on the whole body, but can also be focused on specific areas such as the back, shoulders, or neck.',
-        price: '$60/$145/$180',
-        duration: '30mins/90mins/2hrs',
-        details: ['Stress relief', 'Improved circulation', 'Relaxation'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/AXOJBWUROTKLU6GHV3CQSVFP',
-      }, {
-        id: 2,
-        name: 'Deep Tissue Massage',
-        description: 'A massage technique using slow, deep strokes and pressure to target chronic muscle tension and pain. It\'s often used to treat injuries and chronic pain, improve range of motion, increase blood flow, and reduce inflammation.',
-        price: '$150+',
-        duration: '90mins',
-        details: ['Pain relief', 'Muscle recovery', 'Tension release'],
-        link: 'https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/RIIQIN2NCJL2ZYCXVZ5N7RXW',
-      }],
+      massageServices: bodyWorkServices,
       addOns: [{
         id: 1,
         name: 'Aromatherapy',
