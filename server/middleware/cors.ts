@@ -7,8 +7,7 @@ export default defineEventHandler((event: any) => {
     });
 
     if (getMethod(event) === 'OPTIONS') {
-      setResponseStatus(event, 204);
-      return null;
+      return sendNoContent(event);
     }
   }
 });
