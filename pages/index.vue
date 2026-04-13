@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo'
+import { useSeo } from '../composables/useSeo.ts'
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 import locClientImage from '~/assets/Loc Trio.jpg'
 

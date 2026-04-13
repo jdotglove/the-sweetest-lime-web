@@ -32,7 +32,7 @@ export const useSeo = ({
   useHead({
     // Basic SEO
     title: title,
-    titleTemplate: (title) => `${title} - ${siteName}`,
+    titleTemplate: (title: string) => `${title} - ${siteName}`,
 
     meta: [
       // Standard metadata

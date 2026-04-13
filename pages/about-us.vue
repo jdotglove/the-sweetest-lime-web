@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo'
+import { useSeo } from '../composables/useSeo.ts'
 import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg'
 import phanyProfilePic from '~/assets/phany_chhorn_profile_pic.jpeg'
 import aprylProfilePic from '~/assets/apryl_gonzalez_profile_pic.jpeg'

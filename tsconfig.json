@@ -8,12 +8,12 @@
     "allowJs": true,
     "skipLibCheck": true,
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "nodenext",
     "types": ["@types/node", "@nuxt/types"],
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "isolatedModules": true

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSeo } from '../composables/useSeo'
+import { useSeo } from '../composables/useSeo.ts'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const braidsContainer = ref<HTMLElement | null>(null);

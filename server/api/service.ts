@@ -1,7 +1,7 @@
 // server/api/subscribe.ts
 import { Client, Environment } from 'square'
 
-export default defineEventHandler(async (_event) => {
+export default defineEventHandler(async () => {
   try {
     //const body = await readBody(event);
 
@@ -54,7 +54,7 @@ export default defineEventHandler(async (_event) => {
                 pricingType: itemVariationData?.pricingType || "FIXED_PRICING",
                 amount: itemVariationData?.priceMoney?.amount ? Number(itemVariationData.priceMoney.amount) : 0,
                 currency: itemVariationData?.priceMoney?.currency || "USD",
-              }
+              },
             })) || [],
           });
         } else if (object.type === "DISCOUNT") {
@@ -110,4 +110,4 @@ export default defineEventHandler(async (_event) => {
       message: 'Error fetching square catalog objects',
     });
   }
-})
+});
