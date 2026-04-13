@@ -1,5 +1,5 @@
 export default defineEventHandler((event: any) => {
-  if (event.path.startsWith('/api/')) {
+  if (event.path.includes('/api/')) {
     setResponseHeaders(event, {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
