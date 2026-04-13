@@ -660,7 +660,7 @@ export default {
         description: 'We\’re so glad you\’re here. Enjoy 20% off your first visit—a little luxury, on us.',
       }, {
         id: 2,
-        discount: 'SAVE 20%',
+        discount: 'SAVE UP TO 15% OFF',
         name: 'Bundle Package',
         description: 'Layer your self-care at The Sweetest Lime:\n \t• Any 2 services – 10% off\n \t• Any 3 services – 15% off\nHair, nails, and bodywork included.',
       }, {
