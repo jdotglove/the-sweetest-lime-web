@@ -3,10 +3,10 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineNuxtConfig({
   runtimeConfig: {
+    squareAccessToken: process.env.SQUARE_ACCESS_TOKEN,
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
       siteName: 'The Sweetest Lime',
-      SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
     }
   },
   app: {
