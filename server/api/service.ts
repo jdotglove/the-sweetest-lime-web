@@ -1,13 +1,13 @@
 // server/api/subscribe.ts
 import { Client, Environment } from 'square'
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event: any) => {
   try {
-    //const body = await readBody(event);
+    const config = useRuntimeConfig(event);
 
     const client = new Client({
-      accessToken: process.env.SQUARE_ACCESS_TOKEN,
-      environment: process.env.NUXT_SITE_ENV === "development" ? Environment.Sandbox : Environment.Production,
+      accessToken: config.squareAccessToken,
+      environment: Environment.Production,
     });
 
     const response = await client.catalogApi.searchCatalogObjects({
