@@ -108,7 +108,9 @@ useSeo({
                     <p class="text-[#522413]/70">{{ service.description }}</p>
                   </div>
                   <div class="text-right">
-                    <div class="text-accent font-bold">{{ service.displayPrice }}</div>
+                    <div class="text-accent font-bold">
+                      {{ service.displayPrice === "" ? 'Variable pricing' : service.displayPrice }}
+                    </div>
                     <!-- <div class="text-sm text-[#522413]/60">{{ service.duration }}</div> -->
                   </div>
                 </div>

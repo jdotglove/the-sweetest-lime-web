@@ -37,7 +37,7 @@ export default defineEventHandler(async (event: any) => {
             name: object.categoryData?.name || "Unnamed Category",
           });
         } else if (object.type === "ITEM" && !object.isDeleted && !object.itemData?.isArchived) {
-          const priceString = object.itemData?.variations?.reduce((acc, variation) => `${acc}$${Number(variation.itemVariationData?.priceMoney?.amount) / 100}/`, "");
+          const priceString = object.itemData?.variations?.reduce((acc, variation) => Number(variation.itemVariationData?.priceMoney?.amount) ? `${acc}$${Number(variation.itemVariationData?.priceMoney?.amount) / 100}/` : "", "");
           catalogObjectMap.item.push({
             id: object.id,
             link: `https://book.squareup.com/appointments/55614969-c9c8-4268-a409-b631cbb6574b/location/9F5K62XVNWWGR/services/${object.id}`,

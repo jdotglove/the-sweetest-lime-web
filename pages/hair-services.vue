@@ -205,7 +205,9 @@ useSeo({
                     <h3 class="text-xl font-bold text-[#522413]">{{ service.name }}</h3>
                     <p class="text-[#522413]/70">{{ service.description }}</p>
                   </div>
-                  <span class="text-accent text-right font-bold whitespace-nowrap">{{ service.displayPrice }}</span>
+                  <span class="text-accent text-right font-bold whitespace-nowrap">
+                    {{ service.displayPrice === "" ? 'Variable pricing' : service.displayPrice }}
+                  </span>
                 </div>
                 <section class="flex items-center justify-between">
                   <div class="flex gap-2 h-fit flex-wrap">
