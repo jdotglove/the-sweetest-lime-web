@@ -2,7 +2,8 @@
 import { Analytics } from '@vercel/analytics/nuxt';
 import CatalogProvider from '../providers/CatalogProvider.vue';
 
-const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/service`, {
+const config = useRuntimeConfig();
+const response = await fetch(`${config.public.siteUrl}/api/service`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
