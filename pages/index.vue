@@ -277,7 +277,7 @@ useSeo({
               <section>
                 <div class="text-accent text-xl font-bold mb-2">{{ offer.discount }}</div>
                 <h3 class="text-2xl font-bold mb-4">{{ offer.name }}</h3>
-                <p class="mb-6 text-dark-green text-lg">{{ offer.description }}</p>
+                <p class="mb-6 text-dark-green text-lg whitespace-pre-wrap">{{ offer.description }}</p>
               </section>
               <a v-if="offer.name !== 'Sign up for Notifications'"
                 href="https://app.squareup.com/appointments/book/55614969-c9c8-4268-a409-b631cbb6574b/9F5K62XVNWWGR/start"
@@ -560,7 +560,7 @@ useSeo({
       </div>
     </section>
     <!-- Happy Clients Section -->
-    <section class="py-20 px-6 bg-dark-green/20">
+    <!-- <section class="py-20 px-6 bg-dark-green/20">
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-[#522413] text-center mb-16">
           Transformations
@@ -574,10 +574,10 @@ useSeo({
                 <img :src="image.src" :alt="image.alt" class="w-full h-full lg:w-[30dvw] object-cover" />
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Navigation Dots (Mobile Only) -->
-          <div class="flex justify-center gap-2 mt-4 md:hidden">
+    <!-- Navigation Dots (Mobile Only) -->
+    <!-- <div class="flex justify-center gap-2 mt-4 md:hidden">
             <button v-for="(_, index) in happyClients" :key="`dot-${index}`" @click="scrollToClientIndex(index)"
               class="w-2 h-2 rounded-full transition-all duration-300"
               :class="currentClientIndex === index ? 'bg-accent w-4' : 'bg-accent/30'"
@@ -585,7 +585,7 @@ useSeo({
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- Book Now CTA -->
     <section class="py-20 px-6">
       <div class="container mx-auto max-w-4xl text-center text-[#522413]">
@@ -656,13 +656,13 @@ export default {
       specialOffers: [{
         id: 1,
         discount: '20% OFF',
-        name: 'First Visit to New Location',
-        description: 'Special discount for your first visit to our new location for any of our services.',
+        name: 'First Time Guests',
+        description: 'We\’re so glad you\’re here. Enjoy 20% off your first visit—a little luxury, on us.',
       }, {
         id: 2,
         discount: 'SAVE 20%',
         name: 'Bundle Package',
-        description: 'Bundle any 3 services and receive 20% off your vist.',
+        description: 'Layer your self-care at The Sweetest Lime:\n \t• Any 2 services – 10% off\n \t• Any 3 services – 15% off\nHair, nails, and bodywork included.',
       }, {
         id: 3,
         discount: '10% OFF',
