@@ -42,17 +42,17 @@ export default {
         {
           title: 'Hair Services',
           description: 'Expert cuts, coloring, and styling services tailored to your unique personality.',
-          href: '/hair-services'
+          href: '/hair-services',
         },
         {
           title: 'Nail Care',
           description: 'Luxurious manicures and pedicures using premium products and techniques.',
-          href: '/nail-services'
+          href: '/nail-services',
         },
         {
           title: 'Body Work',
           description: 'Rejuvenating spa treatments to help you relax and refresh.',
-          href: '/body-work'
+          href: '/body-work',
         },
       ]
     };
