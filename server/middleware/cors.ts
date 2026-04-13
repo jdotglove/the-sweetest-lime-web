@@ -1,14 +1,14 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler((event: any) => {
   if (event.path.startsWith('/api/')) {
     setResponseHeaders(event, {
-      'Access-Control-Allow-Origin': process.env.NUXT_PUBLIC_SITE_URL || '*',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     });
 
     if (getMethod(event) === 'OPTIONS') {
-      event.node.res.statusCode = 204;
-      event.node.res.end();
+      setResponseStatus(event, 204);
+      return null;
     }
   }
 });
