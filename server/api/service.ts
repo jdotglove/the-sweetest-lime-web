@@ -107,7 +107,7 @@ export default defineEventHandler(async () => {
     console.error('Error fetching square catalog objects:', error);
     throw createError({
       statusCode: 500,
-      message: 'Error fetching square catalog objects',
+      message: error,
     });
   }
 });
