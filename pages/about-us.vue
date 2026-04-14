@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo.ts'
 import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg'
-import phanyProfilePic from '~/assets/phany_chhorn_profile_pic.jpeg'
+import phanyProfilePic from '~/assets/phany_mok_profile_pic.jpeg'
 import aprylProfilePic from '~/assets/apryl_gonzalez_profile_pic.jpeg'
-import alleyProfilePic from '~/assets/alley_shay_profile_pic.jpeg'
-import typhaniProfilePic from '~/assets/typhani_richmond_profile_pic.jpeg'
+import ericaProfilePic from '~/assets/erica_hillard_profile_pic.jpeg'
+import nyasiaProfilePic from '~/assets/nyasia_dotson_profile_pic.jpeg'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const teamContainer = ref<HTMLElement | null>(null);
@@ -361,8 +361,13 @@ export default {
       }, {
         name: 'Nyasia Dotson',
         role: 'Social Media',
-        bio: '',
-        imageSrc: '',
+        bio: `
+          Nyasia Dotson leads social media and marketing for The Sweetest Lime Salon Spa, bringing the brand to
+          life with creativity and intention. She\’s a proud mom to her 8-year-old son, and mini-entrepreneur,
+          Aasim, and she\’s an avid learner, holding a bachelor\’s and master\’s degree, while currently pursuing
+          another master\’s. In her free time, she enjoys crocheting.
+        `,
+        imageSrc: nyasiaProfilePic,
       }, {
         name: 'Phany Mok',
         role: 'Nail Artist & Technician',
@@ -383,7 +388,7 @@ export default {
           Erica is dedicated to creating a comfortable and welcoming salon experience for clients of all ages. She is now
           excited to bring her talent and expertise to families in Winston-Salem, North Carolina.
         `,
-        imageSrc: '',
+        imageSrc: ericaProfilePic,
       }, {
         name: 'Triznee Powers',
         role: 'Licensed Bodywork and Massage Therapist',
