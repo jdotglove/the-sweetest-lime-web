@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useSeo } from '../composables/useSeo.ts'
 import makayahProfilePic from '~/assets/makayah_mitchell_profile_pic.jpeg'
-import phanyProfilePic from '~/assets/phany_chhorn_profile_pic.jpeg'
+import phanyProfilePic from '~/assets/phany_mok_profile_pic.jpeg'
 import aprylProfilePic from '~/assets/apryl_gonzalez_profile_pic.jpeg'
-import alleyProfilePic from '~/assets/alley_shay_profile_pic.jpeg'
-import typhaniProfilePic from '~/assets/typhani_richmond_profile_pic.jpeg'
+import ericaProfilePic from '~/assets/erica_hillard_profile_pic.jpeg'
+import nyasiaProfilePic from '~/assets/nyasia_dotson_profile_pic.jpeg'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const teamContainer = ref<HTMLElement | null>(null);
@@ -346,17 +346,6 @@ export default {
         `,
         imageSrc: makayahProfilePic,
       }, {
-        name: 'Alley Shay',
-        role: 'Master Braider & Stylist',
-        bio: `
-          A native New Yorker, Alley Shay has been perfecting her craft as a braider since the
-          age of 12. Her passion shines through in the intricate and creative styles she creates.
-          With a heart for children of all ages, Alley takes pride in nurturing their hair, but more
-          importantly, their confidence. She is thrilled to share her talent and over 20 years of
-          experience with the community.
-        `,
-        imageSrc: alleyProfilePic,
-      }, {
         name: 'Apryl Gonzalez',
         role: 'Licensed Massage Therapist',
         bio: `
@@ -370,12 +359,17 @@ export default {
         `,
         imageSrc: aprylProfilePic,
       }, {
-        name: 'Noelle Mills-Tarmey',
+        name: 'Nyasia Dotson',
         role: 'Social Media',
-        bio: '',
-        imageSrc: '',
+        bio: `
+          Nyasia Dotson leads social media and marketing for The Sweetest Lime Salon Spa, bringing the brand to
+          life with creativity and intention. She\’s a proud mom to her 8-year-old son, and mini-entrepreneur,
+          Aasim, and she\’s an avid learner, holding a bachelor\’s and master\’s degree, while currently pursuing
+          another master\’s. In her free time, she enjoys crocheting.
+        `,
+        imageSrc: nyasiaProfilePic,
       }, {
-        name: 'Phany Chhorn',
+        name: 'Phany Mok',
         role: 'Nail Artist & Technician',
         bio: `
           Phony (Ponnie) has been a licensed nail technician for 18 years and is a gifted nail artist with a passion
@@ -385,15 +379,26 @@ export default {
         `,
         imageSrc: phanyProfilePic,
       }, {
-        name: 'Typhani Richmond',
-        role: 'Guest Services',
+        name: 'Erica Hillard',
+        role: 'Master Braider & Stylist',
         bio: `
-          Typhani Richmond, a recent Reagan High School graduate, is dedicated to both beauty and business. She is
-          currently attending Guilford Technical Community College to earn an associate degree in Business Administration
-          alongside her cosmetology certification. As the oldest of three sisters, she has spent a lifetime honing her
-          skills and nurturing her passion for beauty and care.
+          Erica is a professional braider, former salon owner, and natural hair care specialist with over 15 years of
+          experience serving children and their parents throughout the Chicagoland area. Certified in Natural Hair
+          Styling and Trichology, she combines technical expertise with a deep passion for healthy hair care and education.
+          Erica is dedicated to creating a comfortable and welcoming salon experience for clients of all ages. She is now
+          excited to bring her talent and expertise to families in Winston-Salem, North Carolina.
         `,
-        imageSrc: typhaniProfilePic,
+        imageSrc: ericaProfilePic,
+      }, {
+        name: 'Triznee Powers',
+        role: 'Licensed Bodywork and Massage Therapist',
+        bio: `
+          Triznee is a skilled bodywork practitioner who blends trauma-informed care with results-driven techniques, drawing
+          from her experience working with veterans and her background in spa wellness. She approaches each session with
+          intentional listening and a deep respect for the mind-body connection, addressing both chronic pain and emotional
+          stress. Known for her calm, grounded presence, Triznee creates a safe, restorative space where true healing can begin.
+        `,
+        imageSrc: '',
       }],
     };
   },
